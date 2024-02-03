@@ -21,7 +21,10 @@ const links = document.querySelectorAll("a");
 // Menambahkan event listener untuk setiap tautan
 links.forEach(function(link) {
     link.addEventListener("click", function(event) {
-        showLoader(); // Menampilkan loader sebelum navigasi
+
+
+        loader.style.display = "block";
+
         event.preventDefault(); // Mencegah navigasi langsung
 
         // Jika target _blank, buka tautan di tab baru
@@ -32,4 +35,5 @@ links.forEach(function(link) {
             window.location.href = link.href;
         }
     });
+    loader.style.display = "none";
 });
