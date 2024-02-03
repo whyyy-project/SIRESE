@@ -1,0 +1,239 @@
+.top-btn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    display: none;
+    width: 45px;
+    height: 45px;
+    opacity: inherit;
+    color: #043608;
+    border-radius: 25px 5px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in;
+}
+
+.icon-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 13px;
+}
+#option a:hover{
+    border-color: rgb(255, 81, 0);
+    transform: translateX(3px);
+}
+#option #active *{
+color: rgb(255, 255, 255);
+}
+li #active{
+    border-color: rgb(255, 81, 0);
+}
+
+#cursor {
+    display: inline-block;
+    width: 7px;
+    height: 16px;
+    background-color: #333;
+    animation: blink-caret 0.75s infinite;
+}
+.btn-login {
+    display: inline-block;
+    padding: 7px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s; /* Efek transisi transformasi dan bayangan */
+}
+
+.btn-login:hover {
+    transform: translateY(2px) translateZ(-5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+}
+
+@keyframes blink-caret {
+    0%, 100% {
+    opacity: 0;
+    }
+    50% {
+    opacity: 1;
+    }
+}
+@keyframes showIn {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes showOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+}
+
+@keyframes listAnimation {
+    0% {
+        transform: translateY(5px);
+    }
+    20%{
+    transform: translateY(-20px);
+    }
+    40%{
+        transform: translateY(-5px);
+    }
+    70%{
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width:768px) {
+    .top-btn {
+        width: 35px;
+        right: 10px;
+        bottom: 10px;
+        height: 35px;
+        bottom: 80px;
+        font-size: 15px;
+        border-radius: 20px 8px;
+
+    }
+
+    .icon-btn {
+        margin-top: 10px;
+    }
+
+    #active {
+        background-color: rgb(0, 225, 255);
+        border-radius: 100% 100% 5px 5px;
+        animation: listAnimation 1s ease-in-out;
+        transform: translateY(-10px);
+        padding-bottom: 10px; 
+    }
+    #option a:hover{
+        /* background-color: rgb(0, 97, 153); */
+        transform: translateY(2px);
+        color: rgb(255, 255, 255);
+    }
+}
+
+.bg-gradient-login {
+    width: 100%;
+    height: 100px; /* Sesuaikan tinggi kotak sesuai kebutuhan Anda */
+    background: linear-gradient(to right, #f8f8f8, #bbf5ef);
+    background-size: 200% 100%;
+    animation: gradientAnimation 20s linear infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+    background-position: 100% 0;
+    }
+    50% {
+    background-position: 0 0;
+    }
+    100% {
+    background-position: 100% 0;
+    }
+}
+
+/* loader */
+
+  .loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(98, 116, 113, 0.514);
+    z-index: 9999;
+  }
+.loader {
+    position: relative;
+    width: 2.5em;
+    height: 2.5em;
+    transform: rotate(165deg);
+  }
+  .loader:before, .loader:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 0.25em;
+    transform: translate(-50%, -50%);
+  }
+  .loader:before {
+    animation: before 2s infinite;
+  }
+  .loader:after {
+    animation: after 2s infinite;
+  }
+  
+  @keyframes before {
+    0% {
+      width: 0.5em;
+      box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+    }
+    35% {
+      width: 2.5em;
+      box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+    }
+    70% {
+      width: 0.5em;
+      box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+    }
+    100% {
+      box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+    }
+  }
+  @keyframes after {
+    0% {
+      height: 0.5em;
+      box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+    }
+    35% {
+      height: 2.5em;
+      box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+    }
+    70% {
+      height: 0.5em;
+      box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+    }
+    100% {
+      box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+    }
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  
+  .loader {
+    position: absolute;
+    top: calc(50% - 1.25em);
+    left: calc(50% - 1.25em);
+  }
+
+  
