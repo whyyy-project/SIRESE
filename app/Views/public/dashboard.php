@@ -33,7 +33,7 @@
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Bagaimana menggunakan <span class="text-orange-500"> SIRESE</span> ?</h1>
                 <div class="border border-gray-200 m-2"></div>
                 <p class="mt-2 text-gray-600 text-justify">
-                    Ingin tau <a href="#" target="_blank" class="text-blue-700 italic">cara menggunakan SIRESE ??? <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> </a> atau bantu kami melakukan <a href="<?= base_url() ?>pendataan+smartphone" class="text-blue-700 italic">pendataan Smartphone <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a> ataupun ingin berkontribusi dalam <a href="<?= base_url() ?>rating" class="text-blue-700 italic">pemberian rating brand <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a> menurut kamu ?
+                    Ingin tau <a href="#" target="_blank" class="text-blue-700 italic">cara menggunakan SIRESE ??? <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> </a> atau bantu kami melakukan <a href="#" class="text-blue-700 italic">pendataan Smartphone <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a> ataupun ingin berkontribusi dalam <a href="<?= base_url() ?>rating" class="text-blue-700 italic">pemberian rating brand <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a> menurut kamu ?
                 </p>
             </div>
         </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold">Brand : </span> Asus</p>
-                                    <p><span class="font-bold">Rilis : </span>Januari 2024</p>
+                                    <p><span class="font-bold">Merek : </span>Republic Of Gaming 10 Pro</p>
                                 </div>
                             </div>
                             <div class="px-4 pb-3">
