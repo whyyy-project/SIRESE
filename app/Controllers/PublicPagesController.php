@@ -19,8 +19,32 @@ class PublicPagesController extends BaseController
     {
         $data = [
         'page' => "dashboard",
+        'title' => "SIRESE | Sistem Rekomendasi Smartphone"
         ];
         return view('public/dashboard', $data);
+    }
+    public function hasilCari()
+    {
+        $search = $this->request->getGet('search');
+        // data per page
+        $perPage = 6;
+        // hitung total data
+        $totalData = count($this->smartphone->findAll());
+        // hitung berapa page
+        $totalPages = ceil($totalData / $perPage);
+        // Mendapatkan nomor halaman saat ini
+        $currentPage = $this->request->getVar('page') ?? 1;
+        // Mendapatkan data kesenian dengan paging
+        $dataSmartphone = $this->smartphone->findDataSmartphonePaging($perPage, ($currentPage - 1) * $perPage, $search);
+        $data = [
+            'title' => 'Hasil Pencarian',
+            'page' => 'smartphone',
+            'smartphone' => $dataSmartphone,
+            'totalPages' => $totalPages,
+            'currentPage' => $currentPage,
+            'search' => $search,
+        ];
+        return view('public/hasil-cari', $data);
     }
     public function smartphone()
     {

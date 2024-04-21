@@ -9,9 +9,9 @@
     </div>
     
     <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
-        <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Data <span class="text-orange-500"> Smartphone</span></h1>
+        <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Hasil <span class="text-orange-500"> Pencarian</span></h1>
         <div class="border border-gray-200 m-4"></div>
-
+        <p class="ml-4">hasil Pencarian <i class="text-orange-700"><strong><?= $search ?></strong></i></p>
         <div class="flex flex-wrap mx-3">
             <!-- Tampilan Pagination -->
             <?php foreach ($smartphone as $data) : ?>

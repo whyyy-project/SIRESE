@@ -7,4 +7,5 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'PublicPagesController::index');
 $routes->get('/data-smartphone', 'PublicPagesController::smartphone');
+$routes->get('/search', 'PublicPagesController::hasilCari');
 $routes->get('/rating', 'PublicPagesController::rating');

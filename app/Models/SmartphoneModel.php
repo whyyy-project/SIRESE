@@ -33,4 +33,47 @@ class SmartphoneModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    function hasilCari($data)
+    {
+        $keywords = explode(' ', $data);
+
+        $builder = $this->table($this->table);
+
+        // Loop melalui kata kunci dan mencocokkannya dengan kolom data.
+        foreach ($keywords as $word) {
+            $builder->groupStart(); // Memulai grup OR.
+
+            $builder->like('brand', $word);
+            $builder->orLike('type', $word);
+            $builder->orlike('slug', $word);
+            $builder->orlike('os', $word);
+            $builder->orlike('ram', $word);
+            $builder->orlike('rom', $word);
+            $builder->groupEnd(); // Mengakhiri grup OR.
+        }
+        return $builder->get()->getResultArray();
+    }
+
+    public function findDataSmartphonePaging($perPage, $offset, $data)
+    {
+        $keywords = explode(' ', $data);
+
+        $builder = $this->table($this->table);
+
+        // Loop melalui kata kunci dan mencocokkannya dengan kolom data.
+        foreach ($keywords as $word) {
+            $builder->groupStart(); // Memulai grup OR.
+
+            $builder->like('brand', $word);
+            $builder->orLike('type', $word);
+            $builder->orlike('slug', $word);
+            $builder->orlike('os', $word);
+            $builder->orlike('ram', $word);
+            $builder->orlike('rom', $word);
+            $builder->groupEnd(); // Mengakhiri grup OR.
+        }
+        $builder->limit($perPage, $offset);
+        return $builder->get()->getResultArray();
+    }
 }
