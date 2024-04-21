@@ -71,7 +71,7 @@
 <body>
     <div class="wrap">
         <h1>404</h1>
-        <h2>SABAR BOSSQUEE, MASIH DALAM PENGERJAAN😁</h2>
+        <h2>ADA KENDALA SISTEM, HARAP TUNGGU PIHAK DEVELPER MEMPERBAIKINYA!</h2>
 
         <p>
             <?php if (ENVIRONMENT !== 'production') : ?>
@@ -80,6 +80,7 @@
                 <?= lang('Errors.sorryCannotFind') ?>
             <?php endif; ?>
         </p>
+        <a href="<?= base_url() ?>">Back To Home</a>
     </div>
 </body>
 </html>

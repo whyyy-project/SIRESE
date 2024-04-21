@@ -85,24 +85,6 @@ li #active{
     }
 }
 
-@keyframes listAnimation {
-    0% {
-        transform: translateY(5px);
-    }
-    20%{
-    transform: translateY(-20px);
-    }
-    40%{
-        transform: translateY(-5px);
-    }
-    70%{
-        transform: translateY(-15px);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
-}
-
 @media (max-width:768px) {
     .top-btn {
         width: 35px;
@@ -112,7 +94,6 @@ li #active{
         bottom: 80px;
         font-size: 15px;
         border-radius: 20px 8px;
-
     }
 
     .icon-btn {
@@ -120,17 +101,15 @@ li #active{
     }
 
     #active {
-        background-color: rgb(0, 225, 255);
+        /* background-color: rgb(5, 176, 199); */
         border-radius: 100% 100% 5px 5px;
-        animation: listAnimation 1s ease-in-out;
-        transform: translateY(-10px);
-        padding-bottom: 10px; 
+        padding-bottom: 10px;
+        transform: translateY(-3px);
     }
     #option a:hover{
-        /* background-color: rgb(0, 97, 153); */
-        transform: translateY(2px);
-        color: rgb(255, 255, 255);
-    }
+      border-color: rgb(255, 81, 0);
+      transform: translateY(3px);
+  }
 }
 
 .bg-gradient-login {
@@ -154,7 +133,6 @@ li #active{
 }
 
 /* loader */
-
   .loader-container {
     position: fixed;
     top: 0;

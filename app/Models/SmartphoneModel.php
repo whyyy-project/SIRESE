@@ -4,22 +4,22 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BrandModel extends Model
+class SmartphoneModel extends Model
 {
-    protected $table            = 'brands';
+    protected $table            = 'smartphone';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields = ['nama_brand', 'created_at', 'updated_at'];
+    protected $allowedFields    = [];
 
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    // protected $deletedField  = 'deleted_at';
+    protected $deletedField  = 'deleted_at';
 
     // Validation
     protected $validationRules      = [];
@@ -27,7 +27,10 @@ class BrandModel extends Model
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    
-
-
+    public function allDataSmartphonePaging($perPage, $offset)
+    {
+        return $this->limit($perPage, $offset)
+            ->get()
+            ->getResultArray();
+    }
 }

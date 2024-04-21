@@ -2,8 +2,8 @@
 // typing dashboard
 const texts = [
     "SIRESE merupakan sebuah sistem pendukung keputusan dalam pemilihan smartphone yang telah di program agar dapat memberikan rekomendasi smartphone.",
-    "SIRESE mengimplementasikan metode Analytical Hierarchy Process (AHP) untuk membantu mengidentifikasi kriteria-kriteria yang paling relevan dan memberikan bobot pada setiap kriteria berdasarkan prioritas pengguna.",
-    "SIRESE memungkinkan pengguna untuk menentukan prioritas mereka terhadap berbagai faktor, seperti brand, batrai, harga, penyimpanan, dll. Dengan memahami kepentingan relatif dari setiap kriteria, pengguna dapat membuat keputusan yang lebih terinformasi.",
+    "SIRESE mengimplementasikan metode Simple Multy-Attrbute Rating Technique (SMART) untuk memberikan rekomendasi berdasarkan bobot pada setiap kriteria berdasarkan prioritas pengguna.",
+    "SIRESE memungkinkan pengguna untuk menentukan prioritas mereka terhadap berbagai faktor, seperti body, batrai, harga, penyimpanan, dll. Dengan memahami kepentingan relatif dari setiap kriteria, pengguna dapat membuat keputusan yang lebih terinformasi.",
     "SIRESE tidak hanya memberikan solusi yang lebih akurat dan terstruktur, tetapi juga meningkatkan pengalaman pengguna dalam proses pengambilan keputusan."
 ];
 

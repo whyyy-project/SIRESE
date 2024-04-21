@@ -9,21 +9,17 @@
                     </a>
                 </div>
                 <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
-                        <span class="relative w-full  mt-1 md:mb-1">
-                                <a href="#">
-                                    <div class="w-full bg-cyan-800 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
-                                        <span class="text-gray-500">
-                                            Cari Smartphone..
-                                        </span>
-                                    </div>
-                                </a>
-                                    <div class="absolute search-icon" style="top: 1rem; left: 0.8rem">
-                                    <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
-                                    </svg>
-                                </div>
-                        </span>
-                </div>
+                    <span class="relative w-full  mt-1 md:mb-1">
+                        <form action="<?= base_url() ?>search#hasil" method="get">
+                            <input type="search" id="search" name="search" placeholder="Cari Kesenian.." class="w-full bg-cyan-800 text-white transition border border-transparent focus:outline-none focus:border-cyan-500 rounded py-3 px-2 pl-10 appearance-none leading-normal" value="<?= isset($cari) != null ? $cari : '' ?>" required/>
+                            <div class="absolute search-icon" style="top: 1rem; left: 0.8rem">
+                                <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
+                                </svg>
+                            </div>
+                        </form>
+                    </span>
+            </div>
                 <div class="flex w-full  content-center justify-between md:w-1/3 md:justify-end mt-3 pb-1">
                     <ul class="list-reset flex justify-between flex-1 md:flex-none items-center text-white">
                         <li class="flex-1 md:flex-none md:mr-3">
