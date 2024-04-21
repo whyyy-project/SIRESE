@@ -10,8 +10,8 @@
     
     <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
         <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Hasil <span class="text-orange-500"> Pencarian</span></h1>
-        <div class="border border-gray-200 m-4"></div>
-        <p class="ml-4">hasil Pencarian <i class="text-orange-700"><strong><?= $search ?></strong></i></p>
+        <div class="border border-gray-200 m-4 mb-2"></div>
+        <p class="ml-4 mb-2">Hasil dari kata kunci <strong class="text-orange-700 uppercase"><?= $search ?></strong></p>
         <div class="flex flex-wrap mx-3">
             <!-- Tampilan Pagination -->
             <?php foreach ($smartphone as $data) : ?>
@@ -43,7 +43,7 @@
         <!-- pagination -->
         <div class="flex justify-between items-center mx-3 mt-4">
             <?php if ($currentPage > 1) : ?>
-                <a href="<?= base_url('daftar-kesenian?page=' . ($currentPage - 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
+                <a href="<?= base_url('search?search='.$search.'&page=' . ($currentPage - 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
                     <i class="fas fa-arrow-left"></i> Sebelumnya
                 </a>
             <?php endif; ?>
@@ -62,24 +62,24 @@
                 }
 
                 if ($startPage > 1) {
-                    echo '<a href="' . base_url('daftar-kesenian?page=1') . '" class="text-gray-600 text-sm md:text-base py-2 px-3">1</a>';
+                    echo '<a href="' . base_url('search?search='.$search.'&page=1') . '" class="text-gray-600 text-sm md:text-base py-2 px-3">1</a>';
                     echo '<span class="text-gray-600 text-sm md:text-base py-2 px-3">...</span>';
                 }
 
                 for ($i = $startPage; $i <= $endPage; $i++) {
                     $isActive = $currentPage == $i ? 'bg-gray-300' : '';
-                    echo '<a href="' . base_url('daftar-kesenian?page=' . $i) . '" class="text-gray-600 text-sm md:text-base py-2 px-3 ' . $isActive . '">' . $i . '</a>';
+                    echo '<a href="' . base_url('search?search='.$search.'&page=' . $i) . '" class="text-gray-600 text-sm md:text-base py-2 px-3 ' . $isActive . '">' . $i . '</a>';
                 }
 
                 if ($endPage < $totalPages) {
                     echo '<span class="text-gray-600 text-sm md:text-base py-2 px-3">...</span>';
-                    echo '<a href="' . base_url('daftar-kesenian?page=' . $totalPages) . '" class="text-gray-600 text-sm md:text-base py-2 px-3">' . $totalPages . '</a>';
+                    echo '<a href="' . base_url('search?search='.$search.'&page=' . $totalPages) . '" class="text-gray-600 text-sm md:text-base py-2 px-3">' . $totalPages . '</a>';
                 }
                 ?>
             </div>
 
             <?php if ($currentPage < $totalPages) : ?>
-                <a href="<?= base_url('daftar-kesenian?page=' . ($currentPage + 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
+                <a href="<?= base_url('search?search='.$search.'&page=' . ($currentPage + 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
                     Berikutnya <i class="fas fa-arrow-right"></i>
                 </a>
             <?php endif; ?>

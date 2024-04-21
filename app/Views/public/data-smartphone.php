@@ -22,7 +22,7 @@
                                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $data['type'] ?></h1>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="img/logo.png" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $data['brand'] . " " . $data['type'] ?>">
+                                    <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $data['brand'] . " " . $data['type'] ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold"> Merek : </span> <?= $data['type'] ?></p>
@@ -43,7 +43,7 @@
         <!-- pagination -->
         <div class="flex justify-between items-center mx-3 mt-4">
             <?php if ($currentPage > 1) : ?>
-                <a href="<?= base_url('daftar-kesenian?page=' . ($currentPage - 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
+                <a href="<?= base_url('data-smartphone?page=' . ($currentPage - 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
                     <i class="fas fa-arrow-left"></i> Sebelumnya
                 </a>
             <?php endif; ?>
@@ -62,24 +62,24 @@
                 }
 
                 if ($startPage > 1) {
-                    echo '<a href="' . base_url('daftar-kesenian?page=1') . '" class="text-gray-600 text-sm md:text-base py-2 px-3">1</a>';
+                    echo '<a href="' . base_url('data-smartphone?page=1') . '" class="text-gray-600 text-sm md:text-base py-2 px-3">1</a>';
                     echo '<span class="text-gray-600 text-sm md:text-base py-2 px-3">...</span>';
                 }
 
                 for ($i = $startPage; $i <= $endPage; $i++) {
                     $isActive = $currentPage == $i ? 'bg-gray-300' : '';
-                    echo '<a href="' . base_url('daftar-kesenian?page=' . $i) . '" class="text-gray-600 text-sm md:text-base py-2 px-3 ' . $isActive . '">' . $i . '</a>';
+                    echo '<a href="' . base_url('data-smartphone?page=' . $i) . '" class="text-gray-600 text-sm md:text-base py-2 px-3 ' . $isActive . '">' . $i . '</a>';
                 }
 
                 if ($endPage < $totalPages) {
                     echo '<span class="text-gray-600 text-sm md:text-base py-2 px-3">...</span>';
-                    echo '<a href="' . base_url('daftar-kesenian?page=' . $totalPages) . '" class="text-gray-600 text-sm md:text-base py-2 px-3">' . $totalPages . '</a>';
+                    echo '<a href="' . base_url('data-smartphone?page=' . $totalPages) . '" class="text-gray-600 text-sm md:text-base py-2 px-3">' . $totalPages . '</a>';
                 }
                 ?>
             </div>
 
             <?php if ($currentPage < $totalPages) : ?>
-                <a href="<?= base_url('daftar-kesenian?page=' . ($currentPage + 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
+                <a href="<?= base_url('data-smartphone?page=' . ($currentPage + 1)) ?>" class="text-gray-600 text-sm md:text-base py-2 px-3 hidden md:block">
                     Berikutnya <i class="fas fa-arrow-right"></i>
                 </a>
             <?php endif; ?>

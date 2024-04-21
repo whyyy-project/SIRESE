@@ -44,9 +44,12 @@ class Autoload extends AutoloadConfig
      * @var array<string, list<string>|string>
      */
     public $psr4 = [
-        APP_NAMESPACE => APPPATH, // For custom app namespace
         'Config'      => APPPATH . 'Config',
+        'App'         => APPPATH,
+        APP_NAMESPACE => APPPATH,
+        'Intervention\Image' => VENDORPATH . 'intervention/image/src'
     ];
+    
 
     /**
      * -------------------------------------------------------------------

@@ -13,20 +13,19 @@
         <div class="bg-white shadow-lg rounded-lg pb-3 overflow-hidden">
             <div class="px-4 py-3">
                 <h1 class="md:text-xl font-bold text-gray-800 text-base">Bantu kami memberikan rating <span class="text-orange-500">System</span></h1>
-                <div class="border border-gray-200 m-2"></div>
+                <div class="border border-gray-200 m-2 mb-5"></div>
         <form action="rating" method="get">
-            
-                <div class="mt-2 mb-4 w-3/4 m-auto rounded-lg shadow-lg bg-gradient-to-r from-orange-500 to-blue-500 px-8">
-                    <label for="desain" class="text-lg font-semibold mb-2">Rating Desain :</label>
-                    <input type="range" id="desain" name="desain" min="0" max="100" value="50"
+                <div class="mt-2 mb-4 w-3/4 m-auto rounded-lg shadow-lg bg-gradient-to-r from-cyan-500 to-cyan-950 px-8">
+                    <label for="desain" class="text-lg font-semibold mb-2">Rating Desain System :</label>
+                    <input type="range" id="desain" name="desain" min="0" max="100"
                         class="w-full appearance-none bg-gray-300 h-2 rounded-full outline-none mb-1 cursor-pointer"
                         oninput="updateDesain(this.value)">
                     <div id="value-desain" class="font-bold text-gray-900 text-center">Nilai: 50/100</div>
                 </div>
 
-                <div class="mt-2 mb-4 w-3/4 m-auto rounded-lg shadow-lg bg-gradient-to-r from-orange-500 to-blue-500 px-8">
-                    <label for="kemudahan" class="text-lg font-semibold mb-2">Rating kemudahan :</label>
-                    <input type="range" id="kemudahan" name="kemudahan" min="0" max="100" value="50"
+                <div class="mt-2 mb-4 w-3/4 m-auto rounded-lg shadow-lg bg-gradient-to-r from-cyan-500 to-cyan-950 px-8">
+                    <label for="kemudahan" class="text-lg font-semibold mb-2">Rating kemudahan System :</label>
+                    <input type="range" id="kemudahan" name="kemudahan" min="0" max="100"
                         class="w-full appearance-none bg-gray-300 h-2 rounded-full outline-none mb-1 cursor-pointer"
                         oninput="updateKemudahan(this.value)">
                     <div id="value-kemudahan" class="font-bold text-gray-900 text-center">Nilai: 50/100</div>

@@ -73,6 +73,7 @@ class PublicPagesController extends BaseController
     {
         // Menyusun data untuk dikirim ke view
         $data = [
+            'title' => "Rating System",
             'page' => "rating",
         ];
         return view('public/rating', $data);
