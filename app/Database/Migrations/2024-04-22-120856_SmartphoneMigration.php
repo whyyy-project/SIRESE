@@ -23,6 +23,14 @@ class SmartphoneMigration extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
+            'slug' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
+            'gambar' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
             'dimensi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
@@ -72,7 +80,7 @@ class SmartphoneMigration extends Migration
             'main_type' => [
                 'type' => 'ENUM("SINGGLE","DUAL","TRIPLE","QUAD")',
             ],
-            'video_main' => [
+            'main_video' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
@@ -111,6 +119,6 @@ class SmartphoneMigration extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('produk');
+        $this->forge->dropTable('smartphone');
     }
 }

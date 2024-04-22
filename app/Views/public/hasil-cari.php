@@ -19,14 +19,14 @@
                     <div class="md:p-1">
                         <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden">
                             <div class="px-4 py-3">
-                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $data['type'] ?></h1>
+                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $data['merek'] ?></h1>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $data['brand'] . " " . $data['type'] ?>">
+                                    <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $data['brand'] . " " . $data['merek'] ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
-                                    <p><span class="font-bold"> Merek : </span> <?= $data['type'] ?></p>
-                                    <p><span class="font-bold">Harga : Rp. </span><?= $data['harga'] ?></p>
+                                    <p><span class="font-bold"> Merek : </span> <?= $data['merek'] ?></p>
+                                    <p><span class="font-bold">Harga : Rp. </span><?= number_format($data['harga'], 0, ',', '.'); ?></p>
                                 </div>
                             </div>
                             <div class="px-4 pb-3">
