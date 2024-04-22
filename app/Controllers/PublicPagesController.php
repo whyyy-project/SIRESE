@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\SmartphoneModel;
-use CodeIgniter\HTTP\ResponseInterface;
 // use App\Models\BrandModel;
 class PublicPagesController extends BaseController
 {
@@ -68,6 +67,25 @@ class PublicPagesController extends BaseController
         return view('public/data-smartphone', $data);
     }
 
+    public function detailSmartphone($slug = ''){
+        $getSlug = str_replace("_", " ", $slug);
+        $findData = $this->smartphone->findBySlug($slug);
+        if(!$findData){
+
+            $data = [
+                'message' => 'Halaman Detail Smartphone untuk ' . $getSlug . ' Tidak Ditemukan!'
+            ];
+            return view('errors/html/error_404', $data);
+        }
+
+        $data=[
+            'title' => 'Detail Smartphone',
+            'page' => 'smartphone',
+            'hasil' => $findData,
+
+        ];
+        return view('public/detail-smartphone', $data);
+    }
 
     public function rating()
     {

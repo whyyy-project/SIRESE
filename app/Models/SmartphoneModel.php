@@ -19,13 +19,7 @@ class SmartphoneModel extends Model
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    // protected $deletedField  = 'deleted_at';
 
     public function allDataSmartphonePaging($perPage, $offset)
     {
@@ -75,5 +69,11 @@ class SmartphoneModel extends Model
         }
         $builder->limit($perPage, $offset);
         return $builder->get()->getResultArray();
+    }
+    public function findBySlug($data){
+        return $this->where('slug', $data)
+            ->limit(1)
+            ->get()
+            ->getRow();
     }
 }

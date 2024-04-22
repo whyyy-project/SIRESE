@@ -15,6 +15,7 @@
 <!-- sroll top btn -->
 <span id="topButton" onclick="scrollToTop()" class="top-btn bg-cyan-400"><i class="fas fa-arrow-up text-grey-200 icon-btn"></i></span>
 
+<?php if(isset($_SESSION['login'])){ ?>
 <!-- Modal Konfirmasi Logout -->
 <div id="logoutModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
@@ -43,8 +44,10 @@
         </div>
     </div>
 </div>
+<?php }; ?>
 <script src="<?= base_url() ?>assets/js/customJs.js"></script>
 <script src="<?= base_url() ?>assets/js/loader.js"></script>
+
 </body>
 
 </html>

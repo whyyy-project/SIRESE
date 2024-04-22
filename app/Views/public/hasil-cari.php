@@ -22,7 +22,7 @@
                                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $data['type'] ?></h1>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="img/logo.png" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $data['brand'] . " " . $data['type'] ?>">
+                                    <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $data['brand'] . " " . $data['type'] ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold"> Merek : </span> <?= $data['type'] ?></p>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="px-4 pb-3">
-                                <a href="<?= base_url() ?>detail-kesenian/<?= $data['slug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
+                                <a href="<?= base_url() ?>detail-smartphone/<?= $data['slug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
                                     <i class="fas fa-info mr-2"></i>Lihat Detail
                                 </a>
                             </div>
