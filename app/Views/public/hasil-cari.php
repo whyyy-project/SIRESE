@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="px-4 pb-3">
-                                <a href="<?= base_url() ?>detail-smartphone/<?= $data['slug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
+                                <a href="<?= base_url() ?>detail-smarthpone/<?= $data['slug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
                                     <i class="fas fa-info mr-2"></i>Lihat Detail
                                 </a>
                             </div>

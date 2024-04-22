@@ -43,7 +43,7 @@
         <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Data <span class="text-orange-500"> Smartphone</span></h1>
         <div class="border border-gray-200 m-4"></div>
         <div class="flex flex-wrap mx-3">
-            <!-- card kesenian -->
+            <!-- card smartphone -->
                 <div class="w-full md:w-1/3 p-1 mb-3 md:mb-1 hover:-translate-y-1 duration-500">
                     <div class="md:p-1">
                         <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden">

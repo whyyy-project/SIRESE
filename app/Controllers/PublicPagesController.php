@@ -69,6 +69,7 @@ class PublicPagesController extends BaseController
 
     public function detailSmartphone($slug = ''){
         $getSlug = str_replace("_", " ", $slug);
+        $title = str_replace("-", " ", $getSlug);
         $findData = $this->smartphone->findBySlug($slug);
         if(!$findData){
 
@@ -79,7 +80,7 @@ class PublicPagesController extends BaseController
         }
 
         $data=[
-            'title' => 'Detail Smartphone',
+            'title' => 'Detail '.$title,
             'page' => 'smartphone',
             'hasil' => $findData,
 

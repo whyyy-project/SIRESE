@@ -12,7 +12,7 @@ class SmartphoneModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['brand', 'merek', 'gambar','dimensi','berat','build','lcd_type','lcd_size','lcd_resolusi','os','chipset','cpu','ram','rom','main_camera','main_type','main_video','front_camera','front_video','usb','battery_capacity','harga'];
+    protected $allowedFields    = ['brand', 'merek','slug', 'gambar','dimensi','berat','build','lcd_type','lcd_size','lcd_resolusi','os','chipset','cpu','ram','rom','main_camera','main_type','main_video','front_camera','front_video','usb','battery_capacity','harga','created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,7 +39,7 @@ class SmartphoneModel extends Model
             $builder->groupStart(); // Memulai grup OR.
 
             $builder->like('brand', $word);
-            $builder->orLike('type', $word);
+            $builder->orLike('merek', $word);
             $builder->orlike('slug', $word);
             $builder->orlike('os', $word);
             $builder->orlike('ram', $word);
@@ -60,7 +60,7 @@ class SmartphoneModel extends Model
             $builder->groupStart(); // Memulai grup OR.
 
             $builder->like('brand', $word);
-            $builder->orLike('type', $word);
+            $builder->orLike('merek', $word);
             $builder->orlike('slug', $word);
             $builder->orlike('os', $word);
             $builder->orlike('ram', $word);
