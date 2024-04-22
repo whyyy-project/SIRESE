@@ -44,18 +44,19 @@
         <div class="border border-gray-200 m-4"></div>
         <div class="flex flex-wrap mx-3">
             <!-- card smartphone -->
+            <?php foreach($data as $sample): ?>
                 <div class="w-full md:w-1/3 p-1 mb-3 md:mb-1 hover:-translate-y-1 duration-500">
                     <div class="md:p-1">
                         <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden">
                             <div class="px-4 py-3">
-                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg">Asus ROG 0001</h1>
+                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $sample->merek ?></h1>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="<?= base_url() ?>img/logo.png" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="coba">
+                                    <img loading="lazy" src="<?= base_url() ?>img/smartphone/<?= $sample->gambar ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $sample->brand . " ". $sample->merek ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
-                                    <p><span class="font-bold">Brand : </span> Asus</p>
-                                    <p><span class="font-bold">Harga : </span> Rp. 15.999.000</p>
+                                    <p><span class="font-bold">Brand : </span> <?= $sample->brand ?></p>
+                                    <p><span class="font-bold">Harga : </span> Rp. <?= number_format($sample->harga, 0, ',', '.'); ?></p>
                                 </div>
                             </div>
                             <div class="px-4 pb-3">
@@ -66,6 +67,7 @@
                         </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
             <div class="w-full md:w-1/3 p-0 mb-3 mt-1 md:mb-0 hover:cursor-pointer hover:-translate-y-1 duration-500">
                 <a href="#">
                     <div class="md:p-1">

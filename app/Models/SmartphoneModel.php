@@ -21,6 +21,14 @@ class SmartphoneModel extends Model
     protected $updatedField  = 'updated_at';
     // protected $deletedField  = 'deleted_at';
 
+    public function randomData(){
+        $query = $this->db->table($this->table)
+        ->orderBy('RAND()')
+        ->limit(2)
+        ->get();
+
+return $query->getResult();
+    }
     public function allDataSmartphonePaging($perPage, $offset)
     {
         return $this->limit($perPage, $offset)

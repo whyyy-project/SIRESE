@@ -16,9 +16,11 @@ class PublicPagesController extends BaseController
 
     public function index()
     {
+        $sampleData = $this->smartphone->randomData();
         $data = [
         'page' => "dashboard",
-        'title' => "SIRESE | Sistem Rekomendasi Smartphone"
+        'title' => "SIRESE | Sistem Rekomendasi Smartphone",
+        'data' => $sampleData,
         ];
         return view('public/dashboard', $data);
     }
