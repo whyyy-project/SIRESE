@@ -68,7 +68,8 @@ class SmartphoneMigration extends Migration
                 'constraint' => 255,
             ],
             'ram' => [
-                'type' => 'ENUM("2","3","4","6","8","12","18","24")',
+                'type' => 'VARCHAR',
+                'constraint' => 255,
             ],
             'rom' => [
                 'type' => 'ENUM("16","32","64","128","256","512","1000")',

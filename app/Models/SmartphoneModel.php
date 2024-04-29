@@ -52,7 +52,7 @@ return $query->getResult();
             $builder->orlike('os', $word);
             $builder->orlike('ram', $word);
             $builder->orlike('rom', $word);
-            $builder->groupEnd(); // Mengakhiri grup OR.
+            $builder->groupEnd();
         }
         return $builder->get()->getResultArray();
     }

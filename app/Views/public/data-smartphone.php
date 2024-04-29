@@ -26,6 +26,7 @@
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold"> Merek : </span> <?= $data['merek'] ?></p>
+                                    <p><span class="font-bold"> RAM/ROM : </span> <?= $data['ram'] ?>/<?= $data['rom'] ?> GB</p>
                                     <p><span class="font-bold">Harga : Rp. </span><?= number_format($data['harga'], 0, ',', '.'); ?></p>
                                 </div>
                             </div>

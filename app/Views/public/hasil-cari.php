@@ -11,7 +11,7 @@
     <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
         <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Hasil <span class="text-orange-500"> Pencarian</span></h1>
         <div class="border border-gray-200 m-4 mb-2"></div>
-        <p class="ml-4 mb-2">Hasil dari kata kunci <strong class="text-orange-700 uppercase"><?= $search ?></strong></p>
+        <p class="ml-4 mb-2">Ditemukan  <i class="text-red-700">*<?= $total ?></i> dari kata kunci <strong class="text-orange-700 uppercase"><?= $search ?></strong></p>
         <div class="flex flex-wrap mx-3">
             <!-- Tampilan Pagination -->
             <?php foreach ($smartphone as $data) : ?>
@@ -26,6 +26,7 @@
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold"> Merek : </span> <?= $data['merek'] ?></p>
+                                    <p><span class="font-bold"> RAM/ROM : </span> <?= $data['ram'] ?>/<?= $data['rom'] ?> GB</p>
                                     <p><span class="font-bold">Harga : Rp. </span><?= number_format($data['harga'], 0, ',', '.'); ?></p>
                                 </div>
                             </div>

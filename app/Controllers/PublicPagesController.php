@@ -30,7 +30,7 @@ class PublicPagesController extends BaseController
         // data per page
         $perPage = 6;
         // hitung total data
-        $totalData = count($this->smartphone->findAll());
+        $totalData = count($this->smartphone->hasilCari($search));
         // hitung berapa page
         $totalPages = ceil($totalData / $perPage);
         // Mendapatkan nomor halaman saat ini
@@ -44,6 +44,7 @@ class PublicPagesController extends BaseController
             'totalPages' => $totalPages,
             'currentPage' => $currentPage,
             'search' => $search,
+            'total' => $totalData,
         ];
         return view('public/hasil-cari', $data);
     }
@@ -74,7 +75,6 @@ class PublicPagesController extends BaseController
         $title = str_replace("-", " ", $getSlug);
         $findData = $this->smartphone->findBySlug($slug);
         if(!$findData){
-
             $data = [
                 'message' => 'Halaman Detail Smartphone untuk ' . $getSlug . ' Tidak Ditemukan!'
             ];
@@ -90,14 +90,14 @@ class PublicPagesController extends BaseController
         return view('public/detail-smartphone', $data);
     }
 
-    public function rating()
+    public function toko()
     {
         // Menyusun data untuk dikirim ke view
         $data = [
-            'title' => "Rating System",
-            'page' => "rating",
+            'title' => "Toko",
+            'page' => "toko",
         ];
-        return view('public/rating', $data);
+        return view('public/toko', $data);
     }
 
 

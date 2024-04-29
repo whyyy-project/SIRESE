@@ -20,8 +20,8 @@
                     </a>
                 </li>
                 <li class="mr-3 flex-1" id="option">
-                    <a href="<?= base_url() ?>rating" id="<?= $page == "rating" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
-                        <i class="fa-solid fa-star-half-stroke pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Rating System</span>
+                    <a href="<?= base_url() ?>toko" id="<?= $page == "toko" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
+                        <i class="fa-solid fa-shop pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Toko</span>
                     </a>
                 </li>
             </ul>
