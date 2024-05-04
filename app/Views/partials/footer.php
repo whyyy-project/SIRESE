@@ -2,15 +2,15 @@
 
     <!-- footer -->
     <div class="mt-3 md:mt-12 p-6 mb-16 md:mb-0 bg-gray-200 text-center">
+        <p class="text-gray-800 text-sm"><span class="hover:bg-gray-500 hover:text-gray-100 duration-500">About</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500">Contact</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500">Terms Service</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500">Contributor</span></p>
     <p class="px-6 font-bold text-gray-600 text-xs md:text-base">
-        Copyright &copy 2024 SIRESE. By
+        Copyright &copy 2024 <span class="text-orange-500">SIRESE</span>. By
         <a href="https://github.com/whyyy-project/" target="_blank" class="text-orange-500">Whyyy-Project</a>
     </p>
 </div>
 <!-- end footer -->
 </div>
 </div>
-
 
 <!-- sroll top btn -->
 <span id="topButton" onclick="scrollToTop()" class="top-btn bg-cyan-400"><i class="fas fa-arrow-up text-grey-200 icon-btn"></i></span>
@@ -49,5 +49,4 @@
 <script src="<?= base_url() ?>assets/js/loader.js"></script>
 
 </body>
-
 </html>

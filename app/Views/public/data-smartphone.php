@@ -85,7 +85,7 @@
                 </a>
             <?php endif; ?>
         </div>
-
+    </div>
         <!-- end pagination -->
 
 

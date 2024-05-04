@@ -69,7 +69,7 @@
                 </div>
                 <?php endforeach; ?>
             <div class="w-full md:w-1/3 p-0 mb-3 mt-1 md:mb-0 hover:cursor-pointer hover:-translate-y-1 duration-500">
-                <a href="#">
+                <a href="<?= base_url() ?>data-smartphone">
                     <div class="md:p-1">
                         <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden">
                             <div class="px-4 py-3">

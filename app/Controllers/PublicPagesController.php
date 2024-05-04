@@ -50,7 +50,6 @@ class PublicPagesController extends BaseController
     }
     public function smartphone()
     {
-        // data per page
         $perPage = 6;
         // hitung total data
         $totalData = count($this->smartphone->findAll());
@@ -58,7 +57,7 @@ class PublicPagesController extends BaseController
         $totalPages = ceil($totalData / $perPage);
         // Mendapatkan nomor halaman saat ini
         $currentPage = $this->request->getVar('page') ?? 1;
-        // Mendapatkan data kesenian dengan paging
+        // Mendapatkan data dengan paging
         $dataSmartphone = $this->smartphone->allDataSmartphonePaging($perPage, ($currentPage - 1) * $perPage);
         $data = [
             'title' => 'Smartphone',

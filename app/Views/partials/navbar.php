@@ -35,7 +35,7 @@
                         </li>
                         <li class="flex-1 md:flex-none md:mr-3 mr-2 text-right">
                                 <div class="inline-block no-underline hover:text-gray-300 hover:text-underline">
-                                    <a href="login" class="btn-login bg-orange-500 hover:bg-orange-400">Login</a>
+                                    <a href="login" class="btn-login bg-orange-500 text-sm md:text-base hover:bg-orange-400">Login</a>
                                 </div>
                         </li>
                     </ul>
