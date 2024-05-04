@@ -101,8 +101,13 @@ class PublicPagesController extends BaseController
 
 
 
-    public function insertRating(){
-        
+    public function rekomendasi(){
+        echo "
+        <title>Sabar</title>
+        <div style='display:flex; justify-content:center; margin-top:100px; background-color:cyan;'>";
+        echo "<h2>Belum dibuat";
+        echo "<a href='".base_url()."' style='margin-left:20px;'> back to home </a> </h2> </div>";
+        return;
     }
     
 }

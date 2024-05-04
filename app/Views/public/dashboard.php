@@ -21,7 +21,7 @@
                 </p>
             </div>
             <div class="group px-3 mr-0 py-3 m-3">
-                <a href="daftar" class="text-white bg-gray-800 px-4 py-2 rounded-full hover:bg-gray-700">
+                <a href="<?= base_url() ?>rekomendasi" class="text-white bg-gray-800 px-4 py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-check"></i> Coba Sekarang.
                 </a>
             </div>

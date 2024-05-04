@@ -10,3 +10,5 @@ $routes->get('/data-smartphone', 'PublicPagesController::smartphone');
 $routes->get('/search', 'PublicPagesController::hasilCari');
 $routes->get('/detail-smarthpone/(:segment)', 'PublicPagesController::detailSmartphone/$1');
 $routes->get('/toko', 'PublicPagesController::toko');
+$routes->get('/rekomendasi', 'PublicPagesController::rekomendasi');
+
