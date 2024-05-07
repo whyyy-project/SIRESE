@@ -72,14 +72,16 @@ class SmartphoneMigration extends Migration
                 'constraint' => 255,
             ],
             'rom' => [
-                'type' => 'ENUM("16","32","64","128","256","512","1000")',
+                'type' => 'VARCHAR',
+                'constraint' => 255,
             ],
             'main_camera' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
             'main_type' => [
-                'type' => 'ENUM("SINGGLE","DUAL","TRIPLE","QUAD")',
+                'type' => 'VARCHAR',
+                'constraint' => 255,
             ],
             'main_video' => [
                 'type' => 'VARCHAR',

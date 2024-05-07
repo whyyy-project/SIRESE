@@ -71,7 +71,7 @@
 <body>
     <div class="wrap">
         <h1>404</h1>
-        <h2>ADA KENDALA SISTEM, HARAP TUNGGU PIHAK DEVELPER MEMPERBAIKINYA!</h2>
+        <h2>HALAMAN TIDAK ADA ATAU BELUM DIBUAT!</h2>
 
         <p>
             <?php if (ENVIRONMENT !== 'production') : ?>

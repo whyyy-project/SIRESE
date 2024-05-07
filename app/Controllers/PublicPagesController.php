@@ -4,14 +4,17 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\SmartphoneModel;
+use App\Models\TokoModel;
 // use App\Models\BrandModel;
 class PublicPagesController extends BaseController
 {
     // protected $brandModel;
     protected $smartphone;
+    protected $toko;
     function __construct(){
         // $this->brandModel = new  BrandModel();
         $this->smartphone = new SmartphoneModel();
+        $this->toko = new TokoModel();
     }
 
     public function index()
@@ -19,7 +22,7 @@ class PublicPagesController extends BaseController
         $sampleData = $this->smartphone->randomData();
         $data = [
         'page' => "dashboard",
-        'title' => "SIRESE | Sistem Rekomendasi Smartphone",
+        'title' => "Sistem Rekomendasi Smartphone",
         'data' => $sampleData,
         ];
         return view('public/dashboard', $data);
@@ -91,10 +94,22 @@ class PublicPagesController extends BaseController
 
     public function toko()
     {
+        $perPage = 6;
+        // hitung total data
+        $totalData = count($this->toko->findAll());
+        // hitung berapa page
+        $totalPages = ceil($totalData / $perPage);
+        // Mendapatkan nomor halaman saat ini
+        $currentPage = $this->request->getVar('page') ?? 1;
+        // Mendapatkan data dengan paging
+        $dataToko = $this->toko->allDataTokoPaging($perPage, ($currentPage - 1) * $perPage);
         // Menyusun data untuk dikirim ke view
         $data = [
             'title' => "Toko",
             'page' => "toko",
+            'toko' => $dataToko,
+            'totalPages' => $totalPages,
+            'currentPage' => $currentPage,
         ];
         return view('public/toko', $data);
     }

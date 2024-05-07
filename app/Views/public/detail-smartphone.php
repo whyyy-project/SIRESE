@@ -154,13 +154,10 @@
                 </div>
             </div>
         </div>
-            <div class="group px-3 mr-0 py-3 m-3 block text-center">
+            <div class="group px-3 mr-0 py-3 m-3 mb-0 block text-center">
                 <a href="<?= base_url() ?>data-smartphone" class="text-white bg-gray-800 px-4 py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-check"></i> Lihat Smartphone Lain
                 </a>
             </div>
         </div>
-    </div>
-    </div>
-
 <?php $this->endSection() ?>

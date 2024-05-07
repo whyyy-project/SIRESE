@@ -1,7 +1,7 @@
 
 
     <!-- footer -->
-    <div class="mt-3 md:mt-12 p-6 mb-16 md:mb-0 bg-gray-200 text-center">
+    <div class="mt-3 md:mt-3 p-6 mb-16 md:mb-0 bg-gray-200 text-center">
         <p class="text-gray-800 text-sm"><span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">About</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">Contact</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">Terms Service</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">Contributor</span></p>
     <p class="px-6 font-bold text-gray-600 text-xs md:text-base">
         Copyright &copy 2024 <span class="text-orange-500">SIRESE</span>. By
