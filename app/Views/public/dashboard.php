@@ -56,6 +56,7 @@
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold">Brand : </span> <?= $sample->brand ?></p>
+                                    <p><span class="font-bold"> RAM/ROM : </span> <?= $sample->ram ?>/<?= $sample->rom ?> GB</p>
                                     <p><span class="font-bold">Harga : </span> Rp. <?= number_format($sample->harga, 0, ',', '.'); ?></p>
                                 </div>
                             </div>
@@ -77,7 +78,7 @@
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="text-center my-10 md:py-2 mx-auto text-4xl md:text-8xl">
                                     <i class="fas fa-arrow-right p-8 md:p-4"></i>
-                                    <p class="text-lg mt-1">Lihat lainnya.</p>
+                                    <p class="text-lg mt-3 mb-5">Lihat lainnya.</p>
                                 </div>
                             </div>
                         </div>

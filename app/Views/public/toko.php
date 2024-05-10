@@ -21,7 +21,7 @@
                                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg text-center"><?= $data['nama_toko'] ?></h1>
                                 <div class="border border-gray-200 m-3 mb-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="img/toko/<?= $data['foto'] ?>" class="h-24 md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="Gambar Toko">
+                                    <img loading="lazy" src="img/toko/<?= $data['foto'] ?>" class="h-24 w-full md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="Gambar Toko">
                                 </div>
                                 <div class="mt-2 text-gray-800 text-center">
                                     <p><?= $data['kecamatan'] ?>, <?= $data['kota'] ?></p>
@@ -38,7 +38,7 @@
                 </div>
                 <?php endforeach; ?>
             </div>
-        <p class="ml-3">Ingin toko anda ada disini? hubungi kami di <a class="text-blue-600" href="https://wa.me/6281381293323?text=Mohon%20maaf%20mengganggu,%20saya%20ingin%20memasukkan%20nama%20toko%20smartphone%20saya%20di%20dalam%20website%20Anda" target="_blank"> <i class="fa-brands fa-whatsapp"></i>Whatsapp</a>.</p>
+        <p class="ml-5">Ingin toko anda ada disini? hubungi kami di <a class="text-blue-600 font-bold" href="https://wa.me/6281381293323?text=Mohon%20maaf%20mengganggu,%20saya%20ingin%20memasukkan%20nama%20toko%20smartphone%20saya%20di%20dalam%20website%20Anda" target="_blank"> <i class="fa-brands fa-whatsapp"></i> Whatsapp</a>.</p>
 
 <!-- pagination -->
 <div class="flex justify-between items-center mx-3 mt-4">

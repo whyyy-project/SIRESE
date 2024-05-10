@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class SmartphoneMigration extends Migration
+class NormalisasiMigration extends Migration
 {
     public function up()
     {
@@ -15,21 +15,10 @@ class SmartphoneMigration extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'brand' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'merek' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'slug' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'gambar' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
+            'id_smartphone' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => true,
             ],
             'dimensi' => [
                 'type' => 'VARCHAR',
@@ -117,11 +106,12 @@ class SmartphoneMigration extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('smartphone');
+        $this->forge->addForeignKey('id_smartphone','smartphone','id','NO ACTION','NO ACTION');
+        $this->forge->createTable('normalisasi');
     }
 
     public function down()
     {
-        $this->forge->dropTable('smartphone');
+        $this->forge->dropTable('normalisasi');
     }
 }

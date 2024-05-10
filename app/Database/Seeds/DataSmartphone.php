@@ -638,7 +638,7 @@ class DataSmartphone extends Seeder
                 'dimensi' => '162.3 x 79 x 8.6',
                 'berat' => '232',
                 'build' => 'titanium frame, Glass back',
-                'lcd_type' => 'Dynamic LTPO AMOLED ',
+                'lcd_type' => 'Dynamic LTPO AMOLED',
                 'lcd_size' => '113.5',
                 'lcd_resolusi' => '1440 x 3120',
                 'os' => 'Android 14',
@@ -687,7 +687,7 @@ class DataSmartphone extends Seeder
             [ 
                 'brand' => 'SAMSUNG',
                 'merek' => 'Galaxy S24+ (Online Exclusive)',
-                'slug' => 'SAMSUNG_Galaxy-S24+_12_512',
+                'slug' => 'SAMSUNG_Galaxy-S24-plus_12_512',
                 'gambar' => 'samsung_galaxy-s24.png',
                 'dimensi' => '158.5 x 75.9 x 7.7',
                 'berat' => '196',

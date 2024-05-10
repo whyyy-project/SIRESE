@@ -9,8 +9,19 @@
     </div>
     
     <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
-        <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Data <span class="text-orange-500"> Smartphone</span></h1>
-        <div class="border border-gray-200 m-4"></div>
+        <div class="flex justify-between">
+            <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Data <span class="text-orange-500"> Smartphone</span></h1>
+            <select class="bg-white mt-3 md:mt-5 mr-5 cursor-pointer" name="apa" id="" class="">
+                <option value="">Urutkan</option>
+                <option value="">harga terendah</option>
+                <option value="">harga tertinggi</option>
+                <option value="">Nama A-Z</option>
+                <option value="">Nama Z-A</option>
+            </select>
+        </div>
+        
+        <div class="border border-gray-200 m-4 mb-1"></div>
+        <p class="ml-5 text-gray-700 text-sm italic">Catatan : Harga sewaktu-waktu dapat berubah</p>
 
         <div class="flex flex-wrap mx-3">
             <!-- Tampilan Pagination -->
@@ -22,7 +33,7 @@
                                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $data['merek'] ?></h1>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $data['brand'] . " " . $data['merek'] ?>">
+                                    <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="h-24 w-86 md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="<?= $data['brand'] . " " . $data['merek'] ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold"> Merek : </span> <?= $data['merek'] ?></p>

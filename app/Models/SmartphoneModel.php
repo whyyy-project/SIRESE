@@ -32,6 +32,7 @@ return $query->getResult();
     public function allDataSmartphonePaging($perPage, $offset)
     {
         return $this->limit($perPage, $offset)
+            ->orderBy('merek', 'asc')
             ->get()
             ->getResultArray();
     }
