@@ -11,14 +11,32 @@
     <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
         <div class="flex justify-between">
             <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Data <span class="text-orange-500"> Smartphone</span></h1>
-            <select class="bg-white mt-3 md:mt-5 mr-5 cursor-pointer" name="apa" id="" class="">
-                <option value="">Urutkan</option>
-                <option value="">harga terendah</option>
-                <option value="">harga tertinggi</option>
-                <option value="">Nama A-Z</option>
-                <option value="">Nama Z-A</option>
-            </select>
+        <div class="relative inline-block text-left">
+            <div>
+            <button type="button" onclick="toggleDropdown()" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="options-menu" aria-expanded="true" aria-haspopup="true">
+            Urutkan
+            <i class="fas fa-down"></i>
+            </button>
+            </div>
+
+            <div id="myDropdown" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" hidden>
+                <div class="py-1" role="none">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Nama A-Z</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Nama Z-A</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Harga Terendah</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Harga Tertinggi</a>
+                </div>
+            </div>
         </div>
+
+        <script>
+            function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            dropdown.hidden = !dropdown.hidden; // Toggle the 'hidden' attribute
+            }
+        </script>
+
+    </div>
         
         <div class="border border-gray-200 m-4 mb-1"></div>
         <p class="ml-5 text-gray-700 text-sm italic">Catatan : Harga sewaktu-waktu dapat berubah</p>
