@@ -8,8 +8,17 @@
                         
                     </a>
                 </div>
+                <?php 
+                        $session = session();
+                        // $session->set('nama', 'Wahyu'); // add
+                        // $session->set('pass', 'Wahyu');
+                        // $session->remove('pass'); //remove
+                        $session->destroy();
+                        ?>
+
                 <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
                     <span class="relative w-full  mt-1 md:mb-1">
+                        <?php if(!session('nama')){ ?>
                         <form action="<?= base_url() ?>search#hasil" method="get">
                             <input type="text" id="search" name="search" placeholder="Cari Smartphone.." class="w-full bg-cyan-800 text-white transition border border-transparent focus:outline-none focus:border-cyan-500 rounded py-3 px-2 pl-10 appearance-none leading-normal text-center" value="<?= isset($search) != null ? $search : '' ?>" autocomplete="off" required/>
                             <div class="absolute search-icon" style="top: 1rem; left: 0.8rem">
@@ -18,6 +27,7 @@
                                 </svg>
                             </div>
                         </form>
+                        <?php } ?>
                     </span>
             </div>
             
@@ -33,11 +43,44 @@
                                 Instagram <i class="fa-brands fa-instagram"></i>    
                             </a>
                         </li>
+
+                        <?php if(session('nama')) { ?>
+                        <li class="flex-1 md:flex-none md:mr-3 mr-2 text-right relative">
+                        <div class="inline-block no-underline hover:text-gray-200 hover:text-underline">
+                            <span id="dropdown-toggle" class="btn-login bg-orange-500 text-sm md:text-base hover:bg-orange-400 cursor-pointer">admin <i class="fa fas-caret-down"></i></span>
+                        </div>
+                        <!-- Dropdown menu -->
+                        <ul id="dropdown-menu" class="absolute hidden bg-white rounded-md shadow-md mt-1 right-1 text-center">
+                            <li><a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Profil</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Logout</a></li>
+                        </ul>
+                    </li>
+                    
+                    <script>
+                        // Ambil tombol dan menu dropdown
+                        const dropdownToggle = document.getElementById('dropdown-toggle');
+                        const dropdownMenu = document.getElementById('dropdown-menu');
+                    
+                        // Tambahkan event listener untuk tombol
+                        dropdownToggle.addEventListener('click', function() {
+                            // Toggle class 'hidden' pada menu dropdown
+                            dropdownMenu.classList.toggle('hidden');
+                        });
+                    
+                        // Sembunyikan menu dropdown saat klik di luar menu
+                        document.addEventListener('click', function(event) {
+                            if (!dropdownToggle.contains(event.target)) {
+                                dropdownMenu.classList.add('hidden');
+                            }
+                        });
+                    </script>
+                    <?php }else{ ?>
                         <li class="flex-1 md:flex-none md:mr-3 mr-2 text-right">
                                 <div class="inline-block no-underline hover:text-gray-300 hover:text-underline">
-                                    <a href="login" class="btn-login bg-orange-500 text-sm md:text-base hover:bg-orange-400">Login</a>
+                                    <a href="<?= base_url() ?>login" class="btn-login bg-orange-500 text-sm md:text-base hover:bg-orange-400">Login</a>
                                 </div>
                         </li>
+                    <?php } ?>
                     </ul>
                 </div>
             </div>

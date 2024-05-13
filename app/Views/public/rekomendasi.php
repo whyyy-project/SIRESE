@@ -7,7 +7,7 @@
             <h3 class="font-bold pl-2 text-xs md:text-2xl"><span class="text-orange-500">SIRESE</span> | <span class="text-orange-500">Si</span>stem <span class="text-orange-500">Re</span>komendasi <span class="text-orange-500">S</span>martphon<span class="text-orange-500">e</span></h3>
         </div>
     </div>
-
+<form action="<?= base_url() ?>rekomendasi/smart" method="post">
     <div class="p-3 md:px-5 pb-0 mx-2 mb:mx-1">
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="px-4 py-3">
@@ -24,21 +24,22 @@
                         Seberapa pentingkah Ukuran, Berat, Bahan Body pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body" oninput="updateDetail('body', 'defbody')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <div id="defBody" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
                     </div>
                 </div>
+
                 <!-- kriteria -->
                 <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Tipe(IPS, Oled, Amoled, dll), Ukuran, Resolusi Layar pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="display" id="display" oninput="updateDetail('display', 'defDisplay')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <div id="defDisplay" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
                     </div>
                 </div>
@@ -49,9 +50,9 @@
                         Seberapa pentingkah Sistem Operasi, Prosesor, dan CPU pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="system" id="system" oninput="updateDetail('system', 'defSystem')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <div id="defSystem" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
                     </div>
                 </div>
@@ -62,9 +63,9 @@
                         Seberapa pentingkah RAM dan Memori Internal pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="memory" id="memory" oninput="updateDetail('memory', 'defMemory')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <div id="defMemory" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
                     </div>
                 </div>
@@ -75,11 +76,11 @@
                         Seberapa pentingkah Kamera Utama pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="mainCamera" id="mainCamera" oninput="updateDetail('mainCamera', 'defMainCamera')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <p id="defMainCamera" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
-                    </div>
+                    </p>
                 </div>
 
                 <!-- kriteria -->
@@ -88,11 +89,11 @@
                         Seberapa pentingkah Kamera Depan pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="frontCamera" id="frontCamera" oninput="updateDetail('body', 'defBody')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <p id="defFrontCamera" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
-                    </div>
+                    </p>
                 </div>
 
                 <!-- kriteria -->
@@ -101,11 +102,11 @@
                         Seberapa pentingkah Batrai pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="battery" id="battery" oninput="updateDetail('battery', 'defBattery')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <p id="defBattery" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
-                    </div>
+                    </p>
                 </div>
 
                 <!-- kriteria -->
@@ -114,24 +115,24 @@
                         Seberapa pentingkah Harga pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="price" id="price" oninput="updateDetail('price', 'defPrice')">
                     </div>
-                    <div class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
+                    <p id="defPrice" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Penting (50/100)
-                    </div>
+                    </p>
                 </div>
                 <!-- rentang harga -->
                 <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Apakah kamu ingin menentukan rentang harga sendiri ?
                     </div>
-                    <div class="flex justify-center items-center text-gray-700">
-                    <input type="text" oninput="verify()" class="bg-gray-100 w-36 md:w-1/3 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 mr-1 md:mr-3 text-center placeholder-gray-700" id="min" name="min" placeholder="Minimal"> - 
-                    <input type="text" oninput="verify()" class="bg-gray-100 w-36 md:w-1/3 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 ml-1 md:ml-3 text-center placeholder-gray-700" id="max" name="max" placeholder="Maksimal">
+                    <div class="flex justify-center items-center text-gray-700 md:px-9 mt-2">
+                        <input type="text" oninput="verify()" class="bg-gray-100 w-1/2 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 mr-1 md:mx-3 text-center placeholder-gray-700" id="min" name="min" placeholder="Minimal"> - 
+                        <input type="text" oninput="verify()" class="bg-gray-100 w-1/2 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 ml-1 md:mx-3 text-center placeholder-gray-700" id="max" name="max" placeholder="Maksimal">
                     </div>
-                    <div id="wrong_price" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic">
-                        * Kosongkan jika tidak perlu
-                    </div>
+                        <div id="wrong_price" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic">
+                            * Kosongkan jika tidak perlu
+                        </div>
                 </div>
                 <!-- end kriteria -->
 
@@ -140,29 +141,64 @@
                 </div>
             </div>
         </div>
+</form>
 
 <script>
-    function verify() {
-        const min = document.getElementById('min').value;
-        const max = document.getElementById('max').value;
-        const notif = document.getElementById('wrong_price');
 
-        if (min !== '' && max !== '') {
-            if (Number(min) > Number(max)) {
-                notif.innerText = 'Harap Koreksi Rentang Harga!';
-                notif.classList = 'flex justify-center items-center text-red-800 pb-1 mx-auto text-center italic';
-            } else {
-                notif.innerText = '* Kosongkan jika tidak perlu';
-                notif.classList = 'flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic';
-            }
+    const inputIds = ['body', 'display', 'system', 'memory', 'mainCamera', 'frontCamera', 'battery', 'price']; // Daftar id elemen input
+    const textIds = ['defBody', 'defDisplay', 'defSystem', 'defMemory', 'defMainCamera', 'defFrontCamera', 'defBattery', 'defPrice']; // Daftar id elemen teks
+
+    for (let i = 0; i < inputIds.length; i++) {
+        updateDetail(inputIds[i], textIds[i]);
+    }
+function updateDetail(inputId, textId) {
+    const input = document.getElementById(inputId);
+    const text = document.getElementById(textId);
+
+    input.addEventListener('input', function() {
+        const value = parseInt(this.value);
+        let importanceText = '';
+
+        if (value >= 0 && value <= 20) {
+            importanceText = 'Tidak Penting';
+        } else if (value > 20 && value <= 40) {
+            importanceText = 'Kurang Penting';
+        } else if (value > 40 && value <= 60) {
+            importanceText = 'Cukup Penting';
+        } else if (value > 60 && value <= 80) {
+            importanceText = 'Penting';
+        } else {
+            importanceText = 'Sangat Penting';
+        }
+
+        text.textContent = `${importanceText} (${value}/100)`;
+    });
+}
+
+   function verify() {
+    const min = document.getElementById('min').value;
+    const max = document.getElementById('max').value;
+    const notif = document.getElementById('wrong_price');
+
+    if (min !== '' || max !== '') {
+        const nMin = min.replace(/\D/g, '')
+        const nMax = max.replace(/\D/g, '')
+        if (Number(nMin) > Number(nMax)) {
+            notif.innerText = 'Harap Koreksi Rentang Harga!';
+            notif.classList = 'flex justify-center items-center text-red-800 pb-1 mx-auto text-center italic';
         } else {
             notif.innerText = '* Kosongkan jika tidak perlu';
             notif.classList = 'flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic';
         }
-
-        document.getElementById('min').value = formatRupiah(min);
-        document.getElementById('max').value = formatRupiah(max);
+    } else {
+        notif.innerText = '* Kosongkan jika tidak perlu';
+        notif.classList = 'flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic';
     }
+
+    document.getElementById('min').value = formatRupiah(min);
+    document.getElementById('max').value = formatRupiah(max);
+}
+
 
     function formatRupiah(angka) {
     if (angka.replace(/\D/g, '').length < 1) {
