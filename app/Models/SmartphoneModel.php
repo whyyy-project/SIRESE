@@ -26,15 +26,28 @@ class SmartphoneModel extends Model
         ->orderBy('RAND()')
         ->limit(2)
         ->get();
-
-return $query->getResult();
+        return $query->getResult();
     }
-    public function allDataSmartphonePaging($perPage, $offset)
+    public function allDataSmartphonePaging($perPage, $offset, $sortBy, $type, $max)
     {
-        return $this->limit($perPage, $offset)
-            ->orderBy('merek', 'asc')
-            ->get()
-            ->getResultArray();
+        if($sortBy == 'filter'){
+            return $this->limit($perPage, $offset)
+                ->where('harga >=', $type)
+                ->where('harga <=', $max)
+                ->orderBy('harga', 'asc')
+                ->get()
+                ->getResultArray();
+        }else if($sortBy != null){
+            return $this->limit($perPage, $offset)
+                ->orderBy($sortBy, $type)
+                ->get()
+                ->getResultArray();
+        }else{
+            return $this->limit($perPage, $offset)
+                ->orderBy('merek', 'asc')
+                ->get()
+                ->getResultArray();
+        }
     }
 
     function hasilCari($data)

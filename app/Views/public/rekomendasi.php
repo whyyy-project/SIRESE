@@ -19,7 +19,7 @@
                 </div>
                 
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Ukuran, Berat, Bahan Body pada Smartphone menurutmu ?
                     </div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Tipe(IPS, Oled, Amoled, dll), Ukuran, Resolusi Layar pada Smartphone menurutmu ?
                     </div>
@@ -44,7 +44,7 @@
                 </div>
 
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Sistem Operasi, Prosesor, dan CPU pada Smartphone menurutmu ?
                     </div>
@@ -57,7 +57,7 @@
                 </div>
                 
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah RAM dan Memori Internal pada Smartphone menurutmu ?
                     </div>
@@ -70,7 +70,7 @@
                 </div>
                 
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Kamera Utama pada Smartphone menurutmu ?
                     </div>
@@ -83,7 +83,7 @@
                 </div>
 
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Kamera Depan pada Smartphone menurutmu ?
                     </div>
@@ -96,7 +96,7 @@
                 </div>
 
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Batrai pada Smartphone menurutmu ?
                     </div>
@@ -109,7 +109,7 @@
                 </div>
 
                 <!-- kriteria -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Seberapa pentingkah Harga pada Smartphone menurutmu ?
                     </div>
@@ -121,13 +121,13 @@
                     </div>
                 </div>
                 <!-- rentang harga -->
-                <div class="bg-gray-300 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
+                <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">
                     <div class="flex justify-center items-center text-gray-900 py-1 mx-auto text-center">
                         Apakah kamu ingin menentukan rentang harga sendiri ?
                     </div>
-                    <div class="flex justify-center items-center text-gray-900">
-                    <input type="number" oninput="verify()" class="bg-gray-100 w-36 md:w-1/3 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 mr-1 md:mr-3 text-center" id="min" name="min" placeholder="Minimal"> - 
-                    <input type="number" oninput="verify()" class="bg-gray-100 w-36 md:w-1/3 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 ml-1 md:ml-3 text-center" id="max" name="max" placeholder="Maksimal">
+                    <div class="flex justify-center items-center text-gray-700">
+                    <input type="text" oninput="verify()" class="bg-gray-100 w-36 md:w-1/3 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 mr-1 md:mr-3 text-center placeholder-gray-700" id="min" name="min" placeholder="Minimal"> - 
+                    <input type="text" oninput="verify()" class="bg-gray-100 w-36 md:w-1/3 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 ml-1 md:ml-3 text-center placeholder-gray-700" id="max" name="max" placeholder="Maksimal">
                     </div>
                     <div id="wrong_price" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic">
                         * Kosongkan jika tidak perlu
@@ -141,19 +141,38 @@
             </div>
         </div>
 
-        <script>
-            function verify(){
-                const min = Number(document.getElementById('min').value)
-                const max = Number(document.getElementById('max').value)
-                const notif =document.getElementById('wrong_price');
-                if(min > max){
-                    notif.innerText ='Harap Koreksi Rentang Harga!';
-                    notif.classList ='flex justify-center items-center text-red-800 pb-1 mx-auto text-center italic';
-                }else{
-                    notif.innerText ='* Kosongkan jika tidak perlu';
-                    notif.classList ='flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic';
-                }
-                
+<script>
+    function verify() {
+        const min = document.getElementById('min').value;
+        const max = document.getElementById('max').value;
+        const notif = document.getElementById('wrong_price');
+
+        if (min !== '' && max !== '') {
+            if (Number(min) > Number(max)) {
+                notif.innerText = 'Harap Koreksi Rentang Harga!';
+                notif.classList = 'flex justify-center items-center text-red-800 pb-1 mx-auto text-center italic';
+            } else {
+                notif.innerText = '* Kosongkan jika tidak perlu';
+                notif.classList = 'flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic';
             }
-        </script>
+        } else {
+            notif.innerText = '* Kosongkan jika tidak perlu';
+            notif.classList = 'flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic';
+        }
+
+        document.getElementById('min').value = formatRupiah(min);
+        document.getElementById('max').value = formatRupiah(max);
+    }
+
+    function formatRupiah(angka) {
+    if (angka.replace(/\D/g, '').length < 1) {
+        return angka.replace(/\D/g, '');
+    }
+    return 'Rp. ' + angka.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+</script>
+
+
+
 <?php $this->endSection() ?>

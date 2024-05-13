@@ -25,9 +25,9 @@
                                     <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="h-24 w-86 md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="<?= $data['brand'] . " " . $data['merek'] ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
-                                    <p><span class="font-bold"> Merek : </span> <?= $data['merek'] ?></p>
-                                    <p><span class="font-bold"> RAM/ROM : </span> <?= $data['ram'] ?>/<?= $data['rom'] ?> GB</p>
-                                    <p><span class="font-bold">Harga : Rp. </span><?= number_format($data['harga'], 0, ',', '.'); ?></p>
+                                    <p><span class="font-bold text-sm md:text-base"> Merek : </span> <?= $data['merek'] ?></p>
+                                    <p><span class="font-bold text-sm md:text-base"> RAM/ROM : </span> <?= $data['ram'] ?>/<?= $data['rom'] ?> GB</p>
+                                    <p><span class="font-bold text-sm md:text-base">Harga : Rp. </span><?= number_format($data['harga'], 0, ',', '.'); ?></p>
                                 </div>
                             </div>
                             <div class="px-4 pb-3">

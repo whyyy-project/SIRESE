@@ -55,9 +55,9 @@
                                     <img loading="lazy" src="<?= base_url() ?>img/smartphone/<?= $sample->gambar ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $sample->brand . " ". $sample->merek ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
-                                    <p><span class="font-bold">Brand : </span> <?= $sample->brand ?></p>
-                                    <p><span class="font-bold"> RAM/ROM : </span> <?= $sample->ram ?>/<?= $sample->rom ?> GB</p>
-                                    <p><span class="font-bold">Harga : </span> Rp. <?= number_format($sample->harga, 0, ',', '.'); ?></p>
+                                    <p><span class="font-bold text-sm md:text-base">Brand : </span> <?= $sample->brand ?></p>
+                                    <p><span class="font-bold text-sm md:text-base"> RAM/ROM : </span> <?= $sample->ram ?>/<?= $sample->rom ?> GB</p>
+                                    <p><span class="font-bold text-sm md:text-base">Harga : </span> Rp. <?= number_format($sample->harga, 0, ',', '.'); ?></p>
                                 </div>
                             </div>
                             <div class="px-4 pb-3">

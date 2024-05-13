@@ -61,13 +61,36 @@ class PublicPagesController extends BaseController
         // Mendapatkan nomor halaman saat ini
         $currentPage = $this->request->getVar('page') ?? 1;
         // Mendapatkan data dengan paging
-        $dataSmartphone = $this->smartphone->allDataSmartphonePaging($perPage, ($currentPage - 1) * $perPage);
+        // mendapatkan data sort 
+        $sortName = $this->request->getVar('name');
+        $sortPrice = $this->request->getVar('price');
+        $filterMin = $this->request->getVar('min');
+        $filterMax = $this->request->getVar('max');
+        if(isset($sortName)){
+            $dataSort = '&name='.$sortName;
+            $dataSmartphone = $this->smartphone->allDataSmartphonePaging($perPage, ($currentPage - 1) * $perPage, 'merek', $sortName, null);
+        }else if(isset($sortPrice)){
+            $dataSort = '&price='.$sortPrice;
+            $dataSmartphone = $this->smartphone->allDataSmartphonePaging($perPage, ($currentPage - 1) * $perPage, 'harga', $sortPrice, null);
+        }else if(isset($filterMin) && isset($filterMax) && $filterMin <= $filterMax){
+            $dataSort = '&min='.$filterMin.'&max='. $filterMax;
+            $dataSmartphone = $this->smartphone->allDataSmartphonePaging($perPage, ($currentPage - 1) * $perPage, 'filter', $filterMin, $filterMax);
+            $hitung = $this->smartphone->allDataSmartphonePaging(null, null, 'filter', $filterMin, $filterMax);
+            $totalData = count($hitung);
+            $totalPages = ceil($totalData / $perPage);
+            // dd($hitung);
+        }else{
+            $dataSort = '';
+            $dataSmartphone = $this->smartphone->allDataSmartphonePaging($perPage, ($currentPage - 1) * $perPage, null, null, null);
+        }
+        
         $data = [
             'title' => 'Smartphone',
             'page' => 'smartphone',
             'smartphone' => $dataSmartphone,
             'totalPages' => $totalPages,
             'currentPage' => $currentPage,
+            'sort' => $dataSort,
         ];
         return view('public/data-smartphone', $data);
     }
