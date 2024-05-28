@@ -11,6 +11,8 @@ $routes->get('/search', 'PublicPagesController::hasilCari');
 $routes->get('/detail-smarthpone/(:segment)', 'PublicPagesController::detailSmartphone/$1');
 $routes->get('/toko', 'PublicPagesController::toko');
 $routes->get('/rekomendasi', 'RekomendasiController::index');
-$routes->post('/rekomendasi/smart', 'MetodeSMARTController::index');
+$routes->post('/rekomendasi/smart', 'RekomendasiController::hitung');
 $routes->get('/login', 'PublicPagesController::login');
+$routes->post('/login', 'PublicPagesController::auth');
 
+$routes->get('/admin', 'AdminPagesController::index');

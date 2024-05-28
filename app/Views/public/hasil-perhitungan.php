@@ -10,9 +10,8 @@
     
     <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
         <div class="flex justify-between">
-            <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Data <span class="text-orange-500"> Smartphone</span></h1>
+            <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Hasil <span class="text-orange-500"> Rekomendasi</span></h1>
         </div>
-    </div>
     <div class="border border-gray-200 m-4 mb-2"></div>
         <p class="ml-5 text-gray-700 text-sm italic">Catatan : Harga sewaktu-waktu dapat berubah</p>
         <div class="flex flex-wrap mx-3">
@@ -20,6 +19,7 @@
             <?php 
             // Ambil tiga elemen pertama dari array $smartphone
             $smartphone_subset = array_slice($smartphone, 0, 3);
+            $no = 1;
 
             foreach ($smartphone_subset as $data) : 
             ?>
@@ -27,10 +27,11 @@
                     <div class="md:p-1">
                         <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden">
                             <div class="px-4 py-3">
-                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $data['merek'] ?></h1>
+                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $no . '. '. $data['merek'] ?></h1>
+                                <?php $no++ ?>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="img/smartphone/<?= $data['gambar'] ?>" class="h-24 w-86 md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="<?= $data['brand'] . " " . $data['merek'] ?>">
+                                    <img loading="lazy" src="<?= base_url() ?>img/smartphone/<?= $data['gambar'] ?>" class="h-24 w-86 md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="<?= $data['brand'] . " " . $data['merek'] ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold text-sm md:text-base"> Merek : </span> <?= $data['merek'] ?></p>
@@ -47,6 +48,106 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-
+            </div>
         </div>
+
+
+            <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
+                <div class="flex justify-between">
+                    <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Daftar <span class="text-orange-500"> Rekomendasi</span></h1>
+                </div>
+
+            <!-- datatables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <!-- end datatables -->    
+            
+    <!-- table -->
+
+    <div class="border border-gray-200 m-4 mb-2"></div>
+        <p class="ml-5 text-gray-700 text-sm italic">Catatan : Harga sewaktu-waktu dapat berubah</p>
+        <div class="flex flex-wrap mx-3">
+    <div class="w-full mt-3">
+
+        <table id="myTable" class="display w-full" style="width:100%">
+            <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
+                <tr>
+                    <th>No.</th>
+                    <th>Merek</th>
+                    <th class="hidden md:block">RAM / ROM</th>
+                    <th>Harga</th>
+                    <th>Detail</th>
+                </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <?php
+                            $i = 1;
+                            foreach ($smartphone as $data) : ?>
+                    <tr>
+                        <td><?= $i++ ?></td>
+                        <td><?= $data['merek'] ?></td>
+                        <td class="hidden md:block"><?= $data['ram'] ?>/<?= $data['rom'] ?> GB</td>
+                        <td><?= $data['harga'] ?></td>
+                        <td><a href="<?= base_url() ?>detail-smarthpone/<?= $data['slug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-gray-700 flex justify-center items-center">
+                                    <i class="fas fa-info mr-2 hidden md:flex"></i> Detail
+                                </a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+                </div>
+            </div>
+        </div>
+    <!-- end table -->
+
+    <!-- js table  -->
+    <script>
+                $(document).ready(function() {
+                    // Inisialisasi DataTables
+                    var table = $('#myTable').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [{
+                                extend: 'csv',
+                                className: 'btn-login bg-teal-600 hover:bg-teal-500 text-white',
+                                text: 'CSV'
+                            },
+                            {
+                                extend: 'excel',
+                                className: 'btn-login bg-teal-600 hover:bg-teal-500 text-white',
+                                text: 'Excel'
+                            },
+                            {
+                                extend: 'pdf',
+                                className: 'btn-login bg-teal-600 hover:bg-teal-500 text-white',
+                                text: 'PDF'
+                            },
+                            {
+                                extend: 'print',
+                                className: 'btn-login bg-teal-600 hover:bg-teal-500 text-white',
+                                text: 'Print'
+                            }
+                        ]
+                    });
+                });
+            </script>
+            <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+<!-- end js table -->
+
+
+
+
+
+
+
 <?php $this->endSection(); ?>

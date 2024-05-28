@@ -14,18 +14,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body class="h-screen overflow-hidden flex items-center justify-center bg-gray-100">
-    <div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12">
+<body class="h-screen overflow-hidden flex items-center justify-center bg-gray-200">
+    <div class="min-h-screen bg-gray-200 flex flex-col justify-center py-12">
 	<div class="relative py-3 px-3 max-w-xl mx-auto">
 		<div class="absolute mx-3 inset-0 bg-gradient-to-r from-cyan-500 to-cyan-950 shadow-lg transform skew-y-0 -rotate-6 rounded-3xl">
 		</div>
 		<div class="relative bg-white shadow-lg rounded-3xl p-6 md:p-20 md:pt-12">
 			<div class="max-w-md mx-auto px-8">
 				<div>
-                    <img src="<?= base_url() ?>img/logo.png" alt="" class="w-14 mx-auto">
+            <img src="<?= base_url() ?>img/logo.png" alt="" class="w-14 mx-auto">
 					<h1 class="text-base md:text-2xl font-semibold text-center">Login SIRESE</h1>
                 <div class="border border-gray-200 m-2"></div>
 				</div>
+			<form action="<?= base_url() ?>login" method="post">
 				<div class="divide-y divide-gray-200">
 					<div class="py-3 px-1 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
 						<div class="relative">
@@ -46,6 +47,7 @@
                         </div>
 					</div>
 				</div>
+			</form>
 			</div>
 		</div>
 	</div>

@@ -121,4 +121,4 @@
     <script src="<?= base_url() ?>assets/js/typingText.js"></script>
 <!-- end content  -->
 
-<?= $this->endSection() ?>;
+<?= $this->endSection() ?>

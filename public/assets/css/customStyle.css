@@ -215,3 +215,47 @@ li #active{
   }
 
   
+
+
+
+.dataTables_wrapper{
+display: block;
+}
+.dt-buttons{
+  display: none;
+}
+.dataTables_filter{
+  display: none;
+  width: 100%;
+  justify-content: center;
+}
+.dataTables_filter label{
+margin-top: -60px;
+margin-left: 850px;
+}
+
+  /* Styling untuk kotak pencarian DataTables */
+.dataTables_wrapper .dataTables_filter input[type="search"] {
+  display: flex;
+  background-color: #ced4da;
+  width: 100%; /* Lebar input sesuai dengan container */
+  padding: 0.375rem 0.75rem; /* Padding sesuai kebutuhan */
+  font-size: 0.875rem; /* Ukuran font sesuai kebutuhan */
+  line-height: 1.5; /* Line-height sesuai kebutuhan */
+  border-radius: 0.25rem; /* Border radius sesuai kebutuhan */
+  outline: none;
+  border: 1px solid #ced4da; /* Warna border sesuai kebutuhan */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Efek transisi saat hover atau focus */
+}
+
+/* Styling untuk input pencarian DataTables saat di-hover */
+.dataTables_wrapper .dataTables_filter input[type="search"]:hover {
+  border-color: #6c757d; /* Warna border saat hover */
+}
+
+/* Styling untuk input pencarian DataTables saat di-focus */
+.dataTables_wrapper .dataTables_filter input[type="search"]:focus {
+  border-color: #007bff; /* Warna border saat focus */
+  outline: 0; /* Hilangkan outline */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Efek shadow saat focus */
+}
