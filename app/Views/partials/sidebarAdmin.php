@@ -11,15 +11,15 @@
                         <i class="fas fa-home pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Beranda</span>
                     </a>
                 </li>
-                <li class="mr-3 flex-1" id="option" title="Sistem Rekomendasi Smartphone">
-                    <a href="rekomendasi" id="<?= $page == "rekomendasi" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
-                        <i class="fa-solid fa-thumbs-up pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Rekomendasi</span>
+                <li class="mr-3 flex-1" id="option" title="Master Data Smartphone">
+                    <a href="<?= base_url() ?>master-data" id="<?= $page == "master-data" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
+                        <i class="fa-solid fa-database pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Master Data</span>
                     </a>
                 </li> 
-                <li class="mr-3 flex-1" id="option" title="Data Smartphone">
-                    <a href="<?= base_url() ?>data-smartphone" id="<?= $page == "smartphone" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
-                        <i class="fa-solid fa-mobile pr-0 md:pr-3"></i>
-                        <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Smartphone
+                <li class="mr-3 flex-1" id="option" title="Data Bobot konversi">
+                    <a href="<?= base_url() ?>atur-bobot" id="<?= $page == "bobot" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
+                        <i class="fa-solid fa-scale-balanced pr-0 md:pr-3"></i>
+                        <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Atur Bobot
                         <?php if(isset($alert) && $alert > 0){ ?>    
                             <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
@@ -30,9 +30,9 @@
                     </a>
                 </li>
                 <li class="mr-3 flex-1" id="option" title="Toko kerjasama">
-                    <a href="<?= base_url() ?>toko" id="<?= $page == "toko" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
+                    <a href="<?= base_url() ?>data-toko" id="<?= $page == "toko" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
                         <i class="fa-solid fa-shop pr-0 md:pr-3"></i>
-                        <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Toko 
+                        <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Data Toko 
                         </span>
                     </a>
                 </li>
