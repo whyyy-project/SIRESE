@@ -29,7 +29,7 @@
                         </span>
                     </a>
                 </li>
-                <li class="mr-3 flex-1" id="option" title="Toko kerjasama">
+                <li class="mr-3 flex-1" id="option" title="Data Toko kerjasama">
                     <a href="<?= base_url() ?>data-toko" id="<?= $page == "toko" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
                         <i class="fa-solid fa-shop pr-0 md:pr-3"></i>
                         <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Data Toko 
