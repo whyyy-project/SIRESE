@@ -4,7 +4,7 @@
 
 <!-- content  -->
 <!-- body, footer -->
-<div class="main-content flex-1 bg-gray-300 mt-16 md:mt-2">
+<div class="main-content flex-1 bg-gray-300 mt-2">
     <div class=" bg-cyan-950 pt-3">
         <div class="rounded-tl-3xl bg-gradient-to-r from-cyan-500 to-cyan-950 p-4 shadow text-2xl text-white"> 
             <h3 class="font-bold pl-2 text-xs md:text-2xl"><span class="text-orange-500">SIRESE</span> | <span class="text-orange-500">Si</span>stem <span class="text-orange-500">Re</span>komendasi <span class="text-orange-500">S</span>martphon<span class="text-orange-500">e</span></h3>
@@ -19,7 +19,8 @@
               <div class="border border-gray-200 m-2"></div>
                 <div class="flex justify-center items-center text-center">
                     <form action="master-data/tambah" method="post" class="w-full" enctype="multipart/form-data">
-                        <div class="relative w-2/3 mx-auto mb-4">
+                        
+                    <div class="relative w-2/3 mx-auto my-4">
                             <input required id="brand" name="brand" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="brand" oninput="listInput('brand')" onblur="hideDiv('brand')" value="<?= session()->getFlashdata('brand') ?>"/>
                             <label for="brand" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">brand</label>
                           <div id="opt_brand" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
@@ -93,6 +94,15 @@
                           </div>
                         </div>
 
+                        <div class="relative w-2/3 mx-auto mb-4">
+                            <input required id="lcd_size" name="lcd_size" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_size" oninput="listInput('lcd_size')" onblur="hideDiv('lcd_size')" value="<?= session()->getFlashdata('lcd_size') ?>"/>
+                            <label for="lcd_size" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Ukuran LCD</label>
+                          <div id="opt_lcd_size" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
+                            <?php foreach($lcd_size as $data): ?>
+                                  <p class="list_lcd_size cursor-pointer border-b-2 border-gray-300" onclick="insert('<?= $data['lcd_size'] ?>', 'lcd_size')"><?= $data['lcd_size'] ?></p>
+                            <?php endforeach; ?>
+                          </div>
+                        </div>
                         <div class="relative w-2/3 mx-auto mb-4">
                             <input required id="lcd_resolusi" name="lcd_resolusi" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_resolusi" oninput="listInput('lcd_resolusi')" onblur="hideDiv('lcd_resolusi')" value="<?= session()->getFlashdata('lcd_resolusi') ?>"/>
                             <label for="lcd_resolusi" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Resolusi LCD</label>

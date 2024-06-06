@@ -5,7 +5,7 @@
         <p class="text-gray-800 text-sm"><span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">About</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">Contact</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">Terms Service</span> | <span class="hover:bg-gray-500 hover:text-gray-100 duration-500 cursor-pointer">Contributor</span></p>
     <p class="px-6 font-bold text-gray-600 text-xs md:text-base">
         Copyright &copy 2024 <span class="text-orange-500">SIRESE</span>. By
-        <a href="https://github.com/whyyy-project/" target="_blank" class="text-orange-500">Whyyy-Project</a>
+        <a href="https://www.instagram.com/cumatukangketik?igsh=ZWM5MnNkaHpkbzRt" target="_blank" class="text-orange-500">Whyyy-Project</a>
     </p>
 </div>
 <!-- end footer -->

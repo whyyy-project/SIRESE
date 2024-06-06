@@ -2,23 +2,17 @@
  <nav class="bg-cyan-950 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
             <div class="flex flex-wrap items-center">
                 <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
-                    <a href="">
+                  <!-- ikon -->
+                  <a href="<?= base_url() ?>" class="flex">
+                    <?php if (!session()->get('LoggedIn')) { ?>
                             <img class="w-8 h-12 md:hidden" src="<?= base_url() ?>img/logo.png" loading="lazy" alt="Logo SIRESE" title="SIRESE Logo">
-                            <img class="ml-5 h-14 hidden md:block" src="<?= base_url() ?>img/logo2.png" loading="lazy" alt="Logo SIRESE" title="SIRESE Logo">
-                        
+                    <?php } ?>
+                            <img class="ml-5 h-14 md:block hidden" src="<?= base_url() ?>img/logo2.png" loading="lazy" alt="Logo SIRESE" title="SIRESE Logo">
                     </a>
                 </div>
-                <?php 
-                        // $session = session();
-                        // $session->set('nama', 'Wahyu'); // add
-                        // $session->set('pass', 'Wahyu');
-                        // $session->set('loggedIn', true);
-                        // $session->remove('pass'); //remove
-                        // $session->destroy();
-                        ?>
 
                 <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
-                    <span class="relative w-full  mt-1 md:mb-1">
+                    <span class="relative w-full <?= session()->get('LoggedIn') ? '' : 'mt-1' ?> md:mb-1">
                         <?php if(!esc(session()->get('LoggedIn'))){ ?>
                         <form action="<?= base_url() ?>search#hasil" method="get">
                             <input type="text" id="search" name="search" placeholder="Cari Smartphone.." class="w-full bg-cyan-800 text-white transition border border-transparent focus:outline-none focus:border-cyan-500 rounded py-3 px-2 pl-10 appearance-none leading-normal text-center" value="<?= isset($search) != null ? $search : '' ?>" autocomplete="off" required/>
@@ -32,7 +26,7 @@
                     </span>
             </div>
             
-                <div class="flex w-full  content-center justify-between md:w-1/3 md:justify-end mt-3 pb-1">
+                <div class="flex w-full  content-center justify-between md:w-1/3 md:justify-end <?= session()->get('LoggedIn') ? '' : 'mt-3' ?> pb-1">
                     <ul class="list-reset flex justify-between flex-1 md:flex-none items-center text-white">
                         <li class="flex-1 md:flex-none md:mr-3">
                             <a class="inline-block no-underline hover:text-gray-300 hover:text-underline text-xs md:text-base py-2 px-4" href="https://github.com/whyyy-project" target="_blank">GitHub 

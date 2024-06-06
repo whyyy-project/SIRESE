@@ -3,16 +3,40 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BobotModel;
 use App\Models\SmartphoneModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class AdminPagesController extends BaseController
 {
-  public $smartphone;
-  function __construct()
-  {
-    $this->smartphone = new SmartphoneModel();
-  }
+    public $smartphone;
+    public $bobot;
+
+    public function __construct() {
+        // Inisialisasi model
+        $this->smartphone = new SmartphoneModel();
+        $this->bobot = new BobotModel();
+
+        // Panggil fungsi yang ingin dieksekusi sebelum fungsi lainnya
+        $this->alertBobot();
+    }
+
+    public function alertBobot() {
+        $totalNull = 0;
+        $data = $this->bobot->select('nilai')->findAll();
+
+        foreach ($data as $row) {
+            foreach ($row as $key => $value) {
+                if (is_null($value) || $value === '') {
+                    $totalNull++;
+                }
+            }
+        }
+
+        if ($totalNull >= 1) {
+            session()->setFlashdata('bobot', 'alert');
+        }
+    }
   public function index()
   {
     $smartphone = $this->smartphone->findAll();
@@ -86,15 +110,7 @@ class AdminPagesController extends BaseController
     return view('admin/tambah-smartphone', $data);
 
   }
-  public function bobot()
-  {
-    $data = [
-      'title' => 'Welcome Admin',
-      'page' => 'bobot',
-    ];
-    return view('admin/bobot', $data);
 
-  }
   public function toko()
   {
     $data = [
@@ -114,4 +130,7 @@ class AdminPagesController extends BaseController
     return "aku";
 
   }
+
+
+
 }

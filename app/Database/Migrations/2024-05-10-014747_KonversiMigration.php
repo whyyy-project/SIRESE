@@ -19,6 +19,10 @@ class KonversiMigration extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'sub_kriteria' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'konversi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,

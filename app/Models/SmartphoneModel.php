@@ -102,8 +102,4 @@ class SmartphoneModel extends Model
     public function getBy($data){
     return $this->select($data)->distinct()->findAll();
     }
-    public function mainVideo(){
-    return $this->select('main_video')->findAll();
-    }
-
 }
