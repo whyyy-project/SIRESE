@@ -19,7 +19,7 @@
 
                 <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
                     <span class="relative w-full  mt-1 md:mb-1">
-                        <?php if(!session('loggedIn')){ ?>
+                        <?php if(!esc(session()->get('LoggedIn'))){ ?>
                         <form action="<?= base_url() ?>search#hasil" method="get">
                             <input type="text" id="search" name="search" placeholder="Cari Smartphone.." class="w-full bg-cyan-800 text-white transition border border-transparent focus:outline-none focus:border-cyan-500 rounded py-3 px-2 pl-10 appearance-none leading-normal text-center" value="<?= isset($search) != null ? $search : '' ?>" autocomplete="off" required/>
                             <div class="absolute search-icon" style="top: 1rem; left: 0.8rem">
@@ -45,15 +45,16 @@
                             </a>
                         </li>
 
-                        <?php if(session('loggedIn')) { ?>
+                        <?php if(esc(session()->get('LoggedIn'))) { ?>
                         <li class="flex-1 md:flex-none md:mr-3 mr-2 text-right relative">
                         <div class="inline-block no-underline hover:text-gray-200 hover:text-underline">
-                            <span id="dropdown-toggle" class="btn-login text-sm md:text-base cursor-pointer bg-gradient-to-r from-cyan-500 to-cyan-900 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-800">admin <i class="fa fas-caret-down"></i></span>
+                            <span id="dropdown-toggle" class="btn-login text-sm md:text-base cursor-pointer bg-gradient-to-r from-cyan-500 to-cyan-900 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-800"><?= (strlen(esc(session()->get('nama'))) > 5) ? substr(esc(session()->get('nama')), 0, 5) . '..' : esc(session()->get('nama')) ?>
+                            <i class="fa fas-caret-down"></i></span>
                         </div>
                         <!-- Dropdown menu -->
                         <ul id="dropdown-menu" class="absolute hidden bg-white rounded-md shadow-md mt-1 mr-1 right-1 text-center">
                             <li><a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Profil</a></li>
-                            <li><a href="<?= base_url() ?>logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Logout</a></li>
+                            <li><button onclick="logoutModal()" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Logout</button></li>
                         </ul>
                     </li>
                     

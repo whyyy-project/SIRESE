@@ -29,16 +29,19 @@
 			<form action="<?= base_url() ?>login" method="post">
 				<div class="divide-y divide-gray-200">
 					<div class="py-3 px-1 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+            <?php if(session()->getFlashdata('error')) { ?>
+            <p class="text-red-700 text-sm font-bold"><?= session()->getFlashdata('error') ?></p>
+            <?php } ?>
 						<div class="relative">
-							<input autocomplete="off" id="username" name="username" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 focus:outline-none focus:border-cyan-700" placeholder="Username" />
+							<input autocomplete="off" id="username" name="username" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="Username" value="<?= session()->getFlashdata('uname') ?>"/>
 							<label for="username" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Username</label>
 						</div>
 						<div class="relative">
 							<input autocomplete="off" id="password" name="password" type="password" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 focus:outline-none focus:border-cyan-700" placeholder="Password" />
-							<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+							<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 text-sm transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
 						</div>
 						<div class="flex justify-center">
-							<button class="btn-login bg-orange-500 shadow-lg text-white text-sm md:text-base hover:bg-orange-400 mt-3">Login</button>
+							<button type="submit" name="login" class="btn-login bg-orange-500 shadow-lg text-white text-sm md:text-base hover:bg-orange-400 mt-3">Login</button>
 						</div>
                 <div class="border border-gray-200"></div>
                         <div class="flex justify-center">
