@@ -37,6 +37,8 @@ class AdminPagesController extends BaseController
   }
   public function tambahSmartphone()
   {
+    $brand = $this->smartphone->getBy('brand');
+    $merek = $this->smartphone->getBy('merek');
     $dimensi = $this->smartphone->getBy('dimensi');
     $berat = $this->smartphone->getBy('berat');
     $build = $this->smartphone->getBy('build');
@@ -59,8 +61,11 @@ class AdminPagesController extends BaseController
     $data = [
       'title' => 'Tambah Smartphone',
       'page' => 'master',
+      'brand' => $brand,
+      'merek' => $merek,
       'dimensi' => $dimensi,
       'berat' => $berat,
+      'build' => $build,
       'lcd_type' => $lcd_type,
       'lcd_size' => $lcd_size,
       'lcd_resolusi' => $lcd_resolusi,
