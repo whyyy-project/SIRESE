@@ -14,9 +14,14 @@ class BobotController extends BaseController
   function __construct()
   {
     $this->smartphone = new SmartphoneModel();
-        $this->bobot = new BobotModel;
-    $this->mainVideo();
-    $this->frontVideo();
+    $this->bobot = new BobotModel;
+
+    $this->body();
+    $this->lcd();
+    $this->system();
+    $this->memory();
+    $this->mainCamera();
+    $this->frontCamera();
 
   }
     public function index()
@@ -34,7 +39,7 @@ class BobotController extends BaseController
     $this->countNull('battery');
     $this->countNull('harga');
     $data = [
-      'title' => 'Welcome Admin',
+      'title' => 'Konversi Nilai',
       'page' => 'bobot',
     ];
     return view('admin/bobot', $data);
@@ -58,16 +63,52 @@ class BobotController extends BaseController
             session()->setFlashdata($data, 'alert');
         }
   }
-    public function mainVideo(){
-      $videoData = $this->smartphone->select('main_video')->findAll();
 
+  public function body(){
+    // konversi perhitungan dimensi
+    $dimensi = $this->smartphone->getBy('build');
+    foreach($dimensi as $dms){
+      $pisah = explode(', ', strtolower($dms['build']));
+      foreach($pisah as $bld){
+        if ($this->bobot->where('konversi', $bld)->where('sub_kriteria', 'build')->countAllResults() < 1){
+          $input = [
+                'kriteria' => 'body',
+                'sub_kriteria' => 'build',
+                'konversi' => $bld,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+                ];
+            $this->bobot->insert($input);
+        }
+      }
+    }
+  }
+
+  public function lcd(){
+      $this->konversi('lcd', 'lcd_type');
+  }
+          
+  public function system(){
+      $this->konversi('sistem', 'os');
+      $this->konversi('sistem', 'chipset');
+      $this->konversi('sistem', 'cpu');
+  }
+          
+  public function memory(){
+      $this->konversi('memori', 'ram');
+      $this->konversi('memori', 'rom');
+  }
+
+
+
+    public function mainCamera(){
+      $mainVideo = $this->smartphone->select('main_video')->findAll();
       // Array baru untuk menyimpan hasil tanpa duplikat
       $uniqueVideos = [];
-
       // Loop melalui setiap data video
-      foreach ($videoData as $videos) {
+      foreach ($mainVideo as $videos) {
           // Akses kolom 'main_video' dari setiap elemen
-          $videoList = explode(',', $videos['main_video']);
+          $videoList = explode(',', strtolower($videos['main_video']));
           
           // Loop melalui setiap video dalam daftar
           foreach ($videoList as $video) {
@@ -89,24 +130,20 @@ class BobotController extends BaseController
                   }
               }
           }
+          // konversi umum
+          $this->konversi('main_camera', 'main_camera');
+          $this->konversi('main_camera', 'main_type');
+
       }
   }
-    public function frontVideo(){
+    public function frontCamera(){
       $videoData = $this->smartphone->select('front_video')->findAll();
 
-      // Array baru untuk menyimpan hasil tanpa duplikat
       $uniqueVideos = [];
-
-      // Loop melalui setiap data video
       foreach ($videoData as $videos) {
-          // Akses kolom 'front_video' dari setiap elemen
-          $videoList = explode(',', $videos['front_video']);
-          
-          // Loop melalui setiap video dalam daftar
+          $videoList = explode(',', strtolower($videos['front_video']));
           foreach ($videoList as $video) {
-              // Hapus spasi di sekitar video
               $video = trim($video);
-              // Jika video belum ada di array hasil, tambahkan
               if (!in_array($video, $uniqueVideos)) {
                   $uniqueVideos[] = $video;
                   if ($this->bobot->where('konversi', $video)->where('sub_kriteria', 'front_video')->countAllResults() < 1)
@@ -122,7 +159,29 @@ class BobotController extends BaseController
                   }
               }
           }
+          // konversi umum
+          $this->konversi('front_camera', 'front_camera');
       }
+  }
+
+  // function untuk membuat konversi lebih mudah
+  public function konversi($kriteria, $sub_kriteria){
+              // main camera
+      $ambil = $this->smartphone->getBy($sub_kriteria);
+      foreach ($ambil as $data) {
+      $konversi = strtolower($data[$sub_kriteria]);
+          if ($this->bobot->where('konversi', $konversi)->where('sub_kriteria', $sub_kriteria)->countAllResults() < 1)
+          {
+            $input = [
+              'kriteria' => $kriteria,
+              'sub_kriteria' => $sub_kriteria,
+              'konversi' => $konversi,
+              'created_at' => date('Y-m-d H:i:s'),
+              'updated_at' => date('Y-m-d H:i:s'),
+            ];
+            $this->bobot->insert($input);
+          }
+        }
   }
 
 }

@@ -21,10 +21,10 @@
 
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi Body</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/body" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting 
                     <?php if (session()->getFlashdata('body')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-1 -mx-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>
@@ -36,7 +36,7 @@
                   <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting
                     <?php if (session()->getFlashdata('lcd')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-1 -mx-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>
@@ -48,7 +48,7 @@
                   <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting
                     <?php if (session()->getFlashdata('sistem')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-1 -mx-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>
@@ -60,7 +60,7 @@
                   <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting
                     <?php if (session()->getFlashdata('memori')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-1 -mx-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>
@@ -72,7 +72,7 @@
                   <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting
                     <?php if (session()->getFlashdata('main_camera')) { ?>    
-                        <div class="h-2 w-2 relative -mx-1 inline-block -translate-y-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>
@@ -84,7 +84,7 @@
                   <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting
                     <?php if (session()->getFlashdata('front_camera')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-1 -mx-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>
@@ -96,7 +96,7 @@
                   <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting
                     <?php if (session()->getFlashdata('battery')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-1 -mx-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>
@@ -108,7 +108,7 @@
                   <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear mr-2"></i>Setting
                     <?php if (session()->getFlashdata('harga')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-1 -mx-1">
+                        <div class="h-2 w-2 relative inline-block -translate-y-1">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>

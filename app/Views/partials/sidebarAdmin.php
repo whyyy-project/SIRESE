@@ -16,12 +16,12 @@
                         <i class="fa-solid fa-database pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Master Data</span>
                     </a>
                 </li> 
-                <li class="mr-3 flex-1" id="option" title="Data Bobot konversi">
+                <li class="mr-3 flex-1" id="option" title="Data Bobot Konversi">
                     <a href="<?= base_url() ?>atur-konversi" id="<?= $page == "bobot" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
                         <i class="fa-solid fa-scale-balanced pr-0 md:pr-3"></i>
-                        <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Atur Bobot
+                        <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Atur Konversi
                         <?php if (session()->getFlashdata('bobot')) { ?>    
-                        <div class="h-2 w-2 relative inline-block -translate-y-6 md:-translate-y-2 -translate-x-3 md:-translate-x-0">
+                        <div class="h-2 w-2 relative inline-block -translate-y-10 md:-translate-y-2 translate-x-4 md:-translate-x-0">
                                 <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
                                 <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
                         </div>

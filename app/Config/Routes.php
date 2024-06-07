@@ -13,6 +13,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/', 'AdminPagesController::index');
     $routes->get('master-data/tambah', 'AdminPagesController::tambahSmartphone');
     $routes->get('master-data', 'AdminPagesController::master');
+    $routes->get('atur-konversi/body', 'KonversiController::body');
     $routes->get('atur-konversi', 'BobotController::bobot');
     $routes->get('data-toko', 'AdminPagesController::toko');
     $routes->get('profil', 'AdminPagesController::profil');

@@ -52,7 +52,7 @@ class AdminPagesController extends BaseController
   {
     $smartphone = $this->smartphone->orderBy('merek', 'asc')->findAll();
     $data = [
-      'title' => 'Welcome Admin',
+      'title' => 'Data Smartphone',
       'page' => 'master',
       'smartphone' => $smartphone,
     ];
