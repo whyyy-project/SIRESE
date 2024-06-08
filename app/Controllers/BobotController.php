@@ -22,6 +22,7 @@ class BobotController extends BaseController
     $this->memory();
     $this->mainCamera();
     $this->frontCamera();
+    $this->baterai();
 
   }
     public function index()
@@ -164,24 +165,90 @@ class BobotController extends BaseController
       }
   }
 
+
+  public function baterai(){
+    $this->konversi('battery', 'usb');
+    }
+    
+public function harga()
+{
+    // 
+    // Mendapatkan harga minimum
+    $hargaMinResult = $this->smartphone->select('harga')->orderBy('harga', 'asc')->first();
+    $hargaMin = $hargaMinResult['harga'];
+
+    // Mendapatkan harga maksimum
+    $hargaMaxResult = $this->smartphone->select('harga')->orderBy('harga', 'desc')->first();
+    $hargaMax = $hargaMaxResult['harga'];
+
+    // Menghitung rentang harga
+    $rentang = $hargaMax - $hargaMin;
+
+    // Menghitung selisih rentang yang dibagi menjadi 5 bagian
+    $step = $rentang / 10;
+    echo "Pembagi: ".$step . "<br>";
+    $hargaPertama = $hargaMin + $step;
+
+    // Membuat array hitungHarga
+    $hitungHarga = [];
+    for ($i = 0; $i < 9; $i++) {
+        $hitungHarga[] = $hargaPertama + ($step * $i);
+    }
+
+    // Menampilkan hasil (hanya untuk contoh, sesuaikan dengan kebutuhan Anda)
+    echo "Harga Min: " . $hargaMin . "<br>";
+    echo "Harga Max: " . $hargaMax . "<br>";
+    echo "Rentang Harga: " . $rentang . "<br>";
+    echo "<br>Array Hitung Harga: <br>";
+    $no = 1;
+    foreach ($hitungHarga as $harga) {
+        echo $no . ". kurang dari " .$harga . "<br>";
+        $no++;
+        }
+      echo $no . ". lebih dari " .$harga . "<br>";
+}
+
+
   // function untuk membuat konversi lebih mudah
-  public function konversi($kriteria, $sub_kriteria){
-              // main camera
-      $ambil = $this->smartphone->getBy($sub_kriteria);
-      foreach ($ambil as $data) {
-      $konversi = strtolower($data[$sub_kriteria]);
-          if ($this->bobot->where('konversi', $konversi)->where('sub_kriteria', $sub_kriteria)->countAllResults() < 1)
-          {
+ public function konversi($kriteria, $sub_kriteria) {
+    // Mengambil data dari $this->smartphone berdasarkan $sub_kriteria
+    $ambil = $this->smartphone->getBy($sub_kriteria);
+    
+    // Membuat array dari konversi yang diambil
+    $konversi_ambil = [];
+    foreach ($ambil as $data) {
+        $konversi_ambil[] = strtolower($data[$sub_kriteria]);
+    }
+    
+    // Mengambil semua data konversi dari $this->bobot berdasarkan $sub_kriteria
+    $bobot_data = $this->bobot->select('konversi')->where('sub_kriteria', $sub_kriteria)->findAll();
+    
+    // Membuat array dari konversi yang ada di $this->bobot
+    $konversi_bobot = [];
+    foreach ($bobot_data as $bobot) {
+        $konversi_bobot[] = $bobot['konversi'];
+    }
+    
+    // Menambahkan data konversi yang tidak ada di $this->bobot
+    foreach ($konversi_ambil as $konversi) {
+        if (!in_array($konversi, $konversi_bobot)) {
             $input = [
-              'kriteria' => $kriteria,
-              'sub_kriteria' => $sub_kriteria,
-              'konversi' => $konversi,
-              'created_at' => date('Y-m-d H:i:s'),
-              'updated_at' => date('Y-m-d H:i:s'),
+                'kriteria' => $kriteria,
+                'sub_kriteria' => $sub_kriteria,
+                'konversi' => $konversi,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ];
             $this->bobot->insert($input);
-          }
         }
-  }
+    }
+    
+    // Menghapus data konversi dari $this->bobot yang tidak ada di $ambil
+    foreach ($konversi_bobot as $konversi) {
+        if (!in_array($konversi, $konversi_ambil)) {
+            $this->bobot->where('konversi', $konversi)->where('sub_kriteria', $sub_kriteria)->delete();
+        }
+    }
+}
 
 }

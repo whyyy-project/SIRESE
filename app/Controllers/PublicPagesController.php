@@ -33,6 +33,7 @@ class PublicPagesController extends BaseController
         //         }
         //     }
         // }
+
         $sampleData = $this->smartphone->randomData();
         $data = [
         'page' => "dashboard",

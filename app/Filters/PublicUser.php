@@ -26,8 +26,8 @@ class PublicUser implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if(session()->get('LoggedIn')){
-          
-        }
+          return redirect()->to('dashboard');
+      }
     }
 
     /**
