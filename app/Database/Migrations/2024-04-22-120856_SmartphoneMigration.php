@@ -100,7 +100,7 @@ class SmartphoneMigration extends Migration
                 'constraint' => 255,
             ],
             'battery_capacity' => [
-                'type' => 'VARCHAR',
+                'type' => 'INT',
                 'constraint' => 255,
             ],
             'harga' => [

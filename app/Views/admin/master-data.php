@@ -20,14 +20,14 @@
     </div>
 
 
- <!-- content here -->
+  <!-- content here -->
     <div class="p-3 md:px-4 pb-0 mx-2 mb:mx-1">
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="px-4 py-3">
               <div class="flex justify-between">
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Data<span class="text-orange-500"> Smartphone</span></h1>
-                <a href="<?= base_url() ?>master-data/tambah" class="text-white bg-green-800 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-green-700 flex justify-center items-center w-24" onclick="bukaModal('inputHp')">
-                  <i class="fas fa-plus mr-2 hidden md:flex text-sm"></i>Tambah
+                <a href="<?= base_url() ?>master-data/tambah" class="text-white bg-green-800 mx-0 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-green-700 flex justify-center items-center w-24" onclick="bukaModal('inputHp')">
+                  <i class="fas fa-plus text-sm"></i> <span class="hidden md:flex">Tambah</span>
                 </a>
               </div>
                 <div class="border border-gray-200 m-2"></div>
@@ -64,6 +64,114 @@
     </div>
 
 
+      <!-- content here -->
+    <div class="p-3 md:px-4 pb-0 mx-2 mb:mx-1">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-4 py-3">
+              <div class="flex justify-between items-center">
+                <h1 class="md:text-2xl font-bold text-gray-800 text-base">Data<span class="text-orange-500"> Normalisasi</span></h1>
+                <div class="inline">
+
+                  <a href="<?= base_url() ?>/refresh-konversi" onclick="spin('ikon')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
+                    <i id="ikon" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Konversi Data</span>
+                  </a>
+                <?php if (session()->getFlashdata('konversi')) { ?>    
+                <div class="h-2 w-2 relative inline-block -translate-y-2 -translate-x-3 md:-translate-x-6">
+                  <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
+                <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
+              </div>
+            <?php } ?>
+            </div>
+                  <script>
+              function spin(id){
+                const ikon =document.getElementById(id)
+                ikon.classList.add('animate-spin');
+                setTimeout(() => {
+                  ikon.classList.remove('animate-spin');
+                }, 5000);
+              }
+            </script>
+              </div>
+                <div class="border border-gray-200 m-2"></div>
+                <div class="overflow-x-auto">
+
+<table class="w-full bg-white rounded-lg shadow-md border border-gray-200">
+            <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white h-12 border-b border-black">
+                  <tr>
+                    <th  class="w-12 px-1">Smartphone</th>
+                    <th>BD</th>
+                    <th>BBr</th>
+                    <th>BBu</th>
+                    <th>LT</th>
+                    <th>LS</th>
+                    <th>LR</th>
+                    <th>SO</th>
+                    <th>SC</th>
+                    <th>MR</th>
+                    <th>MI</th>
+                    <th>MMc</th>
+                    <th>MMt</th>
+                    <th>MMv</th>
+                    <th>FFc</th>
+                    <th>FFv</th>
+                    <th>BUs</th>
+                    <th>BBc</th>
+                    <th>H</th>
+                  </tr>
+                </thead>
+                <tbody class="h-12 text-gray-700 text-sm">
+                  <tr class="text-center bg-gray-100">
+                    <td class="px-1">Iphone 15 Pro Max(8/1000gb)</td>
+                    <td>BD</td>
+                    <td>BBr</td>
+                    <td>BBu</td>
+                    <td>LT</td>
+                    <td>LS</td>
+                    <td>LR</td>
+                    <td>SO</td>
+                    <td>SC</td>
+                    <td>MR</td>
+                    <td>MI</td>
+                    <td>MMc</td>
+                    <td>MMt</td>
+                    <td>MMv</td>
+                    <td>FFc</td>
+                    <td>FFv</td>
+                    <td>BUs</td>
+                    <td>BBc</td>
+                    <td>H</td>
+                  </tr>
+                  <tr class="text-center">
+                    <td class="px-1">Iphone 15 Pro Max(8/1000gb)</td>
+                    <td>BD</td>
+                    <td>BBr</td>
+                    <td>BBu</td>
+                    <td>LT</td>
+                    <td>LS</td>
+                    <td>LR</td>
+                    <td>SO</td>
+                    <td>SC</td>
+                    <td>MR</td>
+                    <td>MI</td>
+                    <td>MMc</td>
+                    <td>MMt</td>
+                    <td>MMv</td>
+                    <td>FFc</td>
+                    <td>FFv</td>
+                    <td>BUs</td>
+                    <td>BBc</td>
+                    <td>H</td>
+                  </tr>
+                  </tbody>
+                </table>
+                </div>
+
+            </div>
+            <div class="group px-3 mr-0 py-3 m-3">
+            </div>
+        </div>
+    </div>
+
 <!-- js for dashboard -->
 <!-- js table  -->
     <script>
@@ -72,6 +180,13 @@
                     var table = $('#myTable').DataTable({
                         dom: 'Bfrtip',
                     });
+                });
+                $(document).ready(function() {
+                    // Inisialisasi DataTables
+                    var table = $('#tableConvert').DataTable({
+                        dom: 'Bfrtip',
+                    });
+                    
                 });
             </script>
             <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -83,6 +198,5 @@
             <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
             <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
 <!-- end js table -->
-
 
 <?php $this->endSection() ?>

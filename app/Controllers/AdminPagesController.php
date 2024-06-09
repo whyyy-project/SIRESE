@@ -11,11 +11,12 @@ class AdminPagesController extends BaseController
 {
     public $smartphone;
     public $bobot;
-
+  public $bobotController;
     public function __construct() {
         // Inisialisasi model
         $this->smartphone = new SmartphoneModel();
         $this->bobot = new BobotModel();
+        $this->bobotController = new BobotController();
 
         // Panggil fungsi yang ingin dieksekusi sebelum fungsi lainnya
         $this->alertBobot();
@@ -39,7 +40,8 @@ class AdminPagesController extends BaseController
     }
   public function index()
   {
-    $smartphone = $this->smartphone->findAll();
+    $this->bobotController->normalisasiValidate();
+    $smartphone = $this->smartphone->orderBy('merek', 'asc')->findAll();
     $data = [
       'title' => 'Admin Page',
       'page' => 'dashboard',

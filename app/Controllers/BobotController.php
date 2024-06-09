@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BobotModel;
+use App\Models\NormalisasiModel;
 use App\Models\SmartphoneModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -23,6 +24,8 @@ class BobotController extends BaseController
     $this->mainCamera();
     $this->frontCamera();
     $this->baterai();
+    $this->harga();
+    $this->normalisasiValidate();
 
   }
     public function index()
@@ -54,7 +57,7 @@ class BobotController extends BaseController
 
         foreach ($dataBody as $row) {
             foreach ($row as $key => $value) {
-                if (is_null($value) || $value === '') {
+                if (is_null($value) || $value === '0') {
                     $totalNull++;
                 }
             }
@@ -168,6 +171,44 @@ class BobotController extends BaseController
 
   public function baterai(){
     $this->konversi('battery', 'usb');
+
+    $getKapasitas = $this->bobot->where('sub_kriteria', 'battery_capacity')->countAllResults();
+      if($getKapasitas < 4){
+      $this->bobot->where('sub_kriteria', 'battery_capacity')->delete();
+            // Mendapatkan battery minimum
+    $battery_capacityMinResult = $this->smartphone->select('battery_capacity')->orderBy('battery_capacity', 'asc')->first();
+    $battery_capacityMin = $battery_capacityMinResult['battery_capacity'];
+
+    // Mendapatkan battery_capacity maksimum
+    $battery_capacityMaxResult = $this->smartphone->select('battery_capacity')->orderBy('battery_capacity', 'desc')->first();
+    $battery_capacityMax = $battery_capacityMaxResult['battery_capacity'];
+
+    // Menghitung rentang battery_capacity
+    $rentang = $battery_capacityMax - $battery_capacityMin;
+
+    // Menghitung selisih rentang yang dibagi menjadi 5 bagian
+    $step = $rentang / 5;
+    $battery_capacityPertama = $battery_capacityMin + $step;
+    // Membuat array hitungbattery_capacity
+    $hitungbattery_capacity = [];
+    for ($i = 0; $i < 4; $i++) {
+        $hitungbattery_capacity[] = $battery_capacityPertama + ($step * $i);
+    }
+    $this->bobot->where('sub_kriteria', 'battery_capacity')->delete();
+    $tambah = 1;
+    foreach ($hitungbattery_capacity as $battery_capacity) {
+          $data = [
+            'kriteria' =>'battery',
+            'sub_kriteria' => 'battery_capacity',
+            'konversi' => $battery_capacity,
+            'nilai' => $tambah*20,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+          ];
+      $tambah++;
+      $this->bobot->insert($data);
+        }
+      }
     }
     
 public function harga()
@@ -186,26 +227,26 @@ public function harga()
 
     // Menghitung selisih rentang yang dibagi menjadi 5 bagian
     $step = $rentang / 10;
-    echo "Pembagi: ".$step . "<br>";
     $hargaPertama = $hargaMin + $step;
-
     // Membuat array hitungHarga
     $hitungHarga = [];
     for ($i = 0; $i < 9; $i++) {
         $hitungHarga[] = $hargaPertama + ($step * $i);
     }
-
-    // Menampilkan hasil (hanya untuk contoh, sesuaikan dengan kebutuhan Anda)
-    echo "Harga Min: " . $hargaMin . "<br>";
-    echo "Harga Max: " . $hargaMax . "<br>";
-    echo "Rentang Harga: " . $rentang . "<br>";
-    echo "<br>Array Hitung Harga: <br>";
-    $no = 1;
+    $this->bobot->where('sub_kriteria', 'harga')->delete();
+    $tambah = 1;
     foreach ($hitungHarga as $harga) {
-        echo $no . ". kurang dari " .$harga . "<br>";
-        $no++;
+          $data = [
+            'kriteria' =>'harga',
+            'sub_kriteria' => 'harga',
+            'konversi' => $harga,
+            'nilai' => $tambah*10,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+          ];
+      $tambah++;
+      $this->bobot->insert($data);
         }
-      echo $no . ". lebih dari " .$harga . "<br>";
 }
 
 
@@ -249,6 +290,36 @@ public function harga()
             $this->bobot->where('konversi', $konversi)->where('sub_kriteria', $sub_kriteria)->delete();
         }
     }
-}
+  }
 
+  function normalisasiValidate(){
+    $hp = $this->smartphone->select('id')->findAll();
+    $norm = new NormalisasiModel();
+    foreach($hp as $sm){
+      $verify = $norm->where('id_smartphone', $sm['id'])->first();
+      if(!$verify){
+        $addNorm = [
+                    'id_smartphone' => $sm['id'],
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ];
+        $norm->insert($addNorm);
+      }
+    }
+
+
+    $hasEmptyField = false;
+    foreach ($norm->findAll() as $konversi) {
+            foreach ($konversi as $field => $value) {
+                if (empty($value)) {
+                    $hasEmptyField = true;
+                    break 2;
+                }
+            }
+        }
+        
+        if ($hasEmptyField) {
+            session()->setFlashdata('konversi', 'alert');
+        }
+  }
 }

@@ -22,14 +22,15 @@ $routes->post('login', 'LoginController::index');
 $routes->group('', ['filter' => 'admin'], function ($routes) {
   // view
     $routes->get('/', 'AdminPagesController::index');
-    $routes->get('/dashboard', 'AdminPagesController::index');
+    $routes->get('dashboard', 'AdminPagesController::index');
     $routes->get('master-data/tambah', 'AdminPagesController::tambahSmartphone');
     $routes->get('master-data', 'AdminPagesController::master');
     $routes->get('atur-konversi/body', 'KonversiController::body');
+    $routes->get('refresh-konversi', 'NormalisasiController::index');
     $routes->get('atur-konversi', 'BobotController::bobot');
     $routes->get('data-toko', 'AdminPagesController::toko');
     $routes->get('profil', 'AdminPagesController::profil');
     $routes->get('logout', 'LoginController::logout');
-    $routes->get('harga', 'BobotController::harga');
+    $routes->get('harga', 'NormalisasiController::convert');
 
 });

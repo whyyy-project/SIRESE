@@ -93,7 +93,7 @@ class NormalisasiMigration extends Migration
                 'constraint' => 255,
             ],
             'harga' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
             'created_at' => [

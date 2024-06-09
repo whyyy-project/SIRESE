@@ -142,7 +142,7 @@
             </div>
         </div>
 </form>
-
+</div> 
 <script>
 
     const inputIds = ['body', 'display', 'system', 'memory', 'mainCamera', 'frontCamera', 'battery', 'price']; // Daftar id elemen input
