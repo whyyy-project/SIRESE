@@ -69,11 +69,12 @@ class BobotController extends BaseController
   }
 
   public function body(){
-    // konversi perhitungan dimensi
-    $dimensi = $this->smartphone->getBy('build');
-    foreach($dimensi as $dms){
-      $pisah = explode(', ', strtolower($dms['build']));
+    // konversi perhitungan build
+    $build = $this->smartphone->getBy('build');
+    foreach($build as $b){
+      $pisah = explode(', ', strtolower($b['build']));
       foreach($pisah as $bld){
+        
         if ($this->bobot->where('konversi', $bld)->where('sub_kriteria', 'build')->countAllResults() < 1){
           $input = [
                 'kriteria' => 'body',
@@ -86,10 +87,182 @@ class BobotController extends BaseController
         }
       }
     }
+    // dimensi
+    $getDimensi = $this->bobot->where('sub_kriteria', 'dimensi')->countAllResults();
+    if($getDimensi<4){
+      $this->bobot->where('sub_kriteria', 'dimensi')->delete();
+      $dimensi = $this->smartphone->select('dimensi')->findAll();
+      // Array baru untuk menyimpan hasil perkalian
+      $dataKonversi = [];
+      // Melakukan iterasi pada setiap elemen di array dimensi
+      foreach ($dimensi as $item) {
+          // Memisahkan nilai dengan delimiter " x "
+          list($panjang, $lebar, $tinggi) = explode(" x ", strtolower($item['dimensi']));
+          // Menghitung perkalian panjang dan lebar
+          $perkalian = $panjang * $lebar * $tinggi;
+        // echo $panjang."x".$lebar ."x".$lebar. " = ". $perkalian." hasil<br>";
+          // Menambahkan hasil perkalian ke array baru
+          $dataKonversi[] = $perkalian;
+      }
+    // Mendapatkan dimensi minimum
+    $dimensiMin = min($dataKonversi);
+
+    // Mendapatkan dimensi maksimum
+    $dimensiMax = max($dataKonversi);
+
+    // Menghitung rentang dimensi
+    $rentang = $dimensiMax - $dimensiMin;
+
+    // Menghitung selisih rentang yang dibagi menjadi 5 bagian
+    $step = $rentang / 5;
+    $dimensiPertama = $dimensiMin + $step;
+    // Membuat array hitungdimensi
+    $hitungdimensi = [];
+    for ($i = 0; $i < 4; $i++) {
+        $hitungdimensi[] = $dimensiPertama + ($step * $i);
+    }
+    $this->bobot->where('sub_kriteria', 'dimensi')->delete();
+    $tambah = 1;
+    foreach ($hitungdimensi as $dimensi) {
+          $data = [
+            'kriteria' =>'body',
+            'sub_kriteria' => 'dimensi',
+            'konversi' => $dimensi,
+            'nilai' => $tambah*20,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+          ];
+      $tambah++;
+      $this->bobot->insert($data);
+        }
+      }
+      
+      // berat
+    if ($this->bobot->where('sub_kriteria', 'berat')->countAllResults() < 4) {
+      $this->bobot->where('sub_kriteria', 'berat')->delete();
+      $beratMinResult = $this->smartphone->select('berat')->orderBy('berat', 'asc')->first();
+      $beratMin = $beratMinResult['berat'];
+
+      // Mendapatkan berat maksimum
+      $beratMaxResult = $this->smartphone->select('berat')->orderBy('berat', 'desc')->first();
+      $beratMax = $beratMaxResult['berat'];
+
+      // Menghitung rentang berat
+      $rentang = $beratMax - $beratMin;
+
+      // Menghitung selisih rentang yang dibagi menjadi 5 bagian
+      $step = $rentang / 5;
+      $beratPertama = $beratMin + $step;
+      // Membuat array hitungberat
+      $hitungberat = [];
+      for ($i = 0; $i < 4; $i++) {
+        $hitungberat[] = $beratPertama + ($step * $i);
+      }
+      $tambah = 1;
+      foreach ($hitungberat as $berat) {
+        $data = [
+          'kriteria' => 'body',
+          'sub_kriteria' => 'berat',
+          'konversi' => $berat,
+          'nilai' => $tambah * 20,
+          'created_at' => date('Y-m-d H:i:s'),
+          'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        $tambah++;
+        $this->bobot->insert($data);
+      }
+    }
   }
 
   public function lcd(){
       $this->konversi('lcd', 'lcd_type');
+
+       // lcd_resolusi
+    $getUkuran = $this->bobot->where('sub_kriteria', 'lcd_resolusi')->countAllResults();
+    if($getUkuran<4){
+      $this->bobot->where('sub_kriteria', 'lcd_resolusi')->delete();
+      $lcd_resolusi = $this->smartphone->select('lcd_resolusi')->findAll();
+      // Array baru untuk menyimpan hasil perkalian
+      $dataKonversi = [];
+      // Melakukan iterasi pada setiap elemen di array lcd_resolusi
+      foreach ($lcd_resolusi as $item) {
+          // Memisahkan nilai dengan delimiter " x "
+          list($panjang, $lebar) = explode(" x ", strtolower($item['lcd_resolusi']));
+          // Menghitung perkalian panjang dan lebar
+          $perkalian = $panjang * $lebar;
+        // echo $panjang."x".$lebar ."x".$lebar. " = ". $perkalian." hasil<br>";
+          // Menambahkan hasil perkalian ke array baru
+          $dataKonversi[] = $perkalian;
+      }
+    // Mendapatkan lcd_resolusi minimum
+    $lcd_resolusiMin = min($dataKonversi);
+
+    // Mendapatkan lcd_resolusi maksimum
+    $lcd_resolusiMax = max($dataKonversi);
+
+    // Menghitung rentang lcd_resolusi
+    $rentang = $lcd_resolusiMax - $lcd_resolusiMin;
+
+    // Menghitung selisih rentang yang dibagi menjadi 5 bagian
+    $step = $rentang / 5;
+    $lcd_resolusiPertama = $lcd_resolusiMin + $step;
+    // Membuat array hitunglcd_resolusi
+    $hitunglcd_resolusi = [];
+    for ($i = 0; $i < 4; $i++) {
+        $hitunglcd_resolusi[] = $lcd_resolusiPertama + ($step * $i);
+    }
+    $this->bobot->where('sub_kriteria', 'lcd_resolusi')->delete();
+    $tambah = 1;
+    foreach ($hitunglcd_resolusi as $lcd_resolusi) {
+          $data = [
+            'kriteria' =>'lcd',
+            'sub_kriteria' => 'lcd_resolusi',
+            'konversi' => $lcd_resolusi,
+            'nilai' => $tambah*20,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+          ];
+      $tambah++;
+      $this->bobot->insert($data);
+        }
+      }
+
+      // ukuran lcd
+    if ($this->bobot->where('sub_kriteria', 'lcd_size')->countAllResults() < 1) {
+      // Mendapatkan lcd_size minimum
+      $lcd_sizeMinResult = $this->smartphone->select('lcd_size')->orderBy('lcd_size', 'asc')->first();
+      $lcd_sizeMin = $lcd_sizeMinResult['lcd_size'];
+
+      // Mendapatkan lcd_size maksimum
+      $lcd_sizeMaxResult = $this->smartphone->select('lcd_size')->orderBy('lcd_size', 'desc')->first();
+      $lcd_sizeMax = $lcd_sizeMaxResult['lcd_size'];
+
+      // Menghitung rentang lcd_size
+      $rentang = $lcd_sizeMax - $lcd_sizeMin;
+
+      // Menghitung selisih rentang yang dibagi menjadi 5 bagian
+      $step = $rentang / 10;
+      $lcd_sizePertama = $lcd_sizeMin + $step;
+      // Membuat array hitunglcd_size
+      $hitunglcd_size = [];
+      for ($i = 0; $i < 9; $i++) {
+        $hitunglcd_size[] = $lcd_sizePertama + ($step * $i);
+      }
+      $this->bobot->where('sub_kriteria', 'lcd_size')->delete();
+      $tambah = 1;
+      foreach ($hitunglcd_size as $lcd_size) {
+        $data = [
+          'kriteria' => 'lcd',
+          'sub_kriteria' => 'lcd_size',
+          'konversi' => $lcd_size,
+          'nilai' => $tambah * 10,
+          'created_at' => date('Y-m-d H:i:s'),
+          'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        $tambah++;
+        $this->bobot->insert($data);
+      }
+    }
   }
           
   public function system(){
@@ -106,66 +279,17 @@ class BobotController extends BaseController
 
 
     public function mainCamera(){
-      $mainVideo = $this->smartphone->select('main_video')->findAll();
-      // Array baru untuk menyimpan hasil tanpa duplikat
-      $uniqueVideos = [];
-      // Loop melalui setiap data video
-      foreach ($mainVideo as $videos) {
-          // Akses kolom 'main_video' dari setiap elemen
-          $videoList = explode(',', strtolower($videos['main_video']));
-          
-          // Loop melalui setiap video dalam daftar
-          foreach ($videoList as $video) {
-              // Hapus spasi di sekitar video
-              $video = trim($video);
-              // Jika video belum ada di array hasil, tambahkan
-              if (!in_array($video, $uniqueVideos)) {
-                  $uniqueVideos[] = $video;
-                  if ($this->bobot->where('konversi', $video)->where('sub_kriteria', 'main_video')->countAllResults() < 1)
-                  {
-                    $input = [
-                      'kriteria' => 'main_camera',
-                      'sub_kriteria' => 'main_video',
-                      'konversi' => $video,
-                      'created_at' => date('Y-m-d H:i:s'),
-                      'updated_at' => date('Y-m-d H:i:s'),
-                    ];
-                    $this->bobot->insert($input);
-                  }
-              }
-          }
-          // konversi umum
-          $this->konversi('main_camera', 'main_camera');
-          $this->konversi('main_camera', 'main_type');
+      $this->konversi('main_camera', 'main_camera');
+      $this->konversi('main_camera', 'main_type');
+      $this->video('main_camera', 'main_video');
 
-      }
   }
     public function frontCamera(){
-      $videoData = $this->smartphone->select('front_video')->findAll();
+      $this->konversi('front_camera', 'front_camera');
+      $this->konversi('front_camera', 'front_camera');
+      $this->video('front_camera', 'front_video');
 
-      $uniqueVideos = [];
-      foreach ($videoData as $videos) {
-          $videoList = explode(',', strtolower($videos['front_video']));
-          foreach ($videoList as $video) {
-              $video = trim($video);
-              if (!in_array($video, $uniqueVideos)) {
-                  $uniqueVideos[] = $video;
-                  if ($this->bobot->where('konversi', $video)->where('sub_kriteria', 'front_video')->countAllResults() < 1)
-                  {
-                    $input = [
-                      'kriteria' => 'front_camera',
-                      'sub_kriteria' => 'front_video',
-                      'konversi' => $video,
-                      'created_at' => date('Y-m-d H:i:s'),
-                      'updated_at' => date('Y-m-d H:i:s'),
-                    ];
-                    $this->bobot->insert($input);
-                  }
-              }
-          }
-          // konversi umum
-          $this->konversi('front_camera', 'front_camera');
-      }
+
   }
 
 
@@ -213,40 +337,41 @@ class BobotController extends BaseController
     
 public function harga()
 {
-    // 
-    // Mendapatkan harga minimum
-    $hargaMinResult = $this->smartphone->select('harga')->orderBy('harga', 'asc')->first();
-    $hargaMin = $hargaMinResult['harga'];
+    if ($this->bobot->where('sub_kriteria', 'harga')->countAllResults() < 1) {
+      // Mendapatkan harga minimum
+      $hargaMinResult = $this->smartphone->select('harga')->orderBy('harga', 'asc')->first();
+      $hargaMin = $hargaMinResult['harga'];
 
-    // Mendapatkan harga maksimum
-    $hargaMaxResult = $this->smartphone->select('harga')->orderBy('harga', 'desc')->first();
-    $hargaMax = $hargaMaxResult['harga'];
+      // Mendapatkan harga maksimum
+      $hargaMaxResult = $this->smartphone->select('harga')->orderBy('harga', 'desc')->first();
+      $hargaMax = $hargaMaxResult['harga'];
 
-    // Menghitung rentang harga
-    $rentang = $hargaMax - $hargaMin;
+      // Menghitung rentang harga
+      $rentang = $hargaMax - $hargaMin;
 
-    // Menghitung selisih rentang yang dibagi menjadi 5 bagian
-    $step = $rentang / 10;
-    $hargaPertama = $hargaMin + $step;
-    // Membuat array hitungHarga
-    $hitungHarga = [];
-    for ($i = 0; $i < 9; $i++) {
+      // Menghitung selisih rentang yang dibagi menjadi 5 bagian
+      $step = $rentang / 10;
+      $hargaPertama = $hargaMin + $step;
+      // Membuat array hitungHarga
+      $hitungHarga = [];
+      for ($i = 0; $i < 9; $i++) {
         $hitungHarga[] = $hargaPertama + ($step * $i);
+      }
+      $this->bobot->where('sub_kriteria', 'harga')->delete();
+      $tambah = 1;
+      foreach ($hitungHarga as $harga) {
+        $data = [
+          'kriteria' => 'harga',
+          'sub_kriteria' => 'harga',
+          'konversi' => $harga,
+          'nilai' => $tambah * 10,
+          'created_at' => date('Y-m-d H:i:s'),
+          'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        $tambah++;
+        $this->bobot->insert($data);
+      }
     }
-    $this->bobot->where('sub_kriteria', 'harga')->delete();
-    $tambah = 1;
-    foreach ($hitungHarga as $harga) {
-          $data = [
-            'kriteria' =>'harga',
-            'sub_kriteria' => 'harga',
-            'konversi' => $harga,
-            'nilai' => $tambah*10,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-          ];
-      $tambah++;
-      $this->bobot->insert($data);
-        }
 }
 
 
@@ -289,6 +414,26 @@ public function harga()
         if (!in_array($konversi, $konversi_ambil)) {
             $this->bobot->where('konversi', $konversi)->where('sub_kriteria', $sub_kriteria)->delete();
         }
+    }
+  }
+  function video($kriteria, $sub){
+    
+      $videoData = $this->smartphone->select($sub)->findAll();
+
+      foreach ($videoData as $videos) {
+        $videoList = explode(',', strtolower($videos[$sub]));
+      for ($i = 0; $i < count($videoList) ; $i++){
+        if($this->bobot->where('sub_kriteria', $sub)->where('konversi', $videoList[$i])->countAllResults() == 0){
+          $input = [
+                      'kriteria' => $kriteria,
+                      'sub_kriteria' => $sub,
+                      'konversi' => $videoList[$i],
+                      'created_at' => date('Y-m-d H:i:s'),
+                      'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+                    $this->bobot->insert($input);
+        }
+      }
     }
   }
 

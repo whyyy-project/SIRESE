@@ -19,7 +19,7 @@
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Setting Konversi <span class="text-orange-500"> Kriteria</span></h1>
                 <div class="inline">
 
-                  <a href="<?= base_url() ?>/refresh-konversi" onclick="spin('ikon')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
+                  <a href="<?= base_url() ?>refresh-konversi" onclick="spin('ikon')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
                     <i id="ikon" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Konversi Data</span>
                   </a>
                 <?php if (session()->getFlashdata('konversi')) { ?>    
@@ -51,7 +51,20 @@
                   </div>
               </div>
               <script>
-                const alert =document.getElementById('alert')
+                const notif =document.getElementById('alert')
+                setTimeout(() => {
+                  notif.classList.add('hidden')
+                }, 3000);
+              </script>
+              <?php } ?>
+              <?php if (session()->getFlashdata('eror')) { ?>
+                <div id="alert" class="bg-red-500 text-white px-5 py-3 rounded-lg mb-4" role="alert">
+                    <div class="flex items-center">
+                  <span><i class="fas fa-triangle-exclamation"></i> <?= session()->get('eror') ?></span>
+                  </div>
+              </div>
+              <script>
+                const alert = document.getElementById('alert')
                 setTimeout(() => {
                   alert.classList.add('hidden')
                 }, 3000);
@@ -73,7 +86,7 @@
                 </div>
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi LCD</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/lcd" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear ml-2 md:ml-0"></i><span class="hidden md:inline"> Setting</span>
                     <?php if (session()->getFlashdata('lcd')) { ?>    
                         <div class="h-2 w-2 relative inline-block -translate-y-1">
@@ -85,7 +98,7 @@
                 </div>
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi Sistem</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/sistem" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear ml-2 md:ml-0"></i><span class="hidden md:inline"> Setting</span>
                     <?php if (session()->getFlashdata('sistem')) { ?>    
                         <div class="h-2 w-2 relative inline-block -translate-y-1">
@@ -97,7 +110,7 @@
                 </div>
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi Memori</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/memori" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear ml-2 md:ml-0"></i><span class="hidden md:inline"> Setting</span>
                     <?php if (session()->getFlashdata('memori')) { ?>    
                         <div class="h-2 w-2 relative inline-block -translate-y-1">
@@ -109,7 +122,7 @@
                 </div>
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi Kamera Utama</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/main_camera" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear ml-2 md:ml-0"></i><span class="hidden md:inline"> Setting</span>
                     <?php if (session()->getFlashdata('main_camera')) { ?>    
                         <div class="h-2 w-2 relative inline-block -translate-y-1">
@@ -121,7 +134,7 @@
                 </div>
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi Kamera Depan</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/front_camera" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear ml-2 md:ml-0"></i><span class="hidden md:inline"> Setting</span>
                     <?php if (session()->getFlashdata('front_camera')) { ?>    
                         <div class="h-2 w-2 relative inline-block -translate-y-1">
@@ -133,7 +146,7 @@
                 </div>
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi Baterai</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/battery" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear ml-2 md:ml-0"></i><span class="hidden md:inline"> Setting</span>
                     <?php if (session()->getFlashdata('battery')) { ?>    
                         <div class="h-2 w-2 relative inline-block -translate-y-1">
@@ -145,7 +158,7 @@
                 </div>
                 <div class="flex justify-between items-center mb-5">
                   <p class="md:font-bold">Konversi Harga</p>
-                  <a href="#" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
+                  <a href="<?= base_url() ?>atur-konversi/harga" class="text-white bg-gray-800 px-1 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-gray-700">
                     <i class="fas fa-gear ml-2 md:ml-0"></i><span class="hidden md:inline"> Setting</span>
                     <?php if (session()->getFlashdata('harga')) { ?>    
                         <div class="h-2 w-2 relative inline-block -translate-y-1">

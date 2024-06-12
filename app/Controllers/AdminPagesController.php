@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BobotModel;
+use App\Models\KonversiModel;
+use App\Models\KuantitatifModel;
+use App\Models\NormalisasiModel;
 use App\Models\SmartphoneModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -11,15 +14,20 @@ class AdminPagesController extends BaseController
 {
     public $smartphone;
     public $bobot;
-  public $bobotController;
+    public $bobotController;
+  public $konversi;
+  public $normalisasi;
     public function __construct() {
         // Inisialisasi model
         $this->smartphone = new SmartphoneModel();
         $this->bobot = new BobotModel();
         $this->bobotController = new BobotController();
+        $this->konversi = new KuantitatifModel();
+        $this->normalisasi = new NormalisasiModel();
 
         // Panggil fungsi yang ingin dieksekusi sebelum fungsi lainnya
         $this->alertBobot();
+        $this->alertData();
     }
 
     public function alertBobot() {
@@ -28,7 +36,7 @@ class AdminPagesController extends BaseController
 
         foreach ($data as $row) {
             foreach ($row as $key => $value) {
-                if (is_null($value) || $value === '') {
+                if ($value == 0) {
                     $totalNull++;
                 }
             }
@@ -38,24 +46,52 @@ class AdminPagesController extends BaseController
             session()->setFlashdata('bobot', 'alert');
         }
     }
+    public function alertData() {
+        $totalNull = 0;
+        $norm = $this->normalisasi->findAll();
+        $sm = $this->normalisasi->findAll();
+
+        foreach ($norm as $row) {
+            foreach ($row as $key => $value) {
+                if (is_null($value) || $value === '') {
+                    $totalNull++;
+                }
+            }
+        }
+        foreach ($sm as $row) {
+            foreach ($row as $key => $value) {
+                if (is_null($value) || $value === '') {
+                    $totalNull++;
+                }
+            }
+        }
+
+        if ($totalNull >= 1) {
+            session()->setFlashdata('normalisasi', 'alert');
+        }
+    }
   public function index()
   {
     $this->bobotController->normalisasiValidate();
-    $smartphone = $this->smartphone->orderBy('merek', 'asc')->findAll();
+    $smartphone = $this->smartphone->orderBy('brand', 'asc')->findAll();
     $data = [
       'title' => 'Admin Page',
       'page' => 'dashboard',
       'smartphone' => $smartphone,
     ];
     return view('admin/dashboard', $data);
-
   }
+
   public function master()
   {
-    $smartphone = $this->smartphone->orderBy('merek', 'asc')->findAll();
+    $smartphone = $this->smartphone->orderBy('brand', 'asc')->findAll();
+    $normalisasi = $this->normalisasi->getData();
+    $konversi = $this->konversi->getData();
     $data = [
       'title' => 'Data Smartphone',
       'page' => 'master',
+      'normalisasi' => $normalisasi,
+      'konversi' => $konversi,
       'smartphone' => $smartphone,
     ];
     return view('admin/master-data', $data);

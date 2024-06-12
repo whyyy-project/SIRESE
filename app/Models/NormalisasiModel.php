@@ -31,10 +31,15 @@ class NormalisasiModel extends Model
     {
         return $this->select('smartphone.id, normalisasi.dimensi, normalisasi.berat, normalisasi.build, normalisasi.lcd_type, normalisasi.lcd_size, normalisasi.lcd_resolusi, normalisasi.os, normalisasi.chipset, normalisasi.cpu, normalisasi.ram, normalisasi.rom, normalisasi.main_camera, normalisasi.main_type, normalisasi.main_video, normalisasi.front_camera, normalisasi.front_video, normalisasi.usb, normalisasi.battery_capacity, normalisasi.harga')
                     ->where('smartphone.id', $id)
-                    ->join('smartphone', 'smartphone.id = normalisasi.id')
+                    ->join('smartphone', 'smartphone.id = normalisasi.id_smartphone')
                     ->findAll();
     }
 
+    public function getData(){
+      return $this->select('smartphone.id, smartphone.brand, smartphone.merek, smartphone.ram AS mRam, smartphone.rom AS mRom, normalisasi.dimensi, normalisasi.berat, normalisasi.build, normalisasi.lcd_type, normalisasi.lcd_size, normalisasi.lcd_resolusi, normalisasi.os, normalisasi.chipset, normalisasi.cpu, normalisasi.ram, normalisasi.rom, normalisasi.main_camera, normalisasi.main_type, normalisasi.main_video, normalisasi.front_camera, normalisasi.front_video, normalisasi.usb, normalisasi.battery_capacity, normalisasi.harga')
+                    ->join('smartphone', 'smartphone.id = normalisasi.id_smartphone')
+                    ->findAll();
+    }
     public function updateData($id, $data){
       $this->where('id_smartphone', $id)->update($data);
     }

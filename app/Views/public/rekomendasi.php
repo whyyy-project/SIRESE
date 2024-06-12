@@ -7,7 +7,7 @@
             <h3 class="font-bold pl-2 text-xs md:text-2xl"><span class="text-orange-500">SIRESE</span> | <span class="text-orange-500">Si</span>stem <span class="text-orange-500">Re</span>komendasi <span class="text-orange-500">S</span>martphon<span class="text-orange-500">e</span></h3>
         </div>
     </div>
-<form action="<?= base_url() ?>rekomendasi/smart" method="post">
+<form action="<?= base_url() ?>rekomendasi/" method="post">
     <div class="p-3 md:px-5 pb-0 mx-2 mb:mx-1">
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="px-4 py-3">
@@ -15,7 +15,7 @@
                 <div class="border border-gray-200 m-2"></div>
                 <!-- content -->
                 <div class="pb-3">
-                    <p class="text-gray-700">Berikan nilai tingkat prioritasmu dalam memilih Smartphone :</p>
+                    <p class="text-gray-700 font-bold ml-4">Berikan nilai tingkat prioritasmu dalam memilih Smartphone :</p>
                 </div>
                 
                 <!-- kriteria -->

@@ -28,7 +28,7 @@ class KonversiMigration extends Migration
                 'constraint' => 255,
             ],
             'nilai' => [
-                'type' => 'VARCHAR',
+                'type' => 'INT',
                 'constraint' => 255,
             ],
             'created_at' => [
