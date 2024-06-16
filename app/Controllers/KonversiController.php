@@ -20,7 +20,7 @@ class KonversiController extends BaseController
 
         if ($kriteria <= 1) {
             session()->setFlashdata('eror', 'Kriteria <strong>' . $data . '</strong> Tidak Ditemukan!');
-            return redirect()->to('atur-konversi');
+            return redirect()->to(base_url('atur-konversi'));
         } else {
               return $this->pages($data);
             }

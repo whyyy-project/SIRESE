@@ -106,7 +106,7 @@ class TabelKuantitatifMigration extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('id_smartphone','smartphone','id','NO ACTION','NO ACTION');
+        $this->forge->addForeignKey('id_smartphone','smartphone','id','CASECADE','NO ACTION');
         $this->forge->createTable('kuantitatif');
     }
 

@@ -12,7 +12,7 @@ class LoginController extends BaseController
     $this->user = new UserModel();
   }
     public function index()
-    { 
+    {
       $login = $this->request->getPost('login');
       $uname = $this->request->getPost('username');
       $pass = $this->request->getPost('password');
@@ -20,7 +20,7 @@ class LoginController extends BaseController
         if($uname == '' or $pass == ''){
           session()->setFlashdata('uname', $uname);
           session()->setFlashdata('error', 'Harap masukan username atau password!');
-          return redirect()->to('login');
+          return redirect()->to(base_url('login'));
         }
         else{
           $dataUser = $this->user->where('username', $uname)->first();
@@ -34,7 +34,7 @@ class LoginController extends BaseController
             ];
             session()->set($sessionData);
             session()->setFlashdata('login', 'Selamat datang ' . $dataUser['nama']);
-            return redirect()->to('/');
+            return redirect()->to(base_url('/'));
           }
           else {
               session()->setFlashdata('uname', $uname);
@@ -47,6 +47,6 @@ class LoginController extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to(base_url('/login'));
     }
 }

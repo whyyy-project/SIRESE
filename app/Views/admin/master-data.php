@@ -31,15 +31,46 @@
                 </a>
               </div>
                 <div class="border border-gray-200 m-2"></div>
+                
+                <?php if (session()->getFlashdata('success')) { ?>
+                  <div id="alert" class="bg-green-500 text-white px-5 py-3 rounded-lg mb-4" role="alert">
+                    <div class="flex items-center">
+                      <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2l4 -4"></path>
+                      </svg>
+                  <span><?= session()->get('success') ?></span>
+                  </div>
+              </div>
+              <script>
+                const berhasil =document.getElementById('alert')
+                setTimeout(() => {
+                  berhasil.classList.add('hidden')
+                }, 10000);
+              </script>
+              <?php } ?>
+              <?php if (session()->getFlashdata('eror')) { ?>
+                <div id="alert" class="bg-red-500 text-white px-5 py-3 rounded-lg mb-4" role="alert">
+                    <div class="flex items-center">
+                  <span><i class="fas fa-triangle-exclamation"></i> <?= session()->get('eror') ?></span>
+                  </div>
+              </div>
+              <script>
+                const alert = document.getElementById('alert')
+                setTimeout(() => {
+                  alert.classList.add('hidden')
+                }, 10000);
+              </script>
+              <?php } ?>
+
                 <table id="myTable" class="display w-full" style="width:100%">
             <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
                 <tr>
                     <th>No.</th>
-                    <th>Brand</th>
+                    <th class="hidden md:flex justify-center items-center mt-1">Brand</th>
                     <th>Merek</th>
-                    <th class="hidden md:block">RAM / ROM</th>
+                    <th>RAM / ROM</th>
                     <th>Harga</th>
-                    <th>Detail</th>
+                    <th>Opsi</th>
                 </tr>
                         </thead>
                         <tbody class="text-center">
@@ -48,13 +79,18 @@
                             foreach ($smartphone as $data) : ?>
                     <tr class="text-sm md:text-base">
                         <td><?= $i++ ?></td>
-                        <td><?= $data['brand'] ?></td>
+                        <td class="hidden md:block my-auto"><?= $data['brand'] ?></td>
                         <td><?= $data['merek'] ?></td>
-                        <td class="hidden md:block"><?= $data['ram'] ?>/<?= $data['rom'] ?> GB</td>
+                        <td><?= $data['ram'] ?>/<?= $data['rom'] ?> GB</td>
                         <td><?= $data['harga'] ?></td>
-                        <td><a href="<?= base_url() ?>detail-smarthpone/<?= $data['slug'] ?>" class="text-white bg-cyan-950 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center">
-                                    <i class="fas fa-pen mr-2 hidden md:flex text-sm"></i> Edit
-                                </a></td>
+                        <td>
+                          <a href="<?= base_url() ?>master-data/delete/<?= $data['slug'] ?>" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center cursor-pointer">
+                            <i class="fas fa-trash text-sm"></i> <span class="md:inline hidden"> Hapus</span>
+                          </a>
+                          <a href="<?= base_url() ?>master-data/update/<?= $data['slug'] ?>" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-cyan-700 flex justify-center items-center mt-1">
+                            <i class="fas fa-gear text-sm"></i> <span class="md:inline hidden"> Edit</span>
+                          </a>
+                              </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

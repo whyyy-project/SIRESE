@@ -49,10 +49,11 @@
               <?php } ?>
 
                 <div class="flex justify-center items-center text-center">
-                    <form action="<?= base_url() ?>master-data/tambah" method="post" class="w-full" enctype="multipart/form-data">
+                    <form action="<?= base_url() ?>master-data/update" method="post" class="w-full" enctype="multipart/form-data">
                         <?= csrf_field() ?>
+                        <input type="hidden" name="slug" value="<?= $sm['slug'] ?>">
                     <div class="relative w-2/3 mx-auto my-4">
-                            <input required value="<?= set_value('brand') ?>" id="brand" name="brand" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="brand" oninput="listInput('brand')" onblur="hideDiv('brand')" value="<?= session()->getFlashdata('brand') ?>"/>
+                            <input required value="<?= set_value('brand', isset($sm['brand']) ? $sm['brand'] : '') ?>" id="brand" name="brand" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="brand" oninput="listInput('brand')" onblur="hideDiv('brand')" value="<?= session()->getFlashdata('brand') ?>"/>
                             <label for="brand" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">brand</label>
                           <div id="opt_brand" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($brand as $data): ?>
@@ -62,7 +63,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('merek') ?>" id="merek" name="merek" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="merek" oninput="listInput('merek')" onblur="hideDiv('merek')" value="<?= session()->getFlashdata('merek') ?>"/>
+                            <input required value="<?= set_value('merek', isset($sm['merek']) ? $sm['merek'] : '') ?>" id="merek" name="merek" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="merek" oninput="listInput('merek')" onblur="hideDiv('merek')" value="<?= session()->getFlashdata('merek') ?>"/>
                             <label for="merek" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">merek</label>
                           <div id="opt_merek" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($merek as $data): ?>
@@ -73,7 +74,7 @@
 
                         <div class="relative w-2/3 mx-auto mb-4">
                             <label id="gambar-label" for="gambar" class="block bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700 cursor-pointer flex items-center justify-center">
-                                <i class="fas fa-upload mr-2"></i> Upload Gambar
+                                <i class="fas fa-upload mr-2"></i> Upload Gambar(jika ingin mengganti)
                             </label>
                             <input id="gambar" name="gambar" type="file" accept=".png,.jpg,.jpeg" class="hidden" />
                             <script>
@@ -86,7 +87,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('dimensi') ?>" id="dimensi" name="dimensi" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="dimensi" oninput="listInput('dimensi')" onblur="hideDiv('dimensi')" value="<?= session()->getFlashdata('dimensi') ?>"/>
+                            <input required value="<?= set_value('dimensi', isset($sm['dimensi']) ? $sm['dimensi'] : '') ?>" id="dimensi" name="dimensi" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="dimensi" oninput="listInput('dimensi')" onblur="hideDiv('dimensi')" value="<?= session()->getFlashdata('dimensi') ?>"/>
                             <label for="dimensi" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Dimensi</label>
                           <div id="opt_dimensi" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($dimensi as $data): ?>
@@ -96,7 +97,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('berat') ?>" id="berat" name="berat" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="berat" oninput="listInput('berat')" onblur="hideDiv('berat')" value="<?= session()->getFlashdata('berat') ?>"/>
+                            <input required value="<?= set_value('berat', isset($sm['berat']) ? $sm['berat'] : '') ?>" id="berat" name="berat" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="berat" oninput="listInput('berat')" onblur="hideDiv('berat')" value="<?= session()->getFlashdata('berat') ?>"/>
                             <label for="berat" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Berat</label>
                           <div id="opt_berat" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($berat as $data): ?>
@@ -106,7 +107,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('build') ?>" id="build" name="build" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="build" oninput="listInput('build')" onblur="hideDiv('build')" value="<?= session()->getFlashdata('build') ?>"/>
+                            <input required value="<?= set_value('build', isset($sm['build']) ? $sm['build'] : '') ?>" id="build" name="build" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="build" oninput="listInput('build')" onblur="hideDiv('build')" value="<?= session()->getFlashdata('build') ?>"/>
                             <label for="build" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Build</label>
                           <div id="opt_build" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($build as $data): ?>
@@ -116,7 +117,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('lcd_type') ?>" id="lcd_type" name="lcd_type" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_type" oninput="listInput('lcd_type')" onblur="hideDiv('lcd_type')" value="<?= session()->getFlashdata('lcd_type') ?>"/>
+                            <input required value="<?= set_value('lcd_type', isset($sm['lcd_type']) ? $sm['lcd_type'] : '') ?>" id="lcd_type" name="lcd_type" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_type" oninput="listInput('lcd_type')" onblur="hideDiv('lcd_type')" value="<?= session()->getFlashdata('lcd_type') ?>"/>
                             <label for="lcd_type" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Tipe LCD</label>
                           <div id="opt_lcd_type" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($lcd_type as $data): ?>
@@ -126,7 +127,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('lcd_size') ?>" id="lcd_size" name="lcd_size" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_size" oninput="listInput('lcd_size')" onblur="hideDiv('lcd_size')" value="<?= session()->getFlashdata('lcd_size') ?>"/>
+                            <input required value="<?= set_value('lcd_size', isset($sm['lcd_size']) ? $sm['lcd_size'] : '') ?>" id="lcd_size" name="lcd_size" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_size" oninput="listInput('lcd_size')" onblur="hideDiv('lcd_size')" value="<?= session()->getFlashdata('lcd_size') ?>"/>
                             <label for="lcd_size" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Ukuran LCD</label>
                           <div id="opt_lcd_size" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($lcd_size as $data): ?>
@@ -135,7 +136,7 @@
                           </div>
                         </div>
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('lcd_resolusi') ?>" id="lcd_resolusi" name="lcd_resolusi" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_resolusi" oninput="listInput('lcd_resolusi')" onblur="hideDiv('lcd_resolusi')" value="<?= session()->getFlashdata('lcd_resolusi') ?>"/>
+                            <input required value="<?= set_value('lcd_resolusi', isset($sm['lcd_resolusi']) ? $sm['lcd_resolusi'] : '') ?>" id="lcd_resolusi" name="lcd_resolusi" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="lcd_resolusi" oninput="listInput('lcd_resolusi')" onblur="hideDiv('lcd_resolusi')" value="<?= session()->getFlashdata('lcd_resolusi') ?>"/>
                             <label for="lcd_resolusi" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Resolusi LCD</label>
                           <div id="opt_lcd_resolusi" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($lcd_resolusi as $data): ?>
@@ -145,7 +146,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('os') ?>" id="os" name="os" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="os" oninput="listInput('os')" onblur="hideDiv('os')" value="<?= session()->getFlashdata('os') ?>"/>
+                            <input required value="<?= set_value('os', isset($sm['os']) ? $sm['os'] : '') ?>" id="os" name="os" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="os" oninput="listInput('os')" onblur="hideDiv('os')" value="<?= session()->getFlashdata('os') ?>"/>
                             <label for="os" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Sistem Operasi</label>
                           <div id="opt_os" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($os as $data): ?>
@@ -155,7 +156,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('chipset') ?>" id="chipset" name="chipset" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="chipset" oninput="listInput('chipset')" onblur="hideDiv('chipset')" value="<?= session()->getFlashdata('chipset') ?>"/>
+                            <input required value="<?= set_value('chipset', isset($sm['chipset']) ? $sm['chipset'] : '') ?>" id="chipset" name="chipset" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="chipset" oninput="listInput('chipset')" onblur="hideDiv('chipset')" value="<?= session()->getFlashdata('chipset') ?>"/>
                             <label for="chipset" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Chipset/Prosessor</label>
                           <div id="opt_chipset" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($chipset as $data): ?>
@@ -165,7 +166,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('cpu') ?>" id="cpu" name="cpu" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="cpu" oninput="listInput('cpu')" onblur="hideDiv('cpu')" value="<?= session()->getFlashdata('cpu') ?>"/>
+                            <input required value="<?= set_value('cpu', isset($sm['cpu']) ? $sm['cpu'] : '') ?>" id="cpu" name="cpu" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="cpu" oninput="listInput('cpu')" onblur="hideDiv('cpu')" value="<?= session()->getFlashdata('cpu') ?>"/>
                             <label for="cpu" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">CPU</label>
                           <div id="opt_cpu" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($cpu as $data): ?>
@@ -175,7 +176,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('ram') ?>" id="ram" name="ram" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="ram" oninput="listInput('ram')" onblur="hideDiv('ram')" value="<?= session()->getFlashdata('ram') ?>"/>
+                            <input required value="<?= set_value('ram', isset($sm['ram']) ? $sm['ram'] : '') ?>" id="ram" name="ram" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="ram" oninput="listInput('ram')" onblur="hideDiv('ram')" value="<?= session()->getFlashdata('ram') ?>"/>
                             <label for="ram" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">RAM</label>
                           <div id="opt_ram" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($ram as $data): ?>
@@ -185,7 +186,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('rom') ?>" id="rom" name="rom" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="rom" oninput="listInput('rom')" onblur="hideDiv('rom')" value="<?= session()->getFlashdata('rom') ?>"/>
+                            <input required value="<?= set_value('rom', isset($sm['rom']) ? $sm['rom'] : '') ?>" id="rom" name="rom" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="rom" oninput="listInput('rom')" onblur="hideDiv('rom')" value="<?= session()->getFlashdata('rom') ?>"/>
                             <label for="rom" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Internal/ROM</label>
                           <div id="opt_rom" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($rom as $data): ?>
@@ -195,7 +196,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('main_camera') ?>" id="main_camera" name="main_camera" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="main_camera" oninput="listInput('main_camera')" onblur="hideDiv('main_camera')" value="<?= session()->getFlashdata('main_camera') ?>"/>
+                            <input required value="<?= set_value('main_camera', isset($sm['main_camera']) ? $sm['main_camera'] : '') ?>" id="main_camera" name="main_camera" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="main_camera" oninput="listInput('main_camera')" onblur="hideDiv('main_camera')" value="<?= session()->getFlashdata('main_camera') ?>"/>
                             <label for="main_camera" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Kamera Utama</label>
                           <div id="opt_main_camera" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($main_camera as $data): ?>
@@ -205,7 +206,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('main_type') ?>" id="main_type" name="main_type" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="main_type" oninput="listInput('main_type')" onblur="hideDiv('main_type')" value="<?= session()->getFlashdata('main_type') ?>"/>
+                            <input required value="<?= set_value('main_type', isset($sm['main_type']) ? $sm['main_type'] : '') ?>" id="main_type" name="main_type" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="main_type" oninput="listInput('main_type')" onblur="hideDiv('main_type')" value="<?= session()->getFlashdata('main_type') ?>"/>
                             <label for="main_type" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Tipe Kamera Utama</label>
                           <div id="opt_main_type" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($main_type as $data): ?>
@@ -215,7 +216,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('main_video') ?>" id="main_video" name="main_video" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="main_video" oninput="listInput('main_video')" onblur="hideDiv('main_video')" value="<?= session()->getFlashdata('main_video') ?>"/>
+                            <input required value="<?= set_value('main_video', isset($sm['main_video']) ? $sm['main_video'] : '') ?>" id="main_video" name="main_video" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="main_video" oninput="listInput('main_video')" onblur="hideDiv('main_video')" value="<?= session()->getFlashdata('main_video') ?>"/>
                             <label for="main_video" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Video Kamera Utama</label>
                           <div id="opt_main_video" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($main_video as $data): ?>
@@ -225,7 +226,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('front_camera') ?>" id="front_camera" name="front_camera" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="front_camera" oninput="listInput('front_camera')" onblur="hideDiv('front_camera')" value="<?= session()->getFlashdata('front_camera') ?>"/>
+                            <input required value="<?= set_value('front_camera', isset($sm['front_camera']) ? $sm['front_camera'] : '') ?>" id="front_camera" name="front_camera" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="front_camera" oninput="listInput('front_camera')" onblur="hideDiv('front_camera')" value="<?= session()->getFlashdata('front_camera') ?>"/>
                             <label for="front_camera" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Kamera Depan</label>
                           <div id="opt_front_camera" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($front_camera as $data): ?>
@@ -235,7 +236,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('front_video') ?>" id="front_video" name="front_video" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="front_video" oninput="listInput('front_video')" onblur="hideDiv('front_video')" value="<?= session()->getFlashdata('front_video') ?>"/>
+                            <input required value="<?= set_value('front_video', isset($sm['front_video']) ? $sm['front_video'] : '') ?>" id="front_video" name="front_video" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="front_video" oninput="listInput('front_video')" onblur="hideDiv('front_video')" value="<?= session()->getFlashdata('front_video') ?>"/>
                             <label for="front_video" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Video Kamera Depan</label>
                           <div id="opt_front_video" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($front_video as $data): ?>
@@ -245,7 +246,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('usb') ?>" id="usb" name="usb" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="usb" oninput="listInput('usb')" onblur="hideDiv('usb')" value="<?= session()->getFlashdata('usb') ?>"/>
+                            <input required value="<?= set_value('usb', isset($sm['usb']) ? $sm['usb'] : '') ?>" id="usb" name="usb" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="usb" oninput="listInput('usb')" onblur="hideDiv('usb')" value="<?= session()->getFlashdata('usb') ?>"/>
                             <label for="usb" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Tipe USB</label>
                           <div id="opt_usb" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($usb as $data): ?>
@@ -255,7 +256,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('battery_capacity') ?>" id="battery_capacity" name="battery_capacity" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="battery_capacity" oninput="listInput('battery_capacity')" onblur="hideDiv('battery_capacity')" value="<?= session()->getFlashdata('battery_capacity') ?>"/>
+                            <input required value="<?= set_value('battery_capacity', isset($sm['battery_capacity']) ? $sm['battery_capacity'] : '') ?>" id="battery_capacity" name="battery_capacity" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="battery_capacity" oninput="listInput('battery_capacity')" onblur="hideDiv('battery_capacity')" value="<?= session()->getFlashdata('battery_capacity') ?>"/>
                             <label for="battery_capacity" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Kapasitas Baterai</label>
                           <div id="opt_battery_capacity" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($battery_capacity as $data): ?>
@@ -265,7 +266,7 @@
                         </div>
 
                         <div class="relative w-2/3 mx-auto mb-4">
-                            <input required value="<?= set_value('harga') ?>" id="harga" name="harga" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="harga" oninput="listInput('harga')" onblur="hideDiv('harga')" value="<?= session()->getFlashdata('harga') ?>"/>
+                            <input required value="<?= set_value('harga', isset($sm['harga']) ? $sm['harga'] : '') ?>" id="harga" name="harga" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="harga" oninput="listInput('harga')" onblur="hideDiv('harga')" value="<?= session()->getFlashdata('harga') ?>"/>
                             <label for="harga" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Harga</label>
                           <div id="opt_harga" class="w-full h-16 text-sm hidden overflow-y-scroll bg-gray-100">
                             <?php foreach($harga as $data): ?>
@@ -273,9 +274,12 @@
                             <?php endforeach; ?>
                           </div>
                         </div>
+                        <div class="flex justify-center mt-4">
+    <button type="submit" class="bg-cyan-800 hover:bg-cyan-700 text-white px-4 py-2 rounded-full text-sm md:text-base">
+        <i class="fas fa-database"></i> Simpan
+    </button>
+</div>
 
-
-                        <button>Simpan</button>
                     </form>
                 </div>
 

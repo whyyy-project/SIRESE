@@ -39,8 +39,8 @@
 
             <!--Footer-->
             <div class="flex justify-between py-3">
-                <a href="logout" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center">Logout</a>
-                <button onclick="closeModal()" class="ml-2 text-white bg-cyan-950 px-3 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center">Batal</button>
+                <a href="logout" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center ml-10">Logout</a>
+                <button onclick="closeModal()" class="ml-2 text-white bg-cyan-950 px-3 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center mr-10">Batal</button>
             </div>
         </div>
     </div>

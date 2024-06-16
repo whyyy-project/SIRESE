@@ -138,13 +138,58 @@ class PublicPagesController extends BaseController
         ];
         return view('public/toko', $data);
     }
-
+    
+public function detailToko($slug = null){
+    if(empty($slug)){
+        session()->setFlashdata('error', 'Slug tidak boleh kosong!');
+        return redirect()->to(base_url('toko')); // Sesuaikan dengan URL aplikasi Anda
+    }
+    
+    // Memisahkan bagian pertama (nama toko) dan kedua (kecamatan-kota)
+    $parts = explode('-', $slug, 2);
+    
+    if(count($parts) < 2){
+        session()->setFlashdata('error', 'Format slug tidak valid!');
+        return redirect()->to(base_url('toko')); // Sesuaikan dengan URL aplikasi Anda
+    }
+    
+    $toko = str_replace('+', ' ', $parts[0]);
+    $temp = $parts[1];
+    
+    // Memisahkan bagian kedua (kecamatan dan kota)
+    $partsTemp = explode('-', $temp, 2);
+    
+    if(count($partsTemp) < 2){
+        session()->setFlashdata('error', 'Format slug tidak valid!');
+        return redirect()->to(base_url('toko'));
+    }
+    
+    $kecamatan = $partsTemp[0];
+    $kota = $partsTemp[1];
+    
+    // Query untuk mencari data toko berdasarkan nama_toko, kecamatan, dan kota
+    $dataToko = $this->toko->where('nama_toko', $toko)
+                            ->where('kecamatan', $kecamatan)
+                            ->where('kota', $kota)
+                            ->first();
+    
+    if(!$dataToko){
+        session()->setFlashdata('error', 'Toko tidak ditemukan!');
+        return redirect()->to(base_url('toko'));
+    }
+    $data = [
+      'title' => "Detail Toko" . $dataToko['nama_toko'],
+      'page' => "toko",
+      'toko' => $dataToko,
+    ];
+    return view('public/detail-toko',$data);
+}
 
     
     public function login(){
         $data = [
             'title' => 'Login',
         ];
-        return view('public/login.php', $data);
+        return view('public/login', $data);
     }
 }

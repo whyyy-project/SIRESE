@@ -99,12 +99,12 @@ class RekomendasiController extends BaseController
         ];
         $this->bobotUser->insert($dataBobot);
         session()->set('bobotAwal', $dataBobot);
-      return redirect()->to('algoritma-rekomendasi');
+      return redirect()->to(base_url('algoritma-rekomendasi'));
     }
     public function viewRekomendasi(){
       // validasi
       if(!session()->get('bobotAwal')){
-        return redirect()->to('rekomendasi');
+        return redirect()->to(base_url('rekomendasi'));
       }
       $hasil = $this->hitung(3);
       // Fungsi untuk melakukan pengurutan
@@ -131,7 +131,7 @@ class RekomendasiController extends BaseController
 public function viewPerhitungan(){
   // validasi
   if(!session()->get('bobotAwal')){
-    return redirect()->to('rekomendasi');
+    return redirect()->to(base_url('rekomendasi'));
   }
   $dataNormalisasi = $this->norm->getWithRange(session()->get('hMin'), session()->get('hMax'));
   foreach($dataNormalisasi as $n){

@@ -29,7 +29,7 @@
                                 <div class="border border-gray-200 m-3 mb-0"></div>
                             </div>
                             <div class="px-4 pb-3 flex justify-center align-center">
-                                <a href="#" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
+                                <a href="<?= base_url() ?>toko/<?= str_replace(' ', '+', $data['nama_toko'])."-".str_replace(' ', '+', $data['kecamatan'])."-" . str_replace(' ', '+', $data['kota'])  ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
                                     <i class="fas fa-info mr-2"></i>Lihat Detail
                                 </a>
                             </div>

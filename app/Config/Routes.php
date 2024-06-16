@@ -12,6 +12,7 @@ $routes->group('', ['filter' => 'umum'], function ($routes) {
     $routes->get('data-smartphone', 'PublicPagesController::smartphone');
     $routes->get('search', 'PublicPagesController::hasilCari');
     $routes->get('detail-smarthpone/(:segment)', 'PublicPagesController::detailSmartphone/$1');
+    $routes->get('toko/(:segment)', 'PublicPagesController::detailToko/$1');
     $routes->get('toko', 'PublicPagesController::toko');
     $routes->get('rekomendasi', 'RekomendasiController::index');
     $routes->post('rekomendasi', 'RekomendasiController::saveBobot');
@@ -26,6 +27,10 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('/', 'AdminPagesController::index');
     $routes->get('dashboard', 'AdminPagesController::index');
     $routes->get('master-data/tambah', 'AdminPagesController::tambahSmartphone');
+    $routes->post('master-data/tambah', 'AdminPagesController::insertSmartphone');
+    $routes->get('master-data/delete/(:segment)', 'AdminPagesController::deleteSmartphone/$1');
+    $routes->get('master-data/update/(:segment)', 'AdminPagesController::updateSmartphone/$1');
+    $routes->post('master-data/update', 'AdminPagesController::updatePost');
     $routes->get('master-data', 'AdminPagesController::master');
     $routes->get('refresh-konversi', 'KuantitatifController::index');
     $routes->get('reset-konversi', 'KuantitatifController::delete');
