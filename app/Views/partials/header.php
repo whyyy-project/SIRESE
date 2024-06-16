@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-cyan-950 font-sans leading-normal tracking-normal mt-12 ">
+<body class="bg-cyan-950 font-sans leading-normal tracking-normal mt-12">
 
     <!-- loader -->
     <div class="loader-container" id="onload">

@@ -17,17 +17,14 @@
             <div class="px-4 py-3">
               <div class="flex justify-between mx-auto">
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Setting Konversi <span class="text-orange-500"> Kriteria</span></h1>
-                <div class="inline">
+                <div class="inline my-auto">
 
-                  <a href="<?= base_url() ?>refresh-konversi" onclick="spin('ikon')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
-                    <i id="ikon" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Konversi Data</span>
+                  <a href="<?= base_url() ?>refresh-konversi" onclick="spin('konversi')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700 mr-1">
+                    <i id="konversi" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Konversi Data</span>
                   </a>
-                <?php if (session()->getFlashdata('konversi')) { ?>    
-                <div class="h-2 w-2 relative inline-block -translate-y-2 -translate-x-3 md:-translate-x-6">
-                  <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
-                <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
-              </div>
-            <?php } ?>
+                  <a href="<?= base_url() ?>refresh-normalisasi" onclick="spin('normalisasi')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
+                    <i id="normalisasi" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Normalisasi Data</span>
+                  </a>
             </div>
             </div>
             <script>

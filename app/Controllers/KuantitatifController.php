@@ -13,11 +13,13 @@ class KuantitatifController extends BaseController
   public $kuantitatif;
   public $smartphone;
   public $bobot;
+  public $date;
   function __construct()
   {
     $this->kuantitatif = new KuantitatifModel();
     $this->smartphone = new SmartphoneModel();
     $this->bobot = new KonversiModel();
+    $this->date = date('Y-m-d H:i:s');
   }
     public function index()
     {
@@ -50,18 +52,20 @@ class KuantitatifController extends BaseController
         return redirect()->back();
     }
 
-    public function reset(){
+    public function delete(){
       $this->kuantitatif->query("TRUNCATE TABLE kuantitatif");
+      session()->setFlashdata('success', 'Berhasil Menghapus data Konversi.');
+      return redirect()->back();
     }
 
     public function body(){
       $this->dimensi();
-      $this->berat();
+      $this->angka('berat');
       $this->build();
     }
     public function lcd(){
       $this->umum('lcd_type');
-      $this->lcd_size();
+      $this->angka('lcd_size');
       $this->lcd_resolusi();
     }
     public function sistem(){
@@ -95,12 +99,12 @@ class KuantitatifController extends BaseController
         foreach($getBobot as $bbt){
           if((float)$sm['harga'] < (float)$bbt['konversi']){
             $nilai = $bbt['nilai'];
-            $this->kuantitatif->where('id_smartphone', $sm['id'])->set('harga', $nilai)->update();
+            $this->kuantitatif->where('id_smartphone', $sm['id'])->set('harga', $nilai)->set('updated_at', $this->date)->update();
             break;
           }
           if((float)$sm['harga'] > (float)$max['konversi']){
               $nilai = 100;
-              $this->kuantitatif->where('id_smartphone', $sm['id'])->set('harga', $nilai)->update();
+              $this->kuantitatif->where('id_smartphone', $sm['id'])->set('harga', $nilai)->set('updated_at', $this->date)->set('updated_at', $this->date)->update();
           }
         }
       }
@@ -121,32 +125,39 @@ class KuantitatifController extends BaseController
       foreach($getBobot as $bbt){
         if((float)$perkalian < (float)$bbt['konversi']){
           $nilai = $bbt['nilai'];
-          $this->kuantitatif->where('id_smartphone', $item['id'])->set('dimensi', $nilai)->update();
+          $this->kuantitatif->where('id_smartphone', $item['id'])->set('dimensi', $nilai)->set('updated_at', $this->date)->set('updated_at', $this->date)->update();
           break;
           }
           if((float)$perkalian > (float)$max['konversi']){
             $nilai = 100;
-          $this->kuantitatif->where('id_smartphone', $item['id'])->set('dimensi', $nilai)->update();
+          $this->kuantitatif->where('id_smartphone', $item['id'])->set('dimensi', $nilai)->set('updated_at', $this->date)->set('updated_at', $this->date)->update();
           }
       }
     }
   }
-  private function berat(){
-    $smartphone = $this->smartphone->select('id, berat')->findAll();
+  public function angka($sub){
+    $smartphone = $this->smartphone->select('id,merek,'. $sub)->findAll();
     foreach($smartphone as $sm){
      // get bobot konversi
-      $getBobot = $this->bobot->where('sub_kriteria', 'berat')->orderBy('nilai', 'asc')->findAll();
-      $max = $this->bobot->where('sub_kriteria', 'berat')->orderBy('nilai', 'desc')->first();
+      $getBobot = $this->bobot->where('sub_kriteria',$sub)->orderBy('CAST(nilai AS UNSIGNED)', 'asc')->findAll();
+      $max = $this->bobot->where('sub_kriteria',$sub)->orderBy('CAST(konversi AS UNSIGNED)', 'desc')->first();
       foreach($getBobot as $bbt){
-        if((float)$sm['berat'] < (float)$bbt['konversi']){
-          $nilai = $bbt['nilai'];
-          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('berat', $nilai)->update();
+        if((float)$sm[$sub] > (float)$max['konversi']){
+          $nilai = 100;
+          $this->kuantitatif->where('id_smartphone', $sm['id'])
+          ->set($sub, $nilai)->set('updated_at', $this->date)
+          ->set('updated_at', $this->date)->update();
           break;
           }
-          if((float)$sm['berat'] > (float)$max['konversi']){
-            $nilai = 100;
-          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('berat', $nilai)->update();
+          if((float)$sm[$sub] < (float)$bbt['konversi']){
+          $nilai = $bbt['nilai'];
+          echo $bbt['nilai'].' <b>nilai-nya</b><br>';
+            $this->kuantitatif->where('id_smartphone', $sm['id'])
+            ->set($sub, $nilai)->set('updated_at', $this->date)
+            ->set('updated_at', $this->date)->update();
+          break;
           }
+
       }
     }
   }
@@ -161,28 +172,10 @@ class KuantitatifController extends BaseController
           $nilai = $nilai + $getNilai['nilai'];
           }
       }
-      $this->kuantitatif->where('id_smartphone', $sm['id'])->set('build', $nilai)->update();
+      $this->kuantitatif->where('id_smartphone', $sm['id'])->set('build', $nilai)->set('updated_at', $this->date)->update();
     }
   }
 
-  private function lcd_size(){
-    $dSm = $this->smartphone->select('id, lcd_size')->findAll();
-    foreach($dSm as $sm){
-      $getBobot = $this->bobot->where('sub_kriteria', 'lcd_size')->orderBy('nilai', 'asc')->findAll();
-      $max = $this->bobot->where('sub_kriteria', 'lcd_size')->orderBy('nilai', 'desc')->first();
-      foreach($getBobot as $bbt){
-        if((float)$sm['lcd_size'] < (float)$bbt['konversi']){
-          $nilai = $bbt['nilai'];
-          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('lcd_size', $nilai)->update();
-          break;
-          }
-          if((float)$sm['lcd_size'] > (float)$max['konversi']){
-            $nilai = 100;
-          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('lcd_size', $nilai)->update();
-          }
-      }
-    }
-  }
 
   private function lcd_resolusi(){
       $smartphone = $this->smartphone->select('id, lcd_resolusi')->findAll();
@@ -197,12 +190,12 @@ class KuantitatifController extends BaseController
       foreach($getBobot as $bbt){
         if((float)$perkalian < (float)$bbt['konversi']){
           $nilai = $bbt['nilai'];
-          $this->kuantitatif->where('id_smartphone', $item['id'])->set('lcd_resolusi', $nilai)->update();
+          $this->kuantitatif->where('id_smartphone', $item['id'])->set('lcd_resolusi', $nilai)->set('updated_at', $this->date)->update();
           break;
           }
           if((float)$perkalian > (float)$max['konversi']){
             $nilai = 100;
-          $this->kuantitatif->where('id_smartphone', $item['id'])->set('lcd_resolusi', $nilai)->update();
+          $this->kuantitatif->where('id_smartphone', $item['id'])->set('lcd_resolusi', $nilai)->set('updated_at', $this->date)->update();
           }
       }
     }
@@ -216,11 +209,11 @@ class KuantitatifController extends BaseController
       $nilai = 0;
       for ($i = 0; $i < count($pisah) ; $i++){
         $getNilai = $this->bobot->where('sub_kriteria', $sub)->where('konversi', $pisah[$i])->first();
-        if (isset($getNilai) && $getNilai) {
-          $nilai = $nilai + $getNilai['nilai'];
+        if (isset($getNilai['nilai'])) {
+          $nilai += $getNilai['nilai'];
         }
       }
-    $this->kuantitatif->where('id_smartphone', $sm['id'])->set($sub, $nilai)->update();
+    $this->kuantitatif->where('id_smartphone', $sm['id'])->set($sub, $nilai)->set('updated_at', $this->date)->update();
     }
   }
 
@@ -233,12 +226,12 @@ class KuantitatifController extends BaseController
       foreach($getBobot as $bbt){
         if((float)$sm['battery_capacity'] < (float)$bbt['konversi']){
           $nilai = $bbt['nilai'];
-          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('battery_capacity', $nilai)->update();
+          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('battery_capacity', $nilai)->set('updated_at', $this->date)->update();
           break;
           }
           if((float)$sm['battery_capacity'] > (float)$max['konversi']){
             $nilai = 100;
-          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('battery_capacity', $nilai)->update();
+          $this->kuantitatif->where('id_smartphone', $sm['id'])->set('battery_capacity', $nilai)->set('updated_at', $this->date)->update();
         }
       }
     }
@@ -248,7 +241,7 @@ class KuantitatifController extends BaseController
     $dSm = $this->smartphone->select('id, '.$sub)->findAll();
     foreach($dSm as $sm){
       $bobot = $this->bobot->where('sub_kriteria', $sub)->where('konversi', $sm[$sub])->first();
-      $this->kuantitatif->where('id_smartphone', $sm['id'])->set($sub, $bobot['nilai'])->update();
+      $this->kuantitatif->where('id_smartphone', $sm['id'])->set($sub, $bobot['nilai'])->set('updated_at', $this->date)->update();
     }
   }
 }

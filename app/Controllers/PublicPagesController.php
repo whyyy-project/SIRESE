@@ -19,20 +19,6 @@ class PublicPagesController extends BaseController
 
     public function index()
     {
-        // // untuk validasi data tidak ada yang kosong
-        // // buat inner join smartphone konversi
-        // $dataSmartphone = $this->smartphone->findAll();
-        // $alertSmartphone = 0;
-        // foreach ($dataSmartphone as $smartphone) {
-        //     // Lakukan validasi untuk setiap kolom
-        //     foreach ($smartphone as $column => $value) {
-        //         if (empty($value)) {
-        //             // Jika ada kolom yang kosong, tampilkan pesan
-        //             $alertSmartphone++;
-        //             return $column;
-        //         }
-        //     }
-        // }
 
         $sampleData = $this->smartphone->randomData();
         $data = [

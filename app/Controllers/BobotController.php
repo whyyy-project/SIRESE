@@ -25,7 +25,6 @@ class BobotController extends BaseController
     $this->frontCamera();
     $this->baterai();
     $this->harga();
-    $this->normalisasiValidate();
 
   }
     public function index()
@@ -254,8 +253,8 @@ class BobotController extends BaseController
         $data = [
           'kriteria' => 'lcd',
           'sub_kriteria' => 'lcd_size',
-          'konversi' => $lcd_size,
-          'nilai' => $tambah * 10,
+          'konversi' => round($lcd_size, 1),
+          'nilai' => $tambah / 10,
           'created_at' => date('Y-m-d H:i:s'),
           'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -435,36 +434,5 @@ public function harga()
         }
       }
     }
-  }
-
-  function normalisasiValidate(){
-    $hp = $this->smartphone->select('id')->findAll();
-    $norm = new NormalisasiModel();
-    foreach($hp as $sm){
-      $verify = $norm->where('id_smartphone', $sm['id'])->first();
-      if(!$verify){
-        $addNorm = [
-                    'id_smartphone' => $sm['id'],
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s'),
-                ];
-        $norm->insert($addNorm);
-      }
-    }
-
-
-    $hasEmptyField = false;
-    foreach ($norm->findAll() as $konversi) {
-            foreach ($konversi as $field => $value) {
-                if (empty($value)) {
-                    $hasEmptyField = true;
-                    break 2;
-                }
-            }
-        }
-        
-        if ($hasEmptyField) {
-            session()->setFlashdata('konversi', 'alert');
-        }
   }
 }

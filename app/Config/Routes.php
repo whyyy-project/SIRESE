@@ -14,8 +14,9 @@ $routes->group('', ['filter' => 'umum'], function ($routes) {
     $routes->get('detail-smarthpone/(:segment)', 'PublicPagesController::detailSmartphone/$1');
     $routes->get('toko', 'PublicPagesController::toko');
     $routes->get('rekomendasi', 'RekomendasiController::index');
-    $routes->post('rekomendasi', 'SmartController::index');
-    $routes->get('rekomendasi/smart', 'RekomendasiController::hitung');
+    $routes->post('rekomendasi', 'RekomendasiController::saveBobot');
+    $routes->get('perhitungan-smart', 'RekomendasiController::viewPerhitungan');
+    $routes->get('algoritma-rekomendasi', 'RekomendasiController::viewRekomendasi');
     $routes->get('login', 'PublicPagesController::login');
     $routes->post('login', 'LoginController::index');
 });
@@ -30,11 +31,13 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('reset-konversi', 'KuantitatifController::delete');
     $routes->get('refresh-normalisasi', 'NormalisasiController::index');
     $routes->get('reset-normalisasi', 'NormalisasiController::delete');
-    $routes->get('atur-konversi/(:segment)', 'KonversiController::bobot/$1');
+    $routes->get('atur-konversi/(:segment)', 'KonversiController::index/$1');
+    $routes->post('atur-konversi/(:segment)', 'KonversiController::index/$1');
     $routes->get('atur-konversi', 'BobotController::bobot');
     $routes->get('data-toko', 'AdminPagesController::toko');
     $routes->get('profil', 'AdminPagesController::profil');
     $routes->get('logout', 'LoginController::logout');
+    $routes->get('coba', 'KuantitatifController::angka');
 
 
 });

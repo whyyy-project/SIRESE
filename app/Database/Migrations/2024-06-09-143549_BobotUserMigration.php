@@ -16,44 +16,44 @@ class BobotUserMigration extends Migration
                 'auto_increment' => true,
             ],
             'body' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'layar' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'system' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'memory' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'main_camera' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'front_camera' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'battery' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'harga' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
             'harga_min' => [
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 100,
-                'null' => true,
-                ],
-                'harga_max' => [
-                  'type' => 'INT',
+              'null' => true,
+            ],
+            'harga_max' => [
+                  'type' => 'VARCHAR',
                   'constraint' => 100,
                   'null' => true,
             ],

@@ -11,6 +11,11 @@
     <div class="bg-white shadow-lg rounded-lg mt-3 mx-6 pb-5 overflow-hidden">
         <div class="flex justify-between">
             <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Hasil <span class="text-orange-500"> Rekomendasi</span></h1>
+
+              <div class="mr-4 mt-4">
+              <a href="<?= base_url() ?>rekomendasi" class="text-white bg-orange-500 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-orange-400"><i class="fas fa-refresh"></i> Atur Ulang</a>
+              <a href="<?= base_url() ?>perhitungan-smart" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-700"><i class="fas fa-calculator"></i> Algoritma</a>
+            </div>
         </div>
     <div class="border border-gray-200 m-4 mb-2"></div>
         <p class="ml-5 text-gray-700 text-sm italic">Catatan : Harga sewaktu-waktu dapat berubah</p>
@@ -27,20 +32,21 @@
                     <div class="md:p-1">
                         <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden">
                             <div class="px-4 py-3">
-                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $no . '. '. $data['merek'] ?></h1>
+                                <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $no . '. '. $data['sMerek'] ?></h1>
                                 <?php $no++ ?>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="<?= base_url() ?>img/smartphone/<?= $data['gambar'] ?>" class="h-24 w-86 md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="<?= $data['brand'] . " " . $data['merek'] ?>">
+                                    <img loading="lazy" src="<?= base_url() ?>img/smartphone/<?= $data['sGambar'] ?>" class="h-24 w-86 md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="<?= $data['sBrand'] . " " . $data['sMerek'] ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
-                                    <p><span class="font-bold text-sm md:text-base"> Merek : </span> <?= $data['merek'] ?></p>
-                                    <p><span class="font-bold text-sm md:text-base"> RAM/ROM : </span> <?= $data['ram'] ?>/<?= $data['rom'] ?> GB</p>
-                                    <p><span class="font-bold text-sm md:text-base">Harga : Rp. </span><?= number_format($data['harga'], 0, ',', '.'); ?></p>
+                                    <p><span class="font-bold text-sm md:text-base"> Merek : </span> <?= $data['sMerek'] ?></p>
+                                    <p><span class="font-bold text-sm md:text-base"> RAM/ROM : </span> <?= $data['sRam'] ?>/<?= $data['sRom'] ?> GB</p>
+                                    <p><span class="font-bold text-sm md:text-base">Harga : </span>Rp. <?= number_format($data['sHarga'], 0, ',', '.'); ?></p>
+                                    <p>Kecocokan Bobot : <span class="text-gray-700 text-sm"><?= round(($data['total']/$max)*100, 2) ?>%</span></p>
                                 </div>
                             </div>
                             <div class="px-4 pb-3">
-                                <a href="<?= base_url() ?>detail-smarthpone/<?= $data['slug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
+                                <a href="<?= base_url() ?>detail-smarthpone/<?= $data['sSlug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-700">
                                     <i class="fas fa-info mr-2"></i>Lihat Detail
                                 </a>
                             </div>
@@ -80,6 +86,7 @@
                     <th>Merek</th>
                     <th class="hidden md:block">RAM / ROM</th>
                     <th>Harga</th>
+                    <th>Bobot</th>
                     <th>Detail</th>
                 </tr>
                         </thead>
@@ -89,10 +96,11 @@
                             foreach ($smartphone as $data) : ?>
                     <tr>
                         <td><?= $i++ ?></td>
-                        <td><?= $data['merek'] ?></td>
-                        <td class="hidden md:block"><?= $data['ram'] ?>/<?= $data['rom'] ?> GB</td>
-                        <td><?= $data['harga'] ?></td>
-                        <td><a href="<?= base_url() ?>detail-smarthpone/<?= $data['slug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-gray-700 flex justify-center items-center">
+                        <td><?= $data['sMerek'] ?></td>
+                        <td class="hidden md:block"><?= $data['sRam'] ?>/<?= $data['sRom'] ?> GB</td>
+                        <td><?= $data['sHarga'] ?></td>
+                        <td><?= round(($data['total']/$max)*100, 2) ?>%</td>
+                        <td><a href="<?= base_url() ?>detail-smarthpone/<?= $data['sSlug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-gray-700 flex justify-center items-center">
                                     <i class="fas fa-info mr-2 hidden md:flex"></i> Detail
                                 </a></td>
                     </tr>

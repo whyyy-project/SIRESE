@@ -50,15 +50,36 @@ class NormalisasiController extends BaseController
       session()->setFlashdata('success', 'Berhasil Menghapus data normalisasi.');
       return redirect()->back();
     }
-    private function konversi($sub){
-      $dKuan = $this->kuanti->select('id_smartphone, '.$sub)->findAll();
-      $min = $this->kuanti->select($sub)->orderBy($sub, 'asc')->first();
-      $max = $this->kuanti->select($sub)->orderBy($sub, 'desc')->first();
-      if($min[$sub] != 0 && $max[$sub] != 0){
-        foreach($dKuan as $dk){
-        $nilai = ($dk[$sub] - $min[$sub]) / ($max[$sub] - $min[$sub]);
-          $this->convert->where('id_smartphone', $dk['id_smartphone'])->set($sub, $nilai)->update();
+  private function konversi($sub)
+  {
+
+    $dKuan = $this->kuanti->select('id_smartphone, ' . $sub)->findAll();
+    $min = $this->kuanti->select($sub)
+    ->orderBy('CAST('.$sub.' AS UNSIGNED)', 'asc')
+    ->first();
+    
+    $max = $this->kuanti->select($sub)
+    ->orderBy('CAST('.$sub.' AS UNSIGNED)', 'desc')
+    ->first();
+
+      $totalKonversi = $this->kuanti->countAllResults();
+      if($totalKonversi <= 1){
+        session()->setFlashdata('eror', 'Data belum dikonversi!');
+        return redirect()->back();
+      }
+      if ($min[$sub] != 0 && $max[$sub] != 0) {
+        foreach ($dKuan as $dk) {
+          if($sub != 'harga'){
+            $nilai = ($dk[$sub] - $min[$sub]) / ($max[$sub] - $min[$sub]);
+            $this->convert->where('id_smartphone', $dk['id_smartphone'])->set($sub, $nilai)->update();
+            }else{
+              $nilai = ($max[$sub] - $dk[$sub]) / ($max[$sub] - $min[$sub]);
+              $date = date('Y-m-d H:i:s');
+            $this->convert->where('id_smartphone', $dk['id_smartphone'])->set($sub, $nilai)->update();
+          }
         }
       }
+        session()->setFlashdata('successKonversi', 'Berhasil Melakukan Normalisasi Data.');
+
     }
-}
+  }

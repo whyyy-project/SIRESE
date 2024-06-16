@@ -12,7 +12,14 @@
                     </a>
                 </li>
                 <li class="mr-3 flex-1" id="option" title="Sistem Rekomendasi Smartphone">
-                    <a href="rekomendasi" id="<?= $page == "rekomendasi" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
+                  <?php 
+                  if(session()->get('body')){
+                    $rekom = 'algoritma-rekomendasi';
+                  }else{
+                    $rekom = 'rekomendasi';
+                  }
+                  ?>
+                    <a href="<?= base_url() ?><?= $rekom ?>" id="<?= $page == "rekomendasi" ? "active" : "" ?>" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 border-cyan-950">
                         <i class="fa-solid fa-thumbs-up pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Rekomendasi</span>
                     </a>
                 </li> 

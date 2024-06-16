@@ -74,25 +74,13 @@
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Data<span class="text-orange-500"> Konversi</span></h1>
                 <div class="inline">
 
-                  <a href="<?= base_url() ?>/refresh-konversi" onclick="spin('ikon')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
-                    <i id="ikon" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Konversi Data</span>
+                  <a href="<?= base_url() ?>reset-konversi" onclick="spin('resetKonversi')" class="text-white bg-red-700 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-red-600 mr-1">
+                    <i class="fas fa-trash mx-2 md:mx-0"></i> <span class="hidden md:inline">Reset</span>
                   </a>
-                <?php if (session()->getFlashdata('konversi')) { ?>    
-                <div class="h-2 w-2 relative inline-block -translate-y-2 -translate-x-3 md:-translate-x-6">
-                  <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
-                <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
-              </div>
-            <?php } ?>
+                  <a href="<?= base_url() ?>refresh-konversi" onclick="spin('konversi')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
+                    <i id="konversi" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Konversi</span>
+                  </a>
             </div>
-                  <script>
-              function spin(id){
-                const ikon =document.getElementById(id)
-                ikon.classList.add('animate-spin');
-                setTimeout(() => {
-                  ikon.classList.remove('animate-spin');
-                }, 5000);
-              }
-            </script>
               </div>
                 <div class="border border-gray-200 m-2"></div>
                 <div class="overflow-x-auto">
@@ -168,15 +156,12 @@
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Data<span class="text-orange-500"> Normalisasi</span></h1>
                 <div class="inline">
 
-                  <a href="<?= base_url() ?>/refresh-konversi" onclick="spin('ikon')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
-                    <i id="ikon" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Konversi Data</span>
+                  <a href="<?= base_url() ?>reset-normalisasi" class="text-white bg-red-700 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-red-600 mr-1">
+                    <i class="fas fa-trash mx-2 md:mx-0"></i> <span class="hidden md:inline">Reset</span>
                   </a>
-                <?php if (session()->getFlashdata('konversi')) { ?>    
-                <div class="h-2 w-2 relative inline-block -translate-y-2 -translate-x-3 md:-translate-x-6">
-                  <div class="bg-red-600 rounded-full h-full w-full animate-ping"></div>
-                <div class="absolute top-0 left-0 bg-red-600 rounded-full h-full w-full"></div>
-              </div>
-            <?php } ?>
+                  <a href="<?= base_url() ?>refresh-normalisasi" onclick="spin('normalisasi')" class="text-white bg-cyan-800 px-1 text-sm md:text-base py-2 md:px-5 md:py-2 rounded-full hover:bg-cyan-700">
+                    <i id="normalisasi" class="fas fa-arrows-rotate mx-2 md:mx-0"></i> <span class="hidden md:inline">Normalisasi</span>
+                  </a>
             </div>
                   <script>
               function spin(id){
@@ -189,6 +174,29 @@
             </script>
               </div>
                 <div class="border border-gray-200 m-2"></div>
+                <?php if (session()->getFlashdata('eror')) { ?>
+                <div id="alert" class="bg-red-500 text-white px-5 py-3 rounded-lg mb-4" role="alert">
+                    <div class="flex items-center">
+                  <span><i class="fas fa-triangle-exclamation"></i> <?= session()->get('eror') ?></span>
+                  </div>
+              </div>
+              <?php } ?>
+                <?php if (session()->getFlashdata('successKonversi')) { ?>
+                <div id="notifikasi" class="bg-green-500 text-white px-5 py-3 rounded-lg mb-4" role="alert">
+                    <div class="flex items-center">
+                      <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2l4 -4"></path>
+                      </svg>
+                  <span><?= session()->get('successKonversi') ?></span>
+                </div>
+              </div>
+              <?php } ?>
+              <script>
+                const notif = document.getElementById('notifikasi')
+                setTimeout(() => {
+                  notif.classList.add('hidden')
+                }, 3000);
+              </script>
                 <div class="overflow-x-auto">
 
           <table class="w-full bg-white rounded-lg shadow-md border border-gray-200">

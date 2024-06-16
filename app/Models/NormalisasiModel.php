@@ -43,4 +43,43 @@ class NormalisasiModel extends Model
     public function updateData($id, $data){
       $this->where('id_smartphone', $id)->update($data);
     }
+    public function getWithRange($minPrice, $maxPrice)
+    {
+        $builder = $this->db->table('normalisasi');
+        $builder->select('normalisasi.*,
+        smartphone.merek AS sMerek,
+        smartphone.brand AS sBrand,
+        smartphone.slug AS sSlug,
+        smartphone.ram as sRam,
+        smartphone.rom AS sRom,
+        smartphone.harga AS sHarga,
+        smartphone.gambar AS sGambar,
+        kuantitatif.dimensi AS kdimensi,
+        kuantitatif.berat AS kberat,
+        kuantitatif.build AS kbuild,
+        kuantitatif.lcd_type AS klcd_type,
+        kuantitatif.lcd_size AS klcd_size,
+        kuantitatif.lcd_resolusi AS klcd_resolusi,
+        kuantitatif.os AS kos,
+        kuantitatif.chipset AS kchipset,
+        kuantitatif.cpu AS kcpu,
+        kuantitatif.ram AS kram,
+        kuantitatif.rom AS krom,
+        kuantitatif.main_camera AS kmain_camera,
+        kuantitatif.main_type AS kmain_type, 
+        kuantitatif.main_video AS kmain_video,
+        kuantitatif.front_camera AS kfront_camera,
+        kuantitatif.front_video AS kfront_video,
+        kuantitatif.usb AS kusb,
+        kuantitatif.battery_capacity AS kbattery_capacity,
+        kuantitatif.harga AS kharga');
+        $builder->join('smartphone', 'smartphone.id = normalisasi.id_smartphone', 'left');
+        $builder->join('kuantitatif', 'smartphone.id = kuantitatif.id_smartphone', 'left');
+        $builder->where('smartphone.harga >=', $minPrice);
+        $builder->where('smartphone.harga <=', $maxPrice);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
 }
+
+

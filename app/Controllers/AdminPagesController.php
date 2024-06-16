@@ -4,11 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BobotModel;
-use App\Models\KonversiModel;
 use App\Models\KuantitatifModel;
 use App\Models\NormalisasiModel;
 use App\Models\SmartphoneModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class AdminPagesController extends BaseController
 {
@@ -72,7 +70,6 @@ class AdminPagesController extends BaseController
     }
   public function index()
   {
-    $this->bobotController->normalisasiValidate();
     $smartphone = $this->smartphone->orderBy('brand', 'asc')->findAll();
     $data = [
       'title' => 'Admin Page',
