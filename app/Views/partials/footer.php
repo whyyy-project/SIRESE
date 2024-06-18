@@ -17,7 +17,7 @@
 
 <?php if(session()->get('LoggedIn')){ ?>
 <!-- Modal Konfirmasi Logout -->
-<div id="logoutModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+<div id="logoutModal" class="fixed inset-0 flex items-center justify-center z-50">
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
     <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
@@ -38,10 +38,12 @@
             </div>
 
             <!--Footer-->
-            <div class="flex justify-between py-3">
-                <a href="logout" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center ml-10">Logout</a>
-                <button onclick="closeModal()" class="ml-2 text-white bg-cyan-950 px-3 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center mr-10">Batal</button>
-            </div>
+
+            <div class="flex justify-between py-3 mx-12">
+                  <a href="<?= base_url() ?>logout" class="text-white bg-red-700 px-5 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center cursor-pointer"><i class="fas fa-check mr-2"></i> Logout</a>
+                  <button onclick="closeModal()" class="ml-2 text-white bg-cyan-950 px-7 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center"><i class="fas fa-xmark mr-2"></i> Batal</button>
+                </div>
+
         </div>
     </div>
 </div>
