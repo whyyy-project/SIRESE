@@ -94,7 +94,7 @@
             <div class="p-3 md:p-1">
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                     <div class="px-4 py-3">
-                        <h1 class="md:text-2xl font-bold text-gray-800 text-base md:text-lg">Panduan menggunakan<span class="text-orange-500"> SIRESE</span></h1>
+                        <h1 class="md:text-2xl font-bold text-gray-800 text-base md:text-lg">Panduan <span class="text-orange-500"> SIRESE</span></h1>
                         <div class="border border-gray-200 m-2"></div>
                         <div class="m-3">
                             <iframe class="w-full h-full md:h-64" src="https://www.youtube.com/embed/_GaOagIOY50" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -107,7 +107,7 @@
             <div class="p-3 md:p-1">
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                     <div class="px-4 py-3">
-                        <h1 class="md:text-2xl font-bold text-gray-800 text-base md:text-lg">Panduan berkontribusi di <span class="text-orange-500"> SIRESE</span></h1>
+                        <h1 class="md:text-2xl font-bold text-gray-800 text-base md:text-lg">Tentang <span class="text-orange-500"> Saya</span></h1>
                         <div class="border border-gray-200 m-2"></div>
                         <div class="m-3">
                         <iframe class="w-full h-full md:h-64" src="https://www.youtube.com/embed/v0J9eQz8-9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

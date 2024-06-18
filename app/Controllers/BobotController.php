@@ -348,22 +348,22 @@ public function harga()
       // Menghitung rentang harga
       $rentang = $hargaMax - $hargaMin;
 
-      // Menghitung selisih rentang yang dibagi menjadi 5 bagian
-      $step = $rentang / 10;
+      // Menghitung selisih rentang yang dibagi menjadi 100 bagian
+      $step = $rentang / 100;
       $hargaPertama = $hargaMin + $step;
       // Membuat array hitungHarga
       $hitungHarga = [];
-      for ($i = 0; $i < 9; $i++) {
+      for ($i = 0; $i < 99; $i++) {
         $hitungHarga[] = $hargaPertama + ($step * $i);
       }
       $this->bobot->where('sub_kriteria', 'harga')->delete();
-      $tambah = 1;
+      $tambah = 0;
       foreach ($hitungHarga as $harga) {
         $data = [
           'kriteria' => 'harga',
           'sub_kriteria' => 'harga',
           'konversi' => $harga,
-          'nilai' => $tambah * 10,
+          'nilai' => $tambah + 1,
           'created_at' => date('Y-m-d H:i:s'),
           'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -371,6 +371,9 @@ public function harga()
         $this->bobot->insert($data);
       }
     }
+    
+  // reset bobot
+    // $this->bobot->where('sub_kriteria', 'harga')->delete();
 }
 
 

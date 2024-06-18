@@ -288,6 +288,13 @@
                 <tr>
                   <th>No</th>
                   <th>Smartphone</th>
+                  <th>Body</th>
+                  <th>System</th>
+                  <th>Memory</th>
+                  <th>Main Camera</th>
+                  <th>Front Camera</th>
+                  <th>Battery</th>
+                  <th>Price</th>
                   <th>Total</th>
                   <th>Persentase</th>
                 </tr>
@@ -297,10 +304,26 @@
                             $i = 1;
                             foreach ($hasil as $data) : ?>
                     <tr>
+                      <?php
+                      $body = ((($data['dimensi'] + $data['berat'] + $data['build']) / 3) * session()->get('body'));
+                      $system = ((($data['os'] + $data['berat'] + $data['build']) / 3) * session()->get('system'));
+                      $memory = ((($data['ram'] + $data['rom']) / 2) * session()->get('memory'));
+                      $mainCamera = ((($data['main_camera'] + $data['main_type'] + $data['main_video'])/3)*session()->get('mainCamera'));
+                      $frontCamera = ((($data['front_camera'] + $data['front_video']) / 2) * session()->get('frontCamera'));
+                      $battery = ((($data['usb'] + $data['battery_capacity']) / 2) * session()->get('battery'));
+                      $harga = ($data['harga'] * session()->get('price'));
+                      ?>
                         <td><?= $i++ ?></td>
                         <td><?= $data['sMerek'] ?> (<?= $data['sRam'] ?>/<?= $data['sRom'] ?> GB)</td>
+                        <td><?= $body ?></td>
+                        <td><?= $system ?></td>
+                        <td><?= $memory ?></td>
+                        <td><?= $mainCamera ?></td>
+                        <td><?= $frontCamera ?></td>
+                        <td><?= $battery ?></td>
+                        <td><?= $harga ?> <?= session()->get('harga') ?></td>
                         <td><?= $data['total'] ?></td>
-                        <td><?= round(($data['total']/$max)*100, 3) ?>%</td>
+                        <td><?= round(($data['total'])*100, 3) ?>%</td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

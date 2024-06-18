@@ -14,8 +14,7 @@
                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg">Sistem Rekomendasi <span class="text-orange-500">Smartphone</span></h1>
                 <div class="border border-gray-200 m-2"></div>
 
-              <?php if (session()->getFlashdata('eror')) { ?>
-                <div id="alert" class="bg-red-500 text-white px-5 py-3 rounded-lg mb-4" role="alert">
+                <div id="alert" class="bg-red-500 text-white px-5 py-3 rounded-lg mb-4 <?= session()->get('eror') ? '': 'hidden' ?>" role="alert">
                     <div class="flex items-center">
                   <span><i class="fas fa-triangle-exclamation"></i> <?= session()->get('eror') ?></span>
                   </div>
@@ -26,7 +25,6 @@
                   alert.classList.add('hidden')
                 }, 10000);
               </script>
-              <?php } ?>
                 <!-- content -->
                 <div class="pb-3">
                     <p class="text-gray-700 font-bold ml-4">Berikan nilai tingkat prioritasmu dalam memilih Smartphone :</p>
@@ -38,10 +36,10 @@
                         Seberapa pentingkah Ukuran, Berat, Bahan Body pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="body" id="body" oninput="updateDetail('body', 'defbody')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="body" id="body" oninput="updateDetail('body', 'defbody')">
                     </div>
                     <div id="defBody" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
+                        Tidak Penting (0/100)
                     </div>
                 </div>
 
@@ -51,10 +49,10 @@
                         Seberapa pentingkah Tipe(IPS, Oled, Amoled, dll), Ukuran, Resolusi Layar pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="display" id="display" oninput="updateDetail('display', 'defDisplay')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="display" id="display" oninput="updateDetail('display', 'defDisplay')">
                     </div>
                     <div id="defDisplay" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
+                        Tidak Penting (0/100)
                     </div>
                 </div>
 
@@ -64,10 +62,10 @@
                         Seberapa pentingkah Sistem Operasi, Prosesor, dan CPU pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="system" id="system" oninput="updateDetail('system', 'defSystem')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="system" id="system" oninput="updateDetail('system', 'defSystem')">
                     </div>
                     <div id="defSystem" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
+                        Tidak Penting (0/100)
                     </div>
                 </div>
                 
@@ -77,10 +75,10 @@
                         Seberapa pentingkah RAM dan Memori Internal pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="memory" id="memory" oninput="updateDetail('memory', 'defMemory')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="memory" id="memory" oninput="updateDetail('memory', 'defMemory')">
                     </div>
                     <div id="defMemory" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
+                        Tidak Penting (0/100)
                     </div>
                 </div>
                 
@@ -90,10 +88,10 @@
                         Seberapa pentingkah Kamera Utama pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="mainCamera" id="mainCamera" oninput="updateDetail('mainCamera', 'defMainCamera')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="mainCamera" id="mainCamera" oninput="updateDetail('mainCamera', 'defMainCamera')">
                     </div>
                     <p id="defMainCamera" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
+                        Tidak Penting (0/100)
                     </p>
                 </div>
 
@@ -103,10 +101,10 @@
                         Seberapa pentingkah Kamera Depan pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="frontCamera" id="frontCamera" oninput="updateDetail('body', 'defBody')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="frontCamera" id="frontCamera" oninput="updateDetail('body', 'defBody')">
                     </div>
                     <p id="defFrontCamera" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
+                        Tidak Penting (0/100)
                     </p>
                 </div>
 
@@ -116,10 +114,10 @@
                         Seberapa pentingkah Batrai pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="battery" id="battery" oninput="updateDetail('battery', 'defBattery')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="battery" id="battery" oninput="updateDetail('battery', 'defBattery')">
                     </div>
                     <p id="defBattery" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
+                        Tidak Penting (0/100)
                     </p>
                 </div>
 
@@ -129,11 +127,11 @@
                         Seberapa pentingkah Harga pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" min="0" max="100" name="price" id="price" oninput="updateDetail('price', 'defPrice')">
+                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="price" id="price" oninput="updateDetail('price', 'defPrice')">
                     </div>
                     <p id="defPrice" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
-                        Penting (50/100)
-                    </p>
+                        Tidak Penting (0/100)
+                  </p>
                 </div>
                 <!-- rentang harga -->
                 <div class="bg-gray-200 h-18 rounded-xl shadow mx-1 md:mx-5 px-3 mb-2 py-1">

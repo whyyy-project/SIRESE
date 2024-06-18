@@ -42,7 +42,7 @@
 							<input autocomplete="off" id="password" name="password" type="password" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 focus:outline-none focus:border-cyan-700" placeholder="Password" />
 							<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 text-sm transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
               <span class="absolute right-2 top-2 cursor-pointer" onclick="showPassword('password', 'show')">
-                  <i id="show" class="fas fa-eye text-gray-700"></i>
+                  <i id="show" class="fas fa-eye text-gray-600"></i>
                 </span>
 						</div>
 						<div class="flex justify-center">

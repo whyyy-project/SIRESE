@@ -28,8 +28,8 @@
                 <div class="border border-gray-200 my-1"></div>
                 <form action="<?= base_url() ?>data-smartphone" method="get">
                 <p class="text-sm text-gray-700">filter harga</p>
-                    <input id="min" type="number" value="<?= isset($_GET['min']) ? $_GET['min'] : ''  ?>" name="min" class="bg-gray-200 w-4/5 font-sm text-center text-gray-600 outline-none border-b-2 focus:border-cyan-700 rounded-sm mb-0.5" placeholder="min" oninput="validatePrice()">
-                    <input id="max" type="number" value="<?= isset($_GET['max']) ? $_GET['max'] : ''  ?>" name="max" class="bg-gray-200 w-4/5 font-sm text-center text-gray-600 outline-none border-b-2 focus:border-cyan-700 rounded-sm" placeholder="max" oninput="validatePrice()">
+                    <input required id="min" type="number" value="<?= isset($_GET['min']) && $_GET['min'] >= 1 ? $_GET['min'] : ''  ?>" name="min" class="bg-gray-200 w-4/5 font-sm text-center text-gray-600 outline-none border-b-2 focus:border-cyan-700 rounded-sm mb-0.5" placeholder="min" oninput="validatePrice()">
+                    <input required id="max" type="number" value="<?= isset($_GET['max']) && $_GET['max'] >= 1 ? $_GET['max'] : ''  ?>" name="max" class="bg-gray-200 w-4/5 font-sm text-center text-gray-600 outline-none border-b-2 focus:border-cyan-700 rounded-sm" placeholder="max" oninput="validatePrice()">
                     <p id="notif" class="text-sm text-red-800 mx-0.5 my-1"> </p>
                     <button id="submit" type="submit" class="text-gray-100 hover:text-white bg-orange-500 rounded-full px-3 py-0.5 mt-1 shadow-lg hover:bg-orange-400">Filter</button>
                 </form>
@@ -70,7 +70,7 @@
     </div>
     <div class="border border-gray-200 m-4 mb-2"></div>
         <?php
-        if(isset($_GET['min']) && isset($_GET['max'])){
+        if(isset($_GET['min']) && isset($_GET['max']) && $_GET['min'] > 1 && $_GET['max'] > 1){
             echo '<p class="ml-5 text-gray-700 text-base">Filter harga dari Rp. '.number_format($_GET['min'], 0, ',', '.'). ' - Rp. '.number_format($_GET['max'], 0, ',', '.'). '</p>';
         } 
         

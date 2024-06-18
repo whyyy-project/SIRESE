@@ -43,6 +43,12 @@ class RekomendasiController extends BaseController
       $price = $this->request->getPost('price');
       $min = $this->request->getPost('min');
       $max = $this->request->getPost('max');
+
+      // validasi data bobot
+      $totalBobot = $body + $display + $system + $memory + $mainCamera + $frontCamera + $battery + $price;
+      if($totalBobot < 1){
+      return redirect()->back()->with('eror', 'Minimal total bobot yang dimasukan adalah 1!');
+      }
       if($min == null && $max != null){
         $hMin = 0;
         $hMax = preg_replace('/\D/', '', $max);
@@ -152,7 +158,7 @@ public function viewPerhitungan(){
           return bccomp($b['total'], $a['total'], 10);
         } else {
           // Jika nilai sama, urutkan berdasarkan nama dari A ke Z
-          return strcmp($a['sMerek'], $b['sMerek']);
+          return strcmp($a['sHarga'], $b['sHarga']);
         }
       });
       $maxTotal = $dataHasil[0]['total'];
@@ -200,7 +206,7 @@ public function viewPerhitungan(){
         }else{
           $data['harga'] = $data['harga'] * session()->get('price');
         }
-        $data['total'] = (($data['dimensi'] + $data['berat'] + $data['build'])/3) + (($data['lcd_type'] + $data['lcd_size'] + $data['lcd_resolusi'])/3) + (($data['os'] + $data['chipset'] + $data['cpu'])/3) + (($data['ram'] + $data['rom'])/2) + (($data['main_camera'] + $data['main_type'] + $data['main_video'])/3) + (($data['front_camera'] + $data['front_video'])/2) + (($data['usb'] + $data['battery_capacity'])/2) + $data['harga'];
+        $data['total'] = ((($data['dimensi'] + $data['berat'] + $data['build'])/3)*session()->get('body')) + ((($data['lcd_type'] + $data['lcd_size'] + $data['lcd_resolusi'])/3)*session()->get('display')) + ((($data['os'] + $data['chipset'] + $data['cpu'])/3)*session()->get('system')) + ((($data['ram'] + $data['rom'])/2)*session()->get('memory')) + ((($data['main_camera'] + $data['main_type'] + $data['main_video'])/3)*session()->get('mainCamera')) + ((($data['front_camera'] + $data['front_video'])/2)*session()->get('frontCamera')) + ((($data['usb'] + $data['battery_capacity'])/2)*session()->get('battery')) + ($data['harga']*session()->get('price'));
       }
       return $dNorm;
     }
@@ -211,13 +217,13 @@ public function viewPerhitungan(){
       $hargaMinResult = $this->smartphone->select('harga')->where('harga >=', $hargaMin)->where('harga <=', $hargaMax)->orderBy('harga', 'asc')->first();
       $hargaMaxResult = $this->smartphone->select('harga')->where('harga >=', $hargaMin)->where('harga <=', $hargaMax)->orderBy('harga', 'desc')->first();
       $jarak = $hargaMaxResult['harga'] - $hargaMinResult['harga'];
-      $step = $jarak / 10;
+      $step = $jarak / 100;
       $hargaPertama = $hargaMinResult['harga'] + $step;
       $konversi = 0;
       // inisialisasi nilai konversi
       $nilai = 0;
-      for ($i = 0; $i < 9; $i++) {
-        $konversi = 10 * $i;
+      for ($i = 0; $i < 99; $i++) {
+        $konversi = 1 * $i;
         if($harga <= $hargaPertama + ($step * $i)){
           $nilai = $konversi;
           break;
