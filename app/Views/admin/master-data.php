@@ -27,7 +27,7 @@
               <div class="flex justify-between">
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Data<span class="text-orange-500"> Smartphone</span></h1>
                 <a href="<?= base_url() ?>master-data/tambah" class="text-white bg-green-800 mx-0 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-green-700 flex justify-center items-center w-24" onclick="bukaModal('inputHp')">
-                  <i class="fas fa-plus text-sm"></i> <span class="hidden md:flex">Tambah</span>
+                  <i class="fas fa-plus text-sm"></i> <span class="hidden md:flex ml-2">Tambah</span>
                 </a>
               </div>
                 <div class="border border-gray-200 m-2"></div>
@@ -84,11 +84,14 @@
                         <td><?= $data['ram'] ?>/<?= $data['rom'] ?> GB</td>
                         <td><?= $data['harga'] ?></td>
                         <td>
-                          <a href="<?= base_url() ?>master-data/delete/<?= $data['slug'] ?>" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center cursor-pointer">
-                            <i class="fas fa-trash text-sm"></i> <span class="md:inline hidden"> Hapus</span>
-                          </a>
+                          <?php
+                          $url = base_url() . "master-data/delete/" . $data['slug'];
+                          ?>
+                          <span onclick="hapusModal('<?= $url ?>', '<?= $data['merek'] ?>')" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center cursor-pointer">
+                            <i class="fas fa-trash text-sm"></i> <span class="md:inline hidden ml-2"> Hapus</span>
+                          </span>
                           <a href="<?= base_url() ?>master-data/update/<?= $data['slug'] ?>" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-cyan-700 flex justify-center items-center mt-1">
-                            <i class="fas fa-gear text-sm"></i> <span class="md:inline hidden"> Edit</span>
+                            <i class="fas fa-gear text-sm"></i> <span class="md:inline hidden ml-2"> Edit</span>
                           </a>
                               </td>
                     </tr>
@@ -297,6 +300,66 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+    <!-- modal -->
+    <div id="hapus" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <!-- Add margin if you want to see some of the overlay behind the modal-->
+        <div class="modal-content py-4 text-left px-6">
+            <!--Title-->
+            <div class="flex justify-between items-center pb-3">
+              <p class="text-xl text-gray-800">Anda yakin akan menghapus Smartphone</p>
+              <div class="modal-close cursor-pointer z-50">
+                <i onclick="closeModalHapus()" class="fas fa-times text-gray-500 hover:text-gray-700"></i>
+              </div>
+            </div>
+            
+            <!--Body-->
+            <div class="flex justify-center my-2 text-center">
+              <p id="namaSmartphone" class="text-gray-800 text-2xl font-bold"></p>
+                </div>
+                
+                <!--Footer-->
+                <div class="flex justify-between py-3 mx-12">
+                  <a id="link" href="#" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center"><i class="fas fa-trash mr-2"></i> Hapus</a>
+                  <button onclick="closeModalHapus()" class="ml-2 text-white bg-cyan-950 px-3 text-sm md:text-base py-2 px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center"><i class="fas fa-xmark mr-2"></i> Batal</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+   function hapusModal(url, nama) {
+    var modalHapus = document.getElementById('hapus');
+    modalHapus.classList.remove('hidden');
+    const link = document.getElementById('link');
+    const spanNama = document.getElementById('namaSmartphone');
+    if (link) {
+        link.href = url;
+    }
+        if (spanNama) {
+        spanNama.textContent = nama;
+    }
+
+}
+function closeModalHapus() {
+    var closeModalProfil = document.getElementById('hapus');
+    closeModalProfil.classList.add('hidden');
+}
+</script>
+
 
 <!-- js for dashboard -->
 <!-- js table  -->

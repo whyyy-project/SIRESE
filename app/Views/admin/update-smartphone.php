@@ -275,10 +275,9 @@
                           </div>
                         </div>
                         <div class="flex justify-center mt-4">
-    <button type="submit" class="bg-cyan-800 hover:bg-cyan-700 text-white px-4 py-2 rounded-full text-sm md:text-base">
-        <i class="fas fa-database"></i> Simpan
-    </button>
-</div>
+                          <button type="submit" class="text-white bg-cyan-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-600 "><i class="fas fa-save"></i> Simpan
+                        </button>
+                      </div>
 
                     </form>
                 </div>

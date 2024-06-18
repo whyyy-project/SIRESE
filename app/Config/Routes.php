@@ -39,8 +39,16 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->get('atur-konversi/(:segment)', 'KonversiController::index/$1');
     $routes->post('atur-konversi/(:segment)', 'KonversiController::index/$1');
     $routes->get('atur-konversi', 'BobotController::bobot');
+    $routes->get('data-toko/add', 'AdminPagesController::viewTambahToko');
+    $routes->get('data-toko/delete/(:segment)', 'AdminPagesController::deleteToko/$1');
+    $routes->post('data-toko/add', 'AdminPagesController::insertToko');
+    $routes->get('data-toko/update/(:segment)', 'AdminPagesController::viewUpdateToko/$1');
+    $routes->post('data-toko/update', 'AdminPagesController::updateToko');
     $routes->get('data-toko', 'AdminPagesController::toko');
     $routes->get('profil', 'AdminPagesController::profil');
+    $routes->post('profil/ubah-nama', 'LoginController::profilNama');
+    $routes->post('profil/ubah-username', 'LoginController::profilUsername');
+    $routes->post('profil/ubah-password', 'LoginController::profilPassword');
     $routes->get('logout', 'LoginController::logout');
     $routes->get('coba', 'KuantitatifController::angka');
 

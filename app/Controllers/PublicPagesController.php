@@ -163,9 +163,9 @@ public function detailToko($slug = null){
         session()->setFlashdata('error', 'Format slug tidak valid!');
         return redirect()->to(base_url('toko'));
     }
-    
-    $kecamatan = $partsTemp[0];
-    $kota = $partsTemp[1];
+
+    $kecamatan = str_replace('+', ' ', $partsTemp[0]);
+    $kota = str_replace('+', ' ', $partsTemp[1]);
     
     // Query untuk mencari data toko berdasarkan nama_toko, kecamatan, dan kota
     $dataToko = $this->toko->where('nama_toko', $toko)

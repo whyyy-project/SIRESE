@@ -275,7 +275,7 @@
                         </div>
 
 
-                        <button>Simpan</button>
+                        <button type="submit" class="text-white bg-cyan-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-600 "><i class="fas fa-save"></i> Simpan</button>
                     </form>
                 </div>
 

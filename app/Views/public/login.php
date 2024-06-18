@@ -12,6 +12,8 @@
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/customStyle.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css" />
+
 
 </head>
 <body class="h-screen overflow-hidden flex items-center justify-center bg-gray-200">
@@ -33,21 +35,23 @@
             <p class="text-red-700 text-sm font-bold"><?= session()->getFlashdata('error') ?></p>
             <?php } ?>
 						<div class="relative">
-							<input autocomplete="off" id="username" name="username" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="Username" value="<?= session()->getFlashdata('uname') ?>"/>
+							<input autocomplete="off" id="username" name="username" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 focus:outline-none focus:border-cyan-700" placeholder="Username" value="<?= session()->getFlashdata('uname') ?>"/>
 							<label for="username" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Username</label>
 						</div>
 						<div class="relative">
 							<input autocomplete="off" id="password" name="password" type="password" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 focus:outline-none focus:border-cyan-700" placeholder="Password" />
 							<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 text-sm transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+              <span class="absolute right-2 top-2 cursor-pointer" onclick="showPassword('password', 'show')">
+                  <i id="show" class="fas fa-eye text-gray-700"></i>
+                </span>
 						</div>
 						<div class="flex justify-center">
 							<button type="submit" name="login" class="btn-login bg-orange-500 shadow-lg text-white text-sm md:text-base hover:bg-orange-400 mt-3">Login</button>
 						</div>
-                <div class="border border-gray-200"></div>
-                        <div class="flex justify-center">
-
-                            <a href="<?= base_url() ?>" class="text-sm md:text-base hover:-translate-y-0.5 hover:duration-100 underline">Kembali ke beranda</a>
-                        </div>
+            <div class="border border-gray-200"></div>
+            <div class="flex justify-center">
+                <a href="<?= base_url() ?>" class="text-sm md:text-base hover:-translate-y-0.5 hover:duration-100 underline">Kembali ke beranda</a>
+            </div>
 					</div>
 				</div>
 			</form>
@@ -55,5 +59,23 @@
 		</div>
 	</div>
 </div>
+<script>
+  var showed = true
+function showPassword(input, icon){
+  const inp =document.getElementById(input)
+  const ico =document.getElementById(icon)
+  if(showed == true){
+    inp.type = 'text'
+    ico.classList.remove('fa-eye')
+    ico.classList.add('fa-eye-slash')
+    showed=false
+  }else{
+    inp.type = 'password'
+    ico.classList.add('fa-eye')
+    ico.classList.remove('fa-eye-slash')
+    showed=true
+  }
+}
+</script>
 </body>
 </html>

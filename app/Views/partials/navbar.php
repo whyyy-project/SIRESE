@@ -47,7 +47,7 @@
                         </div>
                         <!-- Dropdown menu -->
                         <ul id="dropdown-menu" class="absolute hidden bg-white rounded-md shadow-md mt-1 mr-1 right-1 text-center">
-                            <li><a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Profil</a></li>
+                            <li><a href="<?= base_url() ?>profil" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Profil</a></li>
                             <li><button onclick="logoutModal()" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 hover:rounded-md">Logout</button></li>
                         </ul>
                     </li>

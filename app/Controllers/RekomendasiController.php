@@ -70,7 +70,11 @@ class RekomendasiController extends BaseController
           $hMin = 0;
           $hMax = $hargaMax['harga'];
         }
-
+    $hitungData = $this->smartphone->where('harga >=', $hMin)->where('harga <=', $hMax)->countAllResults();
+    if($hitungData < 1){
+      session()->setFlashdata('eror', 'Data Smartphone berdasarkan harga '.$min.' - '.$max.' kurang dari 2 Smartphone');
+      return redirect()->to(base_url('rekomendasi'));
+    }
     $total = $body + $display + $system + $memory + $mainCamera + $frontCamera + $battery + $price;
       session()->set('body', $body/$total);
       session()->set('display', $display/$total);

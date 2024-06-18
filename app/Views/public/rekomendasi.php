@@ -13,6 +13,20 @@
             <div class="px-4 py-3">
                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg">Sistem Rekomendasi <span class="text-orange-500">Smartphone</span></h1>
                 <div class="border border-gray-200 m-2"></div>
+
+              <?php if (session()->getFlashdata('eror')) { ?>
+                <div id="alert" class="bg-red-500 text-white px-5 py-3 rounded-lg mb-4" role="alert">
+                    <div class="flex items-center">
+                  <span><i class="fas fa-triangle-exclamation"></i> <?= session()->get('eror') ?></span>
+                  </div>
+              </div>
+              <script>
+                const alert = document.getElementById('alert')
+                setTimeout(() => {
+                  alert.classList.add('hidden')
+                }, 10000);
+              </script>
+              <?php } ?>
                 <!-- content -->
                 <div class="pb-3">
                     <p class="text-gray-700 font-bold ml-4">Berikan nilai tingkat prioritasmu dalam memilih Smartphone :</p>

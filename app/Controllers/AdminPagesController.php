@@ -7,15 +7,17 @@ use App\Models\BobotModel;
 use App\Models\KuantitatifModel;
 use App\Models\NormalisasiModel;
 use App\Models\SmartphoneModel;
+use App\Models\TokoModel;
 
 class AdminPagesController extends BaseController
 {
     public $smartphone;
     public $bobot;
     public $bobotController;
-  public $path;
-  public $konversi;
-  public $normalisasi;
+    public $path;
+    public $konversi;
+    public $normalisasi;
+    public $toko;
     public function __construct() {
         // Inisialisasi model
         $this->smartphone = new SmartphoneModel();
@@ -23,12 +25,13 @@ class AdminPagesController extends BaseController
         $this->bobotController = new BobotController();
         $this->konversi = new KuantitatifModel();
         $this->normalisasi = new NormalisasiModel();
+        $this->toko = new TokoModel();
 
         // Panggil fungsi yang ingin dieksekusi sebelum fungsi lainnya
         $this->alertBobot();
         $this->alertData();
         helper(['form']);
-        $this->path = "public/img/smartphone";
+        $this->path = "public/img/";
     }
 
     public function alertBobot() {
@@ -180,7 +183,7 @@ class AdminPagesController extends BaseController
             $newName = str_replace(' ', '_', $merek)."-$ram-$rom-".$foto->getRandomName();
             
             // Pindahkan file ke direktori yang diinginkan
-            $foto->move(ROOTPATH . $this->path . '/', $newName);
+            $foto->move(ROOTPATH . $this->path . '/smartphone/', $newName);
 
 
           } else {
@@ -237,7 +240,7 @@ public function deleteSmartphone($slug = null) {
         return redirect()->back();
     }
     
-    $filepath = ROOTPATH . $this->path .'/'. $getData['gambar'];
+    $filepath = ROOTPATH . $this->path .'/smartphone/'. $getData['gambar'];
     if (file_exists($filepath)) {
       // Hapus file
       $hapus = unlink($filepath);
@@ -360,8 +363,8 @@ public function updatePost(){
         $newName = str_replace(' ', '_', $merek) . "-$ram-$rom-" . $foto->getRandomName();
 
         // Pindahkan file ke direktori yang diinginkan
-        $foto->move(ROOTPATH . $this->path . '/', $newName);
-        $fotoLama = ROOTPATH . $this->path . '/' . $dataSm['gambar'];
+        $foto->move(ROOTPATH . $this->path . '/smartphone/', $newName);
+        $fotoLama = ROOTPATH . $this->path . '/smartphone/' . $dataSm['gambar'];
         if (file_exists($fotoLama)) {
           // Hapus file
           unlink($fotoLama);
@@ -408,21 +411,235 @@ public function updatePost(){
 
   public function toko()
   {
-    $data = [
-      'title' => 'Welcome Admin',
-      'page' => 'toko',
-    ];
-    return view('admin/dashboard', $data);
+        $perPage = 6;
+        // hitung total data
+        $totalData = count($this->toko->findAll());
+        // hitung berapa page
+        $totalPages = ceil($totalData / $perPage);
+        // Mendapatkan nomor halaman saat ini
+        $currentPage = $this->request->getVar('page') ?? 1;
+        // Mendapatkan data dengan paging
+        $dataToko = $this->toko->allDataTokoPaging($perPage, ($currentPage - 1) * $perPage);
+        // Menyusun data untuk dikirim ke view
+        $data = [
+            'title' => "Toko",
+            'page' => "toko",
+            'toko' => $dataToko,
+            'totalPages' => $totalPages,
+            'currentPage' => $currentPage,
+        ];
+    return view('admin/data-toko', $data);
 
   }
+  public function viewTambahToko(){
+    $data = [
+      'title' => 'Tambah Toko',
+      'page' => 'toko'
+    ];
+    return view('admin/tambah-toko', $data);
+  }
+  public function insertToko(){
+    $nama_toko = $this->request->getPost('nama_toko');
+    $desa = $this->request->getPost('desa');
+    $kecamatan = $this->request->getPost('kecamatan');
+    $kota = $this->request->getPost('kota');
+    $provinsi = $this->request->getPost('provinsi');
+    $alamat_lengkap = $this->request->getPost('alamat_lengkap');
+    $fb = $this->request->getPost('fb');
+    $ig = $this->request->getPost('ig');
+    $tiktok = $this->request->getPost('tiktok');
+    $addName = "-".str_replace(' ', '_', $desa) . "-".str_replace(' ', '_', $kecamatan) . "-".str_replace(' ', '_', $kota) . "-".str_replace(' ', '_', $provinsi);
+        // foto
+        $foto = $this->request->getFile('gambar');
+        $newName = $foto;
+            if ($foto->isValid() && !$foto->hasMoved()) {
+            // Beri nama file baru
+            $newName = strtolower(str_replace(' ', '_', $nama_toko). $addName .".". $foto->getClientExtension());
+            
+            // Pindahkan file ke direktori yang diinginkan
+            $foto->move(ROOTPATH . $this->path . '/toko/', $newName);
+
+
+          } else {
+            session()->setFlashdata('eror', 'Gagal melakukan upload gambar!');
+          return redirect()->back()->withInput();
+        }
+    $input = [
+      'nama_toko' => $nama_toko,
+      'desa' => $desa,
+      'kecamatan' => $kecamatan,
+      'kota' => $kota,
+      'provinsi' => $provinsi,
+      'alamat_lengkap' => $alamat_lengkap,
+      'fb' => $fb,
+      'ig' => $ig,
+      'tiktok' => $tiktok,
+      'foto' => $newName,
+      'created_at' => date('Y-m-d H:i:s'),
+      'updated_at' => date('Y-m-d H:i:s'),
+    ];
+    $insert = $this->toko->insert($input);
+    if(!$insert){
+      session()->setFlashdata('eror', 'Data Toko Gagal Ditambahkan!');
+      return redirect()->back()->withInput();
+    }
+    session()->setFlashdata('success', 'Data Toko Berhasil Ditambahkan.');
+    return redirect()->back();
+  }
+
+  public function deleteToko($slug = null){
+    if ($slug == null) {
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+        return redirect()->back();
+    }
+    $parts = explode('-', $slug);
+    if(count($parts) != 4){
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+      return redirect()->to(base_url('data-toko'));
+    }
+      $nama_toko = str_replace('+', ' ', $parts[0]);
+      $desa = str_replace('+', ' ', $parts[1]);
+      $kecamatan = str_replace('+', ' ', $parts[2]);
+      $kota = str_replace('+', ' ', $parts[3]);
+
+    $getData = $this->toko->where('nama_toko', $nama_toko)->where('desa', $desa)->where('kecamatan', $kecamatan)->where('kota', $kota)->first();
+    $hitung = $this->toko->where('nama_toko', $nama_toko)->where('desa', $desa)->where('kecamatan', $kecamatan)->where('kota', $kota)->countAllResults();
+    if ($hitung != 1) {
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+      return redirect()->back();
+    }
+    $filepath = ROOTPATH . $this->path .'/toko/'. $getData['foto'];
+    if (file_exists($filepath)) {
+      // Hapus file
+      $hapus = unlink($filepath);
+      if (!$hapus) {
+        session()->setFlashdata('error', 'Gagal menghapus foto.');
+      }
+    } else {
+        session()->setFlashdata('error', 'File Foto Tidak ditemukan.');
+    }
+    // Hapus data dari database
+    $delete = $this->toko->delete($getData['id']);
+    if($delete){
+      return redirect()->back()->with('success', 'Berhasil menghapus data Toko.');
+    }else{
+      return redirect()->back()->with('eror', 'Gagal menghapus data Toko!');
+    }
+  }
+
+  public function viewUpdateToko($slug = null){
+    if ($slug == null) {
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+        return redirect()->back();
+    }
+    $parts = explode('-', $slug);
+    if(count($parts) != 4){
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+      return redirect()->to(base_url('data-toko'));
+    }
+    $nama_toko = str_replace('+', ' ', $parts[0]);
+    $desa = str_replace('+', ' ', $parts[1]);
+    $kecamatan = str_replace('+', ' ', $parts[2]);
+    $kota = str_replace('+', ' ', $parts[3]);
+    $getData = $this->toko->where('nama_toko', $nama_toko)->where('desa', $desa)->where('kecamatan', $kecamatan)->where('kota', $kota)->first();
+    $hitung = $this->toko->where('nama_toko', $nama_toko)->where('desa', $desa)->where('kecamatan', $kecamatan)->where('kota', $kota)->countAllResults();
+    if ($hitung != 1) {
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+      return redirect()->back();
+    }
+    $data = [
+      'title'=>'Update Toko '.$getData['nama_toko'],
+      'page' =>'toko',
+      'toko' => $getData,
+    ];
+    return view('admin/edit-toko', $data);
+  }
+  public function updateToko(){
+
+    $nama_toko = $this->request->getPost('nama_toko');
+    $desa = $this->request->getPost('desa');
+    $kecamatan = $this->request->getPost('kecamatan');
+    $kota = $this->request->getPost('kota');
+    $provinsi = $this->request->getPost('provinsi');
+    $alamat_lengkap = $this->request->getPost('alamat_lengkap');
+    $fb = $this->request->getPost('fb');
+    $ig = $this->request->getPost('ig');
+    $tiktok = $this->request->getPost('tiktok');
+
+
+    $slug = $this->request->getPost('slug');
+    $parts = explode('-', $slug);
+    if(count($parts) != 4){
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+      return redirect()->to(base_url('data-toko'));
+    }
+    $nama_toko_valid = str_replace('+', ' ', $parts[0]);
+    $desa_valid = str_replace('+', ' ', $parts[1]);
+    $kecamatan_valid = str_replace('+', ' ', $parts[2]);
+    $kota_valid = str_replace('+', ' ', $parts[3]);
+
+    $getData = $this->toko->where('nama_toko', $nama_toko_valid)->where('desa', $desa_valid)->where('kecamatan', $kecamatan_valid)->where('kota', $kota_valid)->first();
+    $hitung = $this->toko->where('nama_toko', $nama_toko_valid)->where('desa', $desa_valid)->where('kecamatan', $kecamatan_valid)->where('kota', $kota_valid)->countAllResults();
+    if ($hitung != 1) {
+      session()->setFlashdata('error', 'Data Toko tidak ditemukan!');
+      return redirect()->to(base_url('data-toko'));
+    }
+
+       // foto
+    $foto = $this->request->getFile('gambar');
+
+    if(!$getData){
+      return redirect()->to(base_url('data-toko'))->with('eror', 'Harap ulangi pilih data yang di update');
+    }
+    $addName = 0;
+    // validasi foto input
+    if(!$foto){
+      $addName = $getData['foto'];
+    }
+    else {
+      if ($foto->isValid() && !$foto->hasMoved()) {
+        // Beri nama file baru
+        $addName = strtolower(str_replace(' ', '_', $nama_toko) . "-".str_replace(' ', '_', $desa) . "-".str_replace(' ', '_', $kecamatan) . "-".str_replace(' ', '_', $kota) . "-".str_replace(' ', '_', $provinsi)."1.". $foto->getClientExtension());
+        
+        $fotoLama = ROOTPATH . $this->path . '/toko/' . $getData['foto'];
+        if (file_exists($fotoLama)) {
+          // Hapus file
+          unlink($fotoLama);
+        }
+        // Pindahkan file ke direktori yang diinginkan
+        $foto->move(ROOTPATH . $this->path . '/toko/', $addName);
+      }
+    }
+    $updateData = [
+      'nama_toko' => $nama_toko,
+      'desa' => $desa,
+      'kecamatan' => $kecamatan,
+      'kota' => $kota,
+      'provinsi' => $provinsi,
+      'alamat_lengkap' => $alamat_lengkap,
+      'fb' => $fb,
+      'ig' => $ig,
+      'tiktok' => $tiktok,
+      'foto' => $addName,
+      'updated_at' => date('Y-m-d H:i:s'),
+    ];
+    $id = $getData['id'];
+    $update = $this->toko->update($id, $updateData);
+    if(!$update){
+      return redirect()->back()->withInput()->with('eror', ' Gagal melakukan update data!');
+    }else{
+      return redirect()->to(base_url('data-toko'))->with('success', 'Berhasil melakukan Update Toko '.$nama_toko.'.');
+    }
+
+  }
+
   public function profil()
   {
     $data = [
-      'title' => 'Welcome Admin',
+      'title' => 'Setting Akun',
       'page' => 'profil',
     ];
-    // return view('admin/dashboard', $data);
-    return "aku";
+    return view('admin/profil', $data);
 
   }
 
