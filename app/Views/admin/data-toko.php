@@ -12,7 +12,7 @@
       <div class="flex justify-between">
         <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Data Toko Afiliasi <span class="text-orange-500"> SIRESE</span></h1>
         <a href="<?= base_url() ?>data-toko/add" class="text-white bg-cyan-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-600 mt-2 mr-3">
-          <i class="fas fa-plus mr-2"></i>Tambah Toko
+          <i class="fas fa-plus"></i><span class="hidden md:inline ml-2">Tambah Toko</span>
         </a>
       </div>
         <div class="border border-gray-200 m-4 mb-2"></div>
@@ -58,7 +58,7 @@
                                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg text-center"><?= $data['nama_toko'] ?></h1>
                                 <div class="border border-gray-200 m-3 mb-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="<?= base_url() ?>img/toko/<?= $data['foto'] ?>" class="h-24 w-full md:h-40 rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="Gambar Toko">
+                                    <img loading="lazy" src="<?= base_url() ?>img/toko/<?= $data['foto'] ?>" class="h-40 w-full rounded-tr-[20px] rounded-bl-[20px] object-cover" alt="Gambar Toko">
                                 </div>
                                 <div class="mt-2 text-gray-800 text-center">
                                     <p><?= $data['kecamatan'] ?>, <?= $data['kota'] ?></p>
@@ -149,8 +149,8 @@
                 
                 <!--Footer-->
                 <div class="flex justify-between py-3 mx-12">
-                  <a id="link" href="#" class="text-white bg-red-700 px-3 text-sm md:text-base py-2 px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center"><i class="fas fa-trash mr-2"></i> Hapus</a>
-                  <button onclick="closeModalHapus()" class="ml-2 text-white bg-cyan-950 px-3 text-sm md:text-base py-2 px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center"><i class="fas fa-xmark mr-2"></i> Batal</button>
+                  <a id="link" href="#" class="text-white bg-red-700 px-5 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center cursor-pointer"><i class="fas fa-trash mr-2"></i> Hapus</a>
+                  <button onclick="closeModalHapus()" class="ml-2 text-white bg-cyan-950 px-7 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center"><i class="fas fa-xmark mr-2"></i> Batal</button>
                 </div>
         </div>
     </div>

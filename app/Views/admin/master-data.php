@@ -1,5 +1,6 @@
 <?php $this->extend('admin/template') ?>
 <?php $this->section('content')  ?>
+
 <!-- css for table -->
             <!-- datatables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js">
@@ -62,14 +63,14 @@
               </script>
               <?php } ?>
 
-                <table id="myTable" class="display w-full" style="width:100%">
+            <table id="myTable" class="display w-full" style="width:100%">
             <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
-                <tr>
+                <tr class="text-sm">
                     <th>No.</th>
                     <th class="hidden md:flex justify-center items-center mt-1">Brand</th>
                     <th>Merek</th>
-                    <th>RAM / ROM</th>
-                    <th>Harga</th>
+                    <th>Memory</th>
+                    <th class="hidden md:flex justify-center items-center mt-1">Harga</th>
                     <th>Opsi</th>
                 </tr>
                         </thead>
@@ -81,8 +82,8 @@
                         <td><?= $i++ ?></td>
                         <td class="hidden md:block my-auto"><?= $data['brand'] ?></td>
                         <td><?= $data['merek'] ?></td>
-                        <td><?= $data['ram'] ?>/<?= $data['rom'] ?> GB</td>
-                        <td><?= $data['harga'] ?></td>
+                        <td><?= $data['ram'] ?>/<?= $data['rom'] ?></td>
+                        <td class="hidden md:flex justify-center items-center"><?= $data['harga'] ?></td>
                         <td>
                           <?php
                           $url = base_url() . "master-data/delete/" . $data['slug'];

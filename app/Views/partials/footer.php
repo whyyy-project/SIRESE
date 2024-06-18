@@ -38,12 +38,10 @@
             </div>
 
             <!--Footer-->
-
             <div class="flex justify-between py-3 mx-12">
                   <a href="<?= base_url() ?>logout" class="text-white bg-red-700 px-5 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-red-600 flex justify-center items-center cursor-pointer"><i class="fas fa-check mr-2"></i> Logout</a>
                   <button onclick="closeModal()" class="ml-2 text-white bg-cyan-950 px-7 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center"><i class="fas fa-xmark mr-2"></i> Batal</button>
                 </div>
-
         </div>
     </div>
 </div>
