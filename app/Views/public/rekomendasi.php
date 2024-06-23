@@ -36,7 +36,7 @@
                         Seberapa pentingkah Ukuran, Berat, Bahan Body pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="body" id="body" oninput="updateDetail('body', 'defbody')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="body" id="body" oninput="updateDetail('body', 'defbody')">
                     </div>
                     <div id="defBody" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -49,7 +49,7 @@
                         Seberapa pentingkah Tipe(IPS, Oled, Amoled, dll), Ukuran, Resolusi Layar pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="display" id="display" oninput="updateDetail('display', 'defDisplay')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="display" id="display" oninput="updateDetail('display', 'defDisplay')">
                     </div>
                     <div id="defDisplay" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -62,7 +62,7 @@
                         Seberapa pentingkah Sistem Operasi, Prosesor, dan CPU pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="system" id="system" oninput="updateDetail('system', 'defSystem')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="system" id="system" oninput="updateDetail('system', 'defSystem')">
                     </div>
                     <div id="defSystem" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -75,7 +75,7 @@
                         Seberapa pentingkah RAM dan Memori Internal pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="memory" id="memory" oninput="updateDetail('memory', 'defMemory')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="memory" id="memory" oninput="updateDetail('memory', 'defMemory')">
                     </div>
                     <div id="defMemory" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -88,7 +88,7 @@
                         Seberapa pentingkah Kamera Utama pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="mainCamera" id="mainCamera" oninput="updateDetail('mainCamera', 'defMainCamera')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="mainCamera" id="mainCamera" oninput="updateDetail('mainCamera', 'defMainCamera')">
                     </div>
                     <p id="defMainCamera" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -101,7 +101,7 @@
                         Seberapa pentingkah Kamera Depan pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="frontCamera" id="frontCamera" oninput="updateDetail('body', 'defBody')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="frontCamera" id="frontCamera" oninput="updateDetail('body', 'defBody')">
                     </div>
                     <p id="defFrontCamera" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -114,7 +114,7 @@
                         Seberapa pentingkah Batrai pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="battery" id="battery" oninput="updateDetail('battery', 'defBattery')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="battery" id="battery" oninput="updateDetail('battery', 'defBattery')">
                     </div>
                     <p id="defBattery" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -127,7 +127,7 @@
                         Seberapa pentingkah Harga pada Smartphone menurutmu ?
                     </div>
                     <div class="flex justify-center items-center text-gray-900">
-                        <input class="w-3/4 mx-1 cursor-pointer" type="range" value="0" min="0" max="100" name="price" id="price" oninput="updateDetail('price', 'defPrice')">
+                        <input required class="w-3/4 bg-white text-white transition border border-transparent focus:outline-none focus:border-cyan-800 rounded py-1 px-1 appearance-none leading-normal text-black text-center" type="number" placeholder="Masukan nilai 0 - 100" min="0" max="100" name="price" id="price" oninput="updateDetail('price', 'defPrice')">
                     </div>
                     <p id="defPrice" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center">
                         Tidak Penting (0/100)
@@ -139,8 +139,8 @@
                         Apakah kamu ingin menentukan rentang harga sendiri ?
                     </div>
                     <div class="flex justify-center items-center text-gray-700 md:px-9 mt-2">
-                        <input type="text" oninput="verify()" class="bg-gray-100 w-1/2 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 mr-1 md:mx-3 text-center placeholder-gray-700" id="min" name="min" placeholder="Minimal"> - 
-                        <input type="text" oninput="verify()" class="bg-gray-100 w-1/2 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 ml-1 md:mx-3 text-center placeholder-gray-700" id="max" name="max" placeholder="Maksimal">
+                        <input type="text" oninput="verify()" class="bg-white w-1/2 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 mr-1 md:mx-3 text-center placeholder-gray-700" id="min" name="min" placeholder="Minimal"> - 
+                        <input type="text" oninput="verify()" class="bg-white w-1/2 rounded-lg h-8 border border-transparent focus:outline-none focus:border-cyan-500 ml-1 md:mx-3 text-center placeholder-gray-700" id="max" name="max" placeholder="Maksimal">
                     </div>
                         <div id="wrong_price" class="flex justify-center items-center text-gray-800 pb-1 mx-auto text-center italic">
                             * Kosongkan jika tidak perlu
@@ -167,10 +167,15 @@ function updateDetail(inputId, textId) {
     const input = document.getElementById(inputId);
     const text = document.getElementById(textId);
 
+    text.classList.add('text-gray-800');
     input.addEventListener('input', function() {
         const value = parseInt(this.value);
         let importanceText = '';
-
+        if(isNaN(value)){
+          value = 0;
+        }
+        text.classList.add('text-gray-800');
+        text.classList.remove('text-red-800');
         if (value >= 0 && value <= 20) {
             importanceText = 'Tidak Penting';
         } else if (value > 20 && value <= 40) {
@@ -179,10 +184,15 @@ function updateDetail(inputId, textId) {
             importanceText = 'Cukup Penting';
         } else if (value > 60 && value <= 80) {
             importanceText = 'Penting';
+        } else if (value > 80 && value <= 100) {
+            importanceText = 'Penting';
+            
         } else {
-            importanceText = 'Sangat Penting';
-        }
-
+            importanceText = '*Nilai Salah!';
+            text.classList.remove('text-gray-800');
+            text.classList.add('text-red-800');
+          }
+          
         text.textContent = `${importanceText} (${value}/100)`;
     });
 }

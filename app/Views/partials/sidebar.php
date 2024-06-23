@@ -13,7 +13,7 @@
                 </li>
                 <li class="mr-3 flex-1" id="option" title="Sistem Rekomendasi Smartphone">
                   <?php 
-                  if(session()->get('body')){
+                  if(session()->get('rekom')){
                     $rekom = 'algoritma-rekomendasi';
                   }else{
                     $rekom = 'rekomendasi';

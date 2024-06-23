@@ -286,7 +286,7 @@
         <table id="myTable3" class="display w-full" style="width:100%">
             <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
                 <tr>
-                  <th>No</th>
+                  <th>Rank</th>
                   <th>Smartphone</th>
                   <th>Body</th>
                   <th>System</th>
@@ -323,7 +323,7 @@
                         <td><?= $battery ?></td>
                         <td><?= $harga ?> <?= session()->get('harga') ?></td>
                         <td><?= $data['total'] ?></td>
-                        <td><?= round(($data['total'])*100, 3) ?>%</td>
+                        <td><?= round(($data['total']/$max)*100, 2) ?>%</td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

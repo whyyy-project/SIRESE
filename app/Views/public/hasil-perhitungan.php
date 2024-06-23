@@ -13,8 +13,8 @@
             <h1 class="text-2xl font-bold text-gray-800 ml-4 mt-3 text-base md:text-lg">Hasil <span class="text-orange-500"> Rekomendasi</span></h1>
 
               <div class="mr-4 mt-4">
-              <a href="<?= base_url() ?>rekomendasi" class="text-white bg-orange-500 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-orange-400"><i class="fas fa-refresh"></i> Atur Ulang</a>
-              <a href="<?= base_url() ?>perhitungan-smart" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-700"><i class="fas fa-calculator"></i> Algoritma</a>
+              <a href="<?= base_url() ?>rekomendasi" class="text-white bg-orange-500 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-orange-400"><i class="fas fa-refresh"></i><span class="hidden md:inline">Atur Ulang</span></a>
+              <a href="<?= base_url() ?>perhitungan-smart" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-700"><i class="fas fa-calculator"></i> <span class="hidden md:inline">Algoritma</span></a>
             </div>
         </div>
     <div class="border border-gray-200 m-4 mb-2"></div>
@@ -82,11 +82,11 @@
         <table id="myTable" class="display w-full" style="width:100%">
             <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
                 <tr>
-                    <th>No.</th>
+                    <th>Rank</th>
                     <th>Merek</th>
-                    <th class="hidden md:block">RAM / ROM</th>
+                    <th>RAM / ROM</th>
                     <th>Harga</th>
-                    <th>Bobot</th>
+                    <th>Nilai</th>
                     <th>Detail</th>
                 </tr>
                         </thead>
@@ -94,10 +94,10 @@
                             <?php
                             $i = 1;
                             foreach ($smartphone as $data) : ?>
-                    <tr>
+                    <tr class="text-sm">
                         <td><?= $i++ ?></td>
-                        <td><?= $data['sMerek'] ?></td>
-                        <td class="hidden md:block"><?= $data['sRam'] ?>/<?= $data['sRom'] ?> GB</td>
+                        <td><?= $data['sMerek'] ?> <span class="md:hidden block">(<?= $data['sRam'] ?>/<?= $data['sRom'] ?>GB)</span></td>
+                        <td><?= $data['sRam'] ?>/<?= $data['sRom'] ?> GB</td>
                         <td><?= $data['sHarga'] ?></td>
                         <td><?= round(($data['total']/$max)*100, 2) ?>%</td>
                         <td><a href="<?= base_url() ?>detail-smarthpone/<?= $data['sSlug'] ?>" class="text-white bg-gray-800 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-gray-700 flex justify-center items-center">

@@ -379,25 +379,20 @@ public function harga()
 
   // function untuk membuat konversi lebih mudah
  public function konversi($kriteria, $sub_kriteria) {
-    // Mengambil data dari $this->smartphone berdasarkan $sub_kriteria
     $ambil = $this->smartphone->getBy($sub_kriteria);
     
-    // Membuat array dari konversi yang diambil
     $konversi_ambil = [];
     foreach ($ambil as $data) {
         $konversi_ambil[] = strtolower($data[$sub_kriteria]);
     }
     
-    // Mengambil semua data konversi dari $this->bobot berdasarkan $sub_kriteria
     $bobot_data = $this->bobot->select('konversi')->where('sub_kriteria', $sub_kriteria)->findAll();
     
-    // Membuat array dari konversi yang ada di $this->bobot
     $konversi_bobot = [];
     foreach ($bobot_data as $bobot) {
         $konversi_bobot[] = $bobot['konversi'];
     }
     
-    // Menambahkan data konversi yang tidak ada di $this->bobot
     foreach ($konversi_ambil as $konversi) {
         if (!in_array($konversi, $konversi_bobot)) {
             $input = [
@@ -411,7 +406,6 @@ public function harga()
         }
     }
     
-    // Menghapus data konversi dari $this->bobot yang tidak ada di $ambil
     foreach ($konversi_bobot as $konversi) {
         if (!in_array($konversi, $konversi_ambil)) {
             $this->bobot->where('konversi', $konversi)->where('sub_kriteria', $sub_kriteria)->delete();

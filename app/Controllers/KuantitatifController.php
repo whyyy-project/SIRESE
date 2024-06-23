@@ -156,8 +156,7 @@ class KuantitatifController extends BaseController
             ->set($sub, $nilai)->set('updated_at', $this->date)
             ->set('updated_at', $this->date)->update();
           break;
-          }
-
+        }
       }
     }
   }

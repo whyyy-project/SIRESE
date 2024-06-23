@@ -71,6 +71,9 @@ class RekomendasiController extends BaseController
         $hMin = $hargaMin['harga'];
         session()->set('filter', true);
         }
+        else if($min >= 0 && $max >= 1 && $min >= $max){
+          return redirect()->back()->with('eror', 'Filter harga minimal lebih dari harga maksimal');
+        }
         else{
           $hargaMax = $this->smartphone->select('harga')->orderBy('harga', 'desc')->first();
           $hMin = 0;
@@ -78,7 +81,8 @@ class RekomendasiController extends BaseController
         }
     $hitungData = $this->smartphone->where('harga >=', $hMin)->where('harga <=', $hMax)->countAllResults();
     if($hitungData < 1){
-      session()->setFlashdata('eror', 'Data Smartphone berdasarkan harga '.$min.' - '.$max.' kurang dari 2 Smartphone');
+      session()->setFlashdata('eror', 'Data Smartphone berdasarkan harga '.$min.' - '
+      .$max.' kurang dari 2 Smartphone');
       return redirect()->to(base_url('rekomendasi'));
     }
     $total = $body + $display + $system + $memory + $mainCamera + $frontCamera + $battery + $price;
@@ -92,6 +96,7 @@ class RekomendasiController extends BaseController
       session()->set('price', $price/$total);
       session()->set('hMin', $hMin);
       session()->set('hMax', $hMax);
+      session()->set('rekom', true);
 
         $dataBobot = [
           'body' => $body,
@@ -119,11 +124,9 @@ class RekomendasiController extends BaseController
       $hasil = $this->hitung(3);
       // Fungsi untuk melakukan pengurutan
       usort($hasil, function($a, $b) {
-        // Urutkan berdasarkan 'total' dari besar ke kecil
         if ($b['total'] != $a['total']) {
           return bccomp($b['total'], $a['total'], 10);
         } else {
-          // Jika nilai sama, urutkan berdasarkan nama dari A ke Z
           return strcmp($a['sMerek'], $b['sMerek']);
         }
       });
@@ -151,21 +154,20 @@ public function viewPerhitungan(){
     }
   }
     $dataKuanti = $this->hitung(1);
-    $dataHasil = $this->hitung(3);
-          usort($dataHasil, function($a, $b) {
-        // Urutkan berdasarkan 'total' dari besar ke kecil
+    $hasil = $this->hitung(3);
+      // Fungsi untuk melakukan pengurutan
+      usort($hasil, function($a, $b) {
         if ($b['total'] != $a['total']) {
           return bccomp($b['total'], $a['total'], 10);
         } else {
-          // Jika nilai sama, urutkan berdasarkan nama dari A ke Z
-          return strcmp($a['sHarga'], $b['sHarga']);
+          return strcmp($a['sMerek'], $b['sMerek']);
         }
       });
-      $maxTotal = $dataHasil[0]['total'];
+      $maxTotal = $hasil[0]['total'];
     $data = [
       'kuanti' => $dataKuanti,
       'normal' => $dataNormalisasi,
-      'hasil' => $dataHasil,
+      'hasil' => $hasil,
       'max' => $maxTotal,
     ];
     return view('public/perhitungan', $data);
@@ -206,7 +208,14 @@ public function viewPerhitungan(){
         }else{
           $data['harga'] = $data['harga'] * session()->get('price');
         }
-        $data['total'] = ((($data['dimensi'] + $data['berat'] + $data['build'])/3)*session()->get('body')) + ((($data['lcd_type'] + $data['lcd_size'] + $data['lcd_resolusi'])/3)*session()->get('display')) + ((($data['os'] + $data['chipset'] + $data['cpu'])/3)*session()->get('system')) + ((($data['ram'] + $data['rom'])/2)*session()->get('memory')) + ((($data['main_camera'] + $data['main_type'] + $data['main_video'])/3)*session()->get('mainCamera')) + ((($data['front_camera'] + $data['front_video'])/2)*session()->get('frontCamera')) + ((($data['usb'] + $data['battery_capacity'])/2)*session()->get('battery')) + ($data['harga']*session()->get('price'));
+        $data['total'] = ((($data['dimensi'] + $data['berat'] + $data['build'])/3)*session()->get('body'))
+        + ((($data['lcd_type'] + $data['lcd_size'] + $data['lcd_resolusi'])/3)*session()->get('display'))
+        + ((($data['os'] + $data['chipset'] + $data['cpu'])/3)*session()->get('system'))
+        + ((($data['ram'] + $data['rom'])/2)*session()->get('memory'))
+        + ((($data['main_camera'] + $data['main_type'] + $data['main_video'])/3)*session()->get('mainCamera'))
+        + ((($data['front_camera'] + $data['front_video'])/2)*session()->get('frontCamera'))
+        + ((($data['usb'] + $data['battery_capacity'])/2)*session()->get('battery'))
+        + ($data['harga']*session()->get('price'));
       }
       return $dNorm;
     }
@@ -214,18 +223,18 @@ public function viewPerhitungan(){
       // membuat konversi harga
       $hargaMin = session()->get('hMin');
       $hargaMax = session()->get('hMax');
-      $hargaMinResult = $this->smartphone->select('harga')->where('harga >=', $hargaMin)->where('harga <=', $hargaMax)->orderBy('harga', 'asc')->first();
-      $hargaMaxResult = $this->smartphone->select('harga')->where('harga >=', $hargaMin)->where('harga <=', $hargaMax)->orderBy('harga', 'desc')->first();
+      $hargaMinResult = $this->smartphone->select('harga')->where('harga >=', $hargaMin)
+      ->where('harga <=', $hargaMax)->orderBy('harga', 'asc')->first();
+      $hargaMaxResult = $this->smartphone->select('harga')->where('harga >=', $hargaMin)
+      ->where('harga <=', $hargaMax)->orderBy('harga', 'desc')->first();
       $jarak = $hargaMaxResult['harga'] - $hargaMinResult['harga'];
       $step = $jarak / 100;
       $hargaPertama = $hargaMinResult['harga'] + $step;
-      $konversi = 0;
       // inisialisasi nilai konversi
       $nilai = 0;
       for ($i = 0; $i < 99; $i++) {
-        $konversi = 1 * $i;
         if($harga <= $hargaPertama + ($step * $i)){
-          $nilai = $konversi;
+          $nilai = $i;
           break;
         }else{
           $nilai = 100;
