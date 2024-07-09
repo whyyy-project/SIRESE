@@ -67,10 +67,10 @@
             <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
                 <tr class="text-sm">
                     <th>No.</th>
-                    <th class="hidden md:flex justify-center items-center mt-1">Brand</th>
+                    <th id="mobile">Brand</th>
                     <th>Merek</th>
                     <th>Memory</th>
-                    <th class="hidden md:flex justify-center items-center mt-1">Harga</th>
+                    <th id="mobile">Harga</th>
                     <th>Opsi</th>
                 </tr>
                         </thead>
@@ -80,10 +80,10 @@
                             foreach ($smartphone as $data) : ?>
                     <tr class="text-sm md:text-base">
                         <td><?= $i++ ?></td>
-                        <td class="hidden md:block my-auto"><?= $data['brand'] ?></td>
+                        <td id="mobile"><?= $data['brand'] ?></td>
                         <td><?= $data['merek'] ?></td>
-                        <td><?= $data['ram'] ?>/<?= $data['rom'] ?></td>
-                        <td class="hidden md:flex justify-center items-center"><?= $data['harga'] ?></td>
+                        <td><?= $data['ram'] ?>/<?= $data['rom'] ?>GB</td>
+                        <td data-order="<?= $data['harga'] ?>" id="mobile">Rp. <?= number_format($data['harga'], 0, ',', '.'); ?></td>
                         <td>
                           <?php
                           $url = base_url() . "master-data/delete/" . $data['slug'];
@@ -380,6 +380,8 @@ function closeModalHapus() {
             <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
             <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
             <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+            <script src="https://cdn.datatables.net/plug-ins/1.11.5/sorting/numeric-comma.js"></script>
+
 <!-- end js table -->
 
 <?php $this->endSection() ?>

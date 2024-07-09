@@ -72,6 +72,9 @@ class BobotController extends BaseController
     $build = $this->smartphone->getBy('build');
     foreach($build as $b){
       $pisah = explode(', ', strtolower($b['build']));
+      if(!$pisah){
+        return redirect()->to(base_url('master-data/update/'.$b['slug']))->with('eror', 'Penulisan Build tidak sesuai! (contoh : ALUMUNIUM FRAME, GLASS BACK)');
+      }
       foreach($pisah as $bld){
         
         if ($this->bobot->where('konversi', $bld)->where('sub_kriteria', 'build')->countAllResults() < 1){
@@ -90,15 +93,19 @@ class BobotController extends BaseController
     $getDimensi = $this->bobot->where('sub_kriteria', 'dimensi')->countAllResults();
     if($getDimensi<4){
       $this->bobot->where('sub_kriteria', 'dimensi')->delete();
-      $dimensi = $this->smartphone->select('dimensi')->findAll();
+      $dimensi = $this->smartphone->select('slug, dimensi')->findAll();
       // Array baru untuk menyimpan hasil perkalian
       $dataKonversi = [];
       // Melakukan iterasi pada setiap elemen di array dimensi
       foreach ($dimensi as $item) {
           // Memisahkan nilai dengan delimiter " x "
-          list($panjang, $lebar, $tinggi) = explode(" x ", strtolower($item['dimensi']));
+          $pisah = explode(" x ", strtolower($item['dimensi']));
+          if(!$pisah){
+          return redirect()->to(base_url('master-data/update/'.$item['slug']))->with('eror', 'Penulisan Dimensi tidak sesuai! (contoh : 168 x 78 x 8.1)');
+          }
+          list($panjang, $lebar, $tinggi) = $pisah;
           // Menghitung perkalian panjang dan lebar
-          $perkalian = $panjang * $lebar * $tinggi;
+          $perkalian = (float)$panjang * (float)$lebar * (float)$tinggi;
         // echo $panjang."x".$lebar ."x".$lebar. " = ". $perkalian." hasil<br>";
           // Menambahkan hasil perkalian ke array baru
           $dataKonversi[] = $perkalian;
@@ -145,9 +152,8 @@ class BobotController extends BaseController
       // Mendapatkan berat maksimum
       $beratMaxResult = $this->smartphone->select('berat')->orderBy('berat', 'desc')->first();
       $beratMax = $beratMaxResult['berat'];
-
       // Menghitung rentang berat
-      $rentang = $beratMax - $beratMin;
+      $rentang = (float)$beratMax - (float)$beratMin;
 
       // Menghitung selisih rentang yang dibagi menjadi 5 bagian
       $step = $rentang / 5;
@@ -155,7 +161,7 @@ class BobotController extends BaseController
       // Membuat array hitungberat
       $hitungberat = [];
       for ($i = 0; $i < 4; $i++) {
-        $hitungberat[] = $beratPertama + ($step * $i);
+        $hitungberat[] = (float)$beratPertama + ($step * $i);
       }
       $tambah = 1;
       foreach ($hitungberat as $berat) {
@@ -180,15 +186,18 @@ class BobotController extends BaseController
     $getUkuran = $this->bobot->where('sub_kriteria', 'lcd_resolusi')->countAllResults();
     if($getUkuran<4){
       $this->bobot->where('sub_kriteria', 'lcd_resolusi')->delete();
-      $lcd_resolusi = $this->smartphone->select('lcd_resolusi')->findAll();
+      $lcd_resolusi = $this->smartphone->select('slug, lcd_resolusi')->findAll();
       // Array baru untuk menyimpan hasil perkalian
       $dataKonversi = [];
       // Melakukan iterasi pada setiap elemen di array lcd_resolusi
       foreach ($lcd_resolusi as $item) {
-          // Memisahkan nilai dengan delimiter " x "
-          list($panjang, $lebar) = explode(" x ", strtolower($item['lcd_resolusi']));
+        $pisah = explode(" x ", strtolower($item['lcd_resolusi']));
+        if(!$pisah){
+          return redirect()->to(base_url('master-data/update/'.$item['slug']))->with('eror', 'Penulisan Resolusi LCD tidak sesuai! (contoh : 1080 x 2460)');
+        }
+        list($panjang, $lebar) = $pisah;
           // Menghitung perkalian panjang dan lebar
-          $perkalian = $panjang * $lebar;
+          $perkalian = (float)$panjang * (float)$lebar;
         // echo $panjang."x".$lebar ."x".$lebar. " = ". $perkalian." hasil<br>";
           // Menambahkan hasil perkalian ke array baru
           $dataKonversi[] = $perkalian;
@@ -200,15 +209,15 @@ class BobotController extends BaseController
     $lcd_resolusiMax = max($dataKonversi);
 
     // Menghitung rentang lcd_resolusi
-    $rentang = $lcd_resolusiMax - $lcd_resolusiMin;
+    $rentang = (float)$lcd_resolusiMax - (float)$lcd_resolusiMin;
 
     // Menghitung selisih rentang yang dibagi menjadi 5 bagian
     $step = $rentang / 5;
-    $lcd_resolusiPertama = $lcd_resolusiMin + $step;
+    $lcd_resolusiPertama = (float)$lcd_resolusiMin + $step;
     // Membuat array hitunglcd_resolusi
     $hitunglcd_resolusi = [];
     for ($i = 0; $i < 4; $i++) {
-        $hitunglcd_resolusi[] = $lcd_resolusiPertama + ($step * $i);
+        $hitunglcd_resolusi[] = (float)$lcd_resolusiPertama + ($step * $i);
     }
     $this->bobot->where('sub_kriteria', 'lcd_resolusi')->delete();
     $tambah = 1;
@@ -414,10 +423,14 @@ public function harga()
   }
   function video($kriteria, $sub){
     
-      $videoData = $this->smartphone->select($sub)->findAll();
+      $videoData = $this->smartphone->select('slug,'.$sub)->findAll();
 
       foreach ($videoData as $videos) {
-        $videoList = explode(',', strtolower($videos[$sub]));
+        $pisah = explode(',', strtolower($videos[$sub]));
+        if(!$pisah){
+          return redirect()->to(base_url('master-data/update/'.$videos['slug']))->with('eror', 'Penulisan '.$sub.' tidak sesuai! (contoh : 4k 60/30fps, 2k 120/90/60fps)');
+        }
+        $videoList = $pisah;
       for ($i = 0; $i < count($videoList) ; $i++){
         if($this->bobot->where('sub_kriteria', $sub)->where('konversi', $videoList[$i])->countAllResults() == 0){
           $input = [

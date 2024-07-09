@@ -113,11 +113,15 @@ class KuantitatifController extends BaseController
     // perhitungan konversi
   private function dimensi()
   {
-    $smartphone = $this->smartphone->select('id, merek, dimensi')->findAll();
+    $smartphone = $this->smartphone->select('id, slug, merek, dimensi')->findAll();
     $dataKonversi = [];
     foreach ($smartphone as $item) {
-      list($panjang, $lebar, $tinggi) = explode(" x ", strtolower($item['dimensi']));
-      $perkalian = $panjang * $lebar * $tinggi;
+      $pisah = explode(" x ", strtolower($item['dimensi']));
+        if(count($pisah) != 3){
+          return redirect()->to(base_url('master-data/update/'.$item['slug']))->with('eror', 'Penulisan Dimensi '.$item['merek'].' tidak sesuai! (contoh : 1080 x 2460)');
+        }
+      list($panjang, $lebar, $tinggi) = $pisah;
+      $perkalian = (float)$panjang * (float)$lebar * (float)$tinggi;
       $dataKonversi[] = $perkalian;
       // get bobot konversi
       $getBobot = $this->bobot->where('sub_kriteria', 'dimensi')->orderBy('nilai', 'asc')->findAll();
@@ -177,11 +181,15 @@ class KuantitatifController extends BaseController
 
 
   private function lcd_resolusi(){
-      $smartphone = $this->smartphone->select('id, lcd_resolusi')->findAll();
+      $smartphone = $this->smartphone->select('id, merek, slug, lcd_resolusi')->findAll();
     $dataKonversi = [];
     foreach ($smartphone as $item) {
-      list($panjang, $lebar) = explode(" x ", strtolower($item['lcd_resolusi']));
-      $perkalian = $panjang * $lebar;
+      $pisah = explode(" x ", strtolower($item['lcd_resolusi']));
+        if(count($pisah) != 2){
+          return redirect()->to(base_url('master-data/update/'.$item['slug']))->with('eror', 'Penulisan Resolusi LCD '.$item['merek'].' tidak sesuai! (contoh : 1080 x 2460)');
+        }
+      list($panjang, $lebar) = $pisah;
+      $perkalian = (float)$panjang * (float)$lebar;
       $dataKonversi[] = $perkalian;
       // get bobot konversi
       $getBobot = $this->bobot->where('sub_kriteria', 'lcd_resolusi')->orderBy('nilai', 'asc')->findAll();

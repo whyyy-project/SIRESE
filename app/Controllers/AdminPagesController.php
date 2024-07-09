@@ -174,13 +174,14 @@ class AdminPagesController extends BaseController
     $usb = $this->request->getPost('usb');
     $battery_capacity = $this->request->getPost('battery_capacity');
     $harga = $this->request->getPost('harga');
-    $slug = str_replace(' ', '_', $merek)."-".$ram."-".$rom."-".date("Y_m_d_H:i:s");
+    $mrk = str_replace('+', 'plus', $merek);
+    $slug = str_replace(' ', '_', $mrk)."-".$ram."-".$rom."-".date("Y_m_d_H:i:s");
 
     // foto
     $foto = $this->request->getFile('gambar');
             if ($foto->isValid() && !$foto->hasMoved()) {
             // Beri nama file baru
-            $newName = str_replace(' ', '_', $merek)."-$ram-$rom-".$foto->getRandomName();
+            $newName = str_replace(' ', '_', $mrk)."-$ram-$rom-".$foto->getRandomName();
             
             // Pindahkan file ke direktori yang diinginkan
             $foto->move(ROOTPATH . $this->path . '/smartphone/', $newName);
@@ -354,20 +355,23 @@ public function updatePost(){
     }
 
     $id = $dataSm['id'];
-    $slug = str_replace(' ', '_', $merek)."-".$ram."-".$rom."-".date("Y_m_d_H:i:s");
-    if(!$foto){
-      $newname = $dataSm['gambar'];
+    $mrk = str_replace('+', ' plus', $merek);
+    $slug = str_replace(' ', '_', $mrk)."-".$ram."-".$rom."-".date("Y_m_d_H:i:s");
+    if(!$foto->isValid()){
+      $newName = $dataSm['gambar'];
     } else {
       if ($foto->isValid() && !$foto->hasMoved()) {
         // Beri nama file baru
-        $newName = str_replace(' ', '_', $merek) . "-$ram-$rom-" . $foto->getRandomName();
+        $newName = str_replace(' ', '_', $mrk) . "-$ram-$rom-" . $foto->getRandomName();
 
         // Pindahkan file ke direktori yang diinginkan
         $foto->move(ROOTPATH . $this->path . '/smartphone/', $newName);
-        $fotoLama = ROOTPATH . $this->path . '/smartphone/' . $dataSm['gambar'];
-        if (file_exists($fotoLama)) {
-          // Hapus file
-          unlink($fotoLama);
+        if(strlen($dataSm['gambar']) > 5){
+          $fotoLama = ROOTPATH . $this->path . '/smartphone/' . $dataSm['gambar'];
+          if (file_exists($fotoLama)) {
+            // Hapus file
+            unlink($fotoLama);
+          }
         }
       }
     }
@@ -447,6 +451,7 @@ public function updatePost(){
     $alamat_lengkap = $this->request->getPost('alamat_lengkap');
     $fb = $this->request->getPost('fb');
     $ig = $this->request->getPost('ig');
+    $telepon = $this->request->getPost('telepon');
     $tiktok = $this->request->getPost('tiktok');
     $addName = "-".str_replace(' ', '_', $desa) . "-".str_replace(' ', '_', $kecamatan) . "-".str_replace(' ', '_', $kota) . "-".str_replace(' ', '_', $provinsi);
         // foto
@@ -473,6 +478,7 @@ public function updatePost(){
       'alamat_lengkap' => $alamat_lengkap,
       'fb' => $fb,
       'ig' => $ig,
+      'telepon' => $telepon,
       'tiktok' => $tiktok,
       'foto' => $newName,
       'created_at' => date('Y-m-d H:i:s'),
@@ -565,6 +571,7 @@ public function updatePost(){
     $fb = $this->request->getPost('fb');
     $ig = $this->request->getPost('ig');
     $tiktok = $this->request->getPost('tiktok');
+    $telepon = $this->request->getPost('telepon');
 
 
     $slug = $this->request->getPost('slug');
@@ -593,7 +600,7 @@ public function updatePost(){
     }
     $addName = 0;
     // validasi foto input
-    if(!$foto){
+    if(!$foto->isValid()){
       $addName = $getData['foto'];
     }
     else {
@@ -619,6 +626,7 @@ public function updatePost(){
       'alamat_lengkap' => $alamat_lengkap,
       'fb' => $fb,
       'ig' => $ig,
+      'telepon' => $telepon,
       'tiktok' => $tiktok,
       'foto' => $addName,
       'updated_at' => date('Y-m-d H:i:s'),

@@ -76,7 +76,9 @@ class RekomendasiController extends BaseController
         }
         else{
           $hargaMax = $this->smartphone->select('harga')->orderBy('harga', 'desc')->first();
-          $hMin = 0;
+          $hargaMin = $this->smartphone->select('harga')->orderBy('harga', 'asc')->first();
+
+          $hMin = $hargaMin['harga'];
           $hMax = $hargaMax['harga'];
         }
     $hitungData = $this->smartphone->where('harga >=', $hMin)->where('harga <=', $hMax)->countAllResults();
@@ -164,9 +166,11 @@ public function viewPerhitungan(){
         }
       });
       $maxTotal = $hasil[0]['total'];
-    $data = [
+      $akhir = $this->hitung(3);
+      $data = [
       'kuanti' => $dataKuanti,
       'normal' => $dataNormalisasi,
+      'akhir' => $akhir,
       'hasil' => $hasil,
       'max' => $maxTotal,
     ];
@@ -190,7 +194,7 @@ public function viewPerhitungan(){
         $data['rom'] = $data['rom'] * session()->get('memory');
         $data['main_camera'] = $data['main_camera'] * session()->get('mainCamera');
         $data['main_type'] = $data['main_type'] * session()->get('mainCamera');
-        $data['main_video'] = $data['main_video'] * session()->get('mainVideo');
+        $data['main_video'] = $data['main_video'] * session()->get('mainCamera');
         $data['front_camera'] = $data['front_camera'] * session()->get('frontCamera');
         $data['front_video'] = $data['front_video'] * session()->get('frontCamera');
         $data['usb'] = $data['usb'] * session()->get('battery');
@@ -208,14 +212,15 @@ public function viewPerhitungan(){
         }else{
           $data['harga'] = $data['harga'] * session()->get('price');
         }
-        $data['total'] = ((($data['dimensi'] + $data['berat'] + $data['build'])/3)*session()->get('body'))
-        + ((($data['lcd_type'] + $data['lcd_size'] + $data['lcd_resolusi'])/3)*session()->get('display'))
-        + ((($data['os'] + $data['chipset'] + $data['cpu'])/3)*session()->get('system'))
-        + ((($data['ram'] + $data['rom'])/2)*session()->get('memory'))
-        + ((($data['main_camera'] + $data['main_type'] + $data['main_video'])/3)*session()->get('mainCamera'))
-        + ((($data['front_camera'] + $data['front_video'])/2)*session()->get('frontCamera'))
-        + ((($data['usb'] + $data['battery_capacity'])/2)*session()->get('battery'))
-        + ($data['harga']*session()->get('price'));
+        $hBody = ($data['dimensi'] + $data['berat'] + $data['build'])/3;
+        $hDisplay = ($data['lcd_type'] + $data['lcd_size'] + $data['lcd_resolusi'])/3;
+        $hSystem = ($data['os'] + $data['chipset'] + $data['cpu']) / 3;
+        $hMemory = ($data['ram']+$data['rom'])/2;
+        $hMain = ($data['main_camera'] + $data['main_type'] + $data['main_video']) / 3;
+        $hFront = ($data['front_camera']+$data['front_video'])/2;
+        $hBattery = ($data['usb'] + $data['battery_capacity']) / 2;
+        $hPrice = $data['harga'];
+        $data['total'] = $hBody + $hDisplay + $hSystem + $hMemory + $hMain + $hFront + $hBattery + $hPrice;
       }
       return $dNorm;
     }

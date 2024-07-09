@@ -15,7 +15,7 @@
                 <div class="border border-gray-200 m-2"></div>
                 <!-- content -->
                 <div class="mt-4 p-3">
-                    <img src="<?= base_url() ?>img/smartphone/<?= $hasil->gambar ?>" alt="<?= $hasil->merek ?>" class="w-40 md:w-1/3 mx-auto rounded-br-lg rounded-tl-lg block">
+                    <img src="<?= base_url() ?>img/smartphone/<?= strlen($hasil->gambar) <= 1 ? 'basic.png' : $hasil->gambar ?>" alt="<?= $hasil->merek ?>" class="w-40 md:w-1/3 mx-auto rounded-br-lg rounded-tl-lg block">
 
                     <table class="mx-auto">
                         <tr>
@@ -155,8 +155,8 @@
             </div>
         </div>
             <div class="group px-3 mr-0 py-3 m-3 mb-0 block text-center">
-                <a href="<?= base_url() ?>data-smartphone" class="text-white bg-gray-800 px-4 py-2 rounded-full hover:bg-gray-700">
-                    Lihat Smartphone Lain
+                <a href="<?= base_url() ?><?= session()->get('LogedIn') ? 'data-smartphone':'dashboard' ?>" class="text-white bg-gray-800 px-4 py-2 rounded-full hover:bg-gray-700">
+                    <?= session()->get('LogedIn') ? 'Lihat Smartphone Lain': 'Kembali' ?>
                 </a>
             </div>
         </div>

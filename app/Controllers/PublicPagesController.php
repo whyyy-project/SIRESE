@@ -178,7 +178,7 @@ public function detailToko($slug = null){
         return redirect()->to(base_url('toko'));
     }
     $data = [
-      'title' => "Detail Toko" . $dataToko['nama_toko'],
+      'title' => "Detail Toko " . $dataToko['nama_toko'],
       'page' => "toko",
       'toko' => $dataToko,
     ];

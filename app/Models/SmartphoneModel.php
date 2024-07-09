@@ -100,6 +100,6 @@ class SmartphoneModel extends Model
     }
   
     public function getBy($data){
-    return $this->select($data)->distinct()->findAll();
+    return $this->select('slug,'.$data)->distinct()->findAll();
     }
 }

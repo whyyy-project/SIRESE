@@ -26,6 +26,7 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
   // view
     $routes->get('/', 'AdminPagesController::index');
     $routes->get('dashboard', 'AdminPagesController::index');
+    $routes->get('smarthpone-detail/(:segment)', 'PublicPagesController::detailSmartphone/$1');
     $routes->get('master-data/tambah', 'AdminPagesController::tambahSmartphone');
     $routes->post('master-data/tambah', 'AdminPagesController::insertSmartphone');
     $routes->get('master-data/delete/(:segment)', 'AdminPagesController::deleteSmartphone/$1');

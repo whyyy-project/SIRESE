@@ -259,3 +259,17 @@ margin-left: 850px;
   outline: 0; /* Hilangkan outline */
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Efek shadow saat focus */
 }
+
+@media (max-width: 768px) {
+    #mobile {
+        display: none;
+    }
+}
+    .slow-spin {
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }

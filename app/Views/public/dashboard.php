@@ -33,7 +33,7 @@
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">Bagaimana menggunakan <span class="text-orange-500"> SIRESE</span> ?</h1>
                 <div class="border border-gray-200 m-2"></div>
                 <p class="mt-2 text-gray-600 text-justify">
-                    Ingin tau <a href="#" target="_blank" class="text-blue-700 italic">cara menggunakan SIRESE ??? <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> </a>, atau ingin mencoba langsung <a href="#" class="text-blue-700 italic">menggunakan SIRESE <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> </a>. Tutorial penggunaan SIRESE juga tersedia dalam <a href="#" target="_blank" class="text-blue-700 italic">YouTube <i class="fa-brands fa-youtube text-red-700"></i> </a>
+                    Ingin tau <a href="#" target="_blank" class="text-blue-700 italic">cara menggunakan SIRESE ??? <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> </a>, atau ingin mencoba langsung <a href="<?= base_url() ?>rekomendasi" class="text-blue-700 italic">menggunakan SIRESE <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> </a>. Tutorial penggunaan SIRESE juga tersedia dalam <a href="#" target="_blank" class="text-blue-700 italic">YouTube <i class="fa-brands fa-youtube text-red-700"></i> </a>
                 </p>
             </div>
         </div>
@@ -52,7 +52,7 @@
                                 <h1 class="text-2xl font-bold text-gray-800 text-base md:text-lg"><?= $sample->merek ?></h1>
                                 <div class="border border-gray-200 m-2"></div>
                                 <div class="flex justify-center items-center mx-auto">
-                                    <img loading="lazy" src="<?= base_url() ?>img/smartphone/<?= $sample->gambar ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $sample->brand . " ". $sample->merek ?>">
+                                    <img loading="lazy" src="<?= base_url() ?>img/smartphone/<?= strlen($sample->gambar) <= 1 ? 'basic.png' : $sample->gambar ?>" class="rounded-tr-[35px] rounded-bl-[35px] h-24 md:h-40" alt="<?= $sample->brand . " ". $sample->merek ?>">
                                 </div>
                                 <div class="mt-2 text-gray-800">
                                     <p><span class="font-bold text-sm md:text-base">Brand : </span> <?= $sample->brand ?></p>

@@ -65,8 +65,8 @@
                         <td><?= $i++ ?></td>
                         <td><?= $data['merek'] ?></td>
                         <td class="hidden md:block"><?= $data['ram'] ?>/<?= $data['rom'] ?> GB</td>
-                        <td><?= $data['harga'] ?></td>
-                        <td><a href="<?= base_url() ?>detail-smarthpone/<?= $data['slug'] ?>" class="text-white bg-cyan-950 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center">
+                        <td data-order="<?= $data['harga'] ?>" id="mobile">Rp. <?= number_format($data['harga'], 0, ',', '.'); ?></td>
+                        <td><a href="<?= base_url() ?>smarthpone-detail/<?= $data['slug'] ?>" class="text-white bg-cyan-950 px-3 text-sm md:text-base py-2 md:px-0 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center">
                                     <i class="fas fa-info mr-2 hidden md:flex"></i> Detail
                                 </a></td>
                     </tr>
@@ -97,6 +97,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
             <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+            <script src="https://cdn.datatables.net/plug-ins/1.11.5/sorting/numeric-comma.js"></script>
             <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
 <!-- end js table -->
 <?php $this->endSection() ?>

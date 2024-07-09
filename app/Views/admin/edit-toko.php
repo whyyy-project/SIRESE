@@ -101,6 +101,10 @@
                             <input value="<?= set_value('tiktok', isset($toko['tiktok']) ? $toko['tiktok'] : '') ?>" id="tiktok" name="tiktok" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="tiktok"/>
                             <label for="tiktok" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">Link URL Akun TikTok</label>
                       </div>
+                      <div class="relative w-2/3 mx-auto my-4">
+                            <input value="<?= set_value('telepon', isset($toko['telepon']) ? $toko['telepon'] : '') ?>" id="telepon" name="telepon" type="text" class="bg-gray-200 rounded peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-center text-gray-900 text-sm focus:outline-none focus:border-cyan-700" placeholder="WhatsApp (62)"/>
+                            <label for="telepon" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm ml-3">No Whatsapp (62)</label>
+                      </div>
                         <button type="submit" class="text-white bg-cyan-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-600 "><i class="fas fa-save"></i> Simpan</button>
                     </form>
                 </div>

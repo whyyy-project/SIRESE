@@ -53,11 +53,11 @@
                           <td>
                             <?php if($toko['telepon']){ ?>
                               <a href="https://wa.me/<?= $toko['telepon'] ?>" class="ml-2 text-white bg-green-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-green-600">
-                                    <i class="fas fa-whatsapp mr-2"></i>Hubungi Kami
+                                    Hubungi Kami
                                 </a>
                                 <?php }
                                 else{
-                              echo "Data Kosong";
+                              echo "Tidak Ada";
                                 } ?>
                               </td>
                         </tr>
@@ -67,11 +67,11 @@
                           <td>
                             <?php if($toko['fb']){ ?>
                               <a href="<?= $toko['fb'] ?>" class="ml-2 text-white bg-blue-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-blue-600">
-                                    <i class="fas fa-facebook mr-2"></i>Hubungi Kami
+                                    Hubungi Kami
                                 </a>
                                 <?php }
                                 else{
-                              echo "Data Kosong";
+                              echo "Tidak Ada";
                                 } ?>
                         </td>
                         </tr>
@@ -81,11 +81,11 @@
                           <td>
                             <?php if($toko['ig']){ ?>
                               <a href="<?= $toko['ig'] ?>" class="ml-2 text-white bg-purple-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-purple-600">
-                                    <i class="fas fa-instagram mr-2"></i>Hubungi Kami
+                                    Hubungi Kami
                                 </a>
                                 <?php }
                                 else{
-                              echo "Data Kosong";
+                              echo "Tidak Ada";
                                 } ?>
                         </td>
                         </tr>
@@ -95,11 +95,11 @@
                           <td>
                             <?php if($toko['tiktok']){ ?>
                               <a href="<?= $toko['tiktok'] ?>" class="ml-2 text-white bg-gray-700 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-600">
-                                    <i class="fas fa-tiktok mr-2"></i>Hubungi Kami
+                                    Hubungi Kami
                                 </a>
                                 <?php }
                                 else{
-                              echo "Data Kosong";
+                              echo "Tidak Ada";
                                 } ?>
                         </td>
                         </tr>

@@ -15,7 +15,7 @@
     <div class="p-3 md:px-4 pb-0 mx-2 mb:mx-1">
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="px-4 py-3">
-              <h1 class="md:text-2xl font-bold text-gray-800 text-base">Apa itu <span class="text-orange-500"> SIRESE</span> ?</h1>
+              <h1 class="md:text-2xl font-bold text-gray-800 text-base">Update Data <span class="text-orange-500"> <?= $sm['merek'] ?></span></h1>
               <div class="border border-gray-200 m-2"></div>
 
               <?php if (session()->getFlashdata('success')) { ?>

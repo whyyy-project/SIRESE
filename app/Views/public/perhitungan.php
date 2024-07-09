@@ -30,11 +30,15 @@
 
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal mt-4 mx-2">
-<div class="flex">
-  <a href="<?= base_url() ?>algoritma-rekomendasi" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-700 mt-1 mx-auto"><i class="fas fa-arrow-left"></i> kembali</a>
-</div>
   
-            
+  <div class="fixed bottom-2 left-0 right-0 z-10">
+    <div class="flex">
+      <a href="<?= base_url() ?>algoritma-rekomendasi" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-700 mx-auto">
+        <i class="fas fa-arrow-left"></i> kembali
+      </a>
+    </div>
+  </div>
+
     <div class="border border-gray-200 m-4 mb-2"></div>
     <div class="flex flex-wrap mx-3">
       <div class="w-full">
@@ -277,11 +281,89 @@
       </div>
     <!-- end table Normalisasi -->
 
-    <!-- table Akhir -->
+
+    <!-- table Normalisasi -->
     <div class="border border-gray-200 m-4 mb-2"></div>
     <div class="flex flex-wrap mx-3">
       <div class="w-full mt-5">
         <p class="text-lg text-gray-700 text-center font-bold">Hasil Akhir</p>
+        <div class="overflow-x-auto">
+        <table id="myTable4" class="display w-full" style="width:100%">
+            <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
+                <tr>
+                    <th rowspan="2">No.</th>
+                    <th rowspan="2">Smartphone</th>
+                    <th  colspan="3">Body</th>
+                    <th  colspan="3">Display</th>
+                    <th  colspan="3">System</th>
+                    <th  colspan="2">Memory</th>
+                    <th  colspan="3">Main Camera</th>
+                    <th  colspan="2">Front Camera</th>
+                    <th  colspan="2">Battery</th>
+                    <th rowspan="2">Price</th>
+                </tr>
+                <tr>
+                  <th>Dimention</th>
+                  <th>Weight</th>
+                  <th>Build</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                  <th>Resolution</th>
+                  <th>OS</th>
+                  <th>Chipset</th>
+                  <th>CPU</th>
+                  <th>RAM</th>
+                  <th>ROM</th>
+                  <th>Camera</th>
+                  <th>Type</th>
+                  <th>Video</th>
+                  <th>Camera</th>
+                  <th>Video</th>
+                  <th>USB</th>
+                  <th>Capacity</th>
+                </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <?php
+                            $i = 1;
+                            foreach ($akhir as $data) : ?>
+                    <tr>
+                        <td><?= $i++ ?></td>
+                        <td><?= $data['sMerek'] ?> (<?= $data['sRam'] ?>/<?= $data['sRom'] ?> GB)</td>
+                        <td><?= round($data['dimensi'],5) ?></td>
+                        <td><?= round($data['berat'],5) ?></td>
+                        <td><?= round($data['build'],5) ?></td>
+                        <td><?= round($data['lcd_type'],5) ?></td>
+                        <td><?= round($data['lcd_size'],5) ?></td>
+                        <td><?= round($data['lcd_resolusi'],5) ?></td>
+                        <td><?= round($data['os'],5) ?></td>
+                        <td><?= round($data['chipset'],5) ?></td>
+                        <td><?= round($data['cpu'],5) ?></td>
+                        <td><?= round($data['ram'],5) ?></td>
+                        <td><?= round($data['rom'],5) ?></td>
+                        <td><?= round($data['main_camera'],5) ?></td>
+                        <td><?= round($data['main_type'],5) ?></td>
+                        <td><?= round($data['main_video'],5) ?></td>
+                        <td><?= round($data['front_camera'],5) ?></td>
+                        <td><?= round($data['front_video'],5) ?></td>
+                        <td><?= round($data['usb'],5) ?></td>
+                        <td><?= round($data['battery_capacity'],5) ?></td>
+                        <td><?= round($data['harga'],5) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        </div>
+        </div>
+      </div>
+    <!-- end table Hasil Akhir -->
+
+
+    <!-- table rank -->
+    <div class="border border-gray-200 m-4 mb-2"></div>
+    <div class="flex flex-wrap mx-3">
+      <div class="w-full mt-5 mb-24 md:mb-12">
+        <p class="text-lg text-gray-700 text-center font-bold">Perangkingan</p>
         <div class="overflow-x-auto">
         <table id="myTable3" class="display w-full" style="width:100%">
             <thead class="mt-3 bg-gradient-to-r from-cyan-700 to-gray-800 text-sm shadow text-white">
@@ -289,6 +371,7 @@
                   <th>Rank</th>
                   <th>Smartphone</th>
                   <th>Body</th>
+                  <th>Display</th>
                   <th>System</th>
                   <th>Memory</th>
                   <th>Main Camera</th>
@@ -305,24 +388,26 @@
                             foreach ($hasil as $data) : ?>
                     <tr>
                       <?php
-                      $body = ((($data['dimensi'] + $data['berat'] + $data['build']) / 3) * session()->get('body'));
-                      $system = ((($data['os'] + $data['berat'] + $data['build']) / 3) * session()->get('system'));
-                      $memory = ((($data['ram'] + $data['rom']) / 2) * session()->get('memory'));
-                      $mainCamera = ((($data['main_camera'] + $data['main_type'] + $data['main_video'])/3)*session()->get('mainCamera'));
-                      $frontCamera = ((($data['front_camera'] + $data['front_video']) / 2) * session()->get('frontCamera'));
-                      $battery = ((($data['usb'] + $data['battery_capacity']) / 2) * session()->get('battery'));
-                      $harga = ($data['harga'] * session()->get('price'));
+                      $hBody = ($data['dimensi'] + $data['berat'] + $data['build'])/3;
+                      $hDisplay = ($data['lcd_type'] + $data['lcd_size'] + $data['lcd_resolusi'])/3;
+                      $hSystem = ($data['os'] + $data['chipset'] + $data['cpu']) / 3;
+                      $hMemory = ($data['ram']+$data['rom'])/2;
+                      $hMain = ($data['main_camera'] + $data['main_type'] + $data['main_video'])/3;
+                      $hFront = ($data['front_camera']+$data['front_video'])/2;
+                      $hBattery = ($data['usb'] + $data['battery_capacity'])/2;
+                      $hPrice = $data['harga'];
                       ?>
                         <td><?= $i++ ?></td>
                         <td><?= $data['sMerek'] ?> (<?= $data['sRam'] ?>/<?= $data['sRom'] ?> GB)</td>
-                        <td><?= $body ?></td>
-                        <td><?= $system ?></td>
-                        <td><?= $memory ?></td>
-                        <td><?= $mainCamera ?></td>
-                        <td><?= $frontCamera ?></td>
-                        <td><?= $battery ?></td>
-                        <td><?= $harga ?> <?= session()->get('harga') ?></td>
-                        <td><?= $data['total'] ?></td>
+                        <td><?= round($hBody,8) ?></td>
+                        <td><?= round($hDisplay,8) ?></td>
+                        <td><?= round($hSystem,8) ?></td>
+                        <td><?= round($hMemory,8) ?></td>
+                        <td><?= round($hMain,8) ?></td>
+                        <td><?= round($hFront,8) ?></td>
+                        <td><?= round($hBattery,8) ?></td>
+                        <td><?= round($hPrice,8) ?></td>
+                        <td><?= round($data['total'],8) ?></td>
                         <td><?= round(($data['total']/$max)*100, 2) ?>%</td>
                     </tr>
                 <?php endforeach; ?>
@@ -331,12 +416,11 @@
         </div>
         </div>
       </div>
-    <!-- end table Akhir -->
+    <!-- end table rank -->
 
 
-<div class="flex my-5">
-  <a href="<?= base_url() ?>algoritma-rekomendasi" class="text-white bg-cyan-800 px-3 text-sm md:text-base py-2 md:px-4 md:py-2 rounded-full hover:bg-cyan-700 mt-1 mx-auto mb-10"><i class="fas fa-arrow-left"></i> kembali</a>
-</div>
+
+
   
 
 
@@ -363,6 +447,12 @@
                 $(document).ready(function() {
                     // Inisialisasi DataTables
                     var table = $('#myTable3').DataTable({
+                        dom: 'Bfrtip',
+                    });
+                });
+                $(document).ready(function() {
+                    // Inisialisasi DataTables
+                    var table = $('#myTable4').DataTable({
                         dom: 'Bfrtip',
                     });
                 });
