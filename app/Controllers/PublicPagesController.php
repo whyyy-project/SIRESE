@@ -5,16 +5,20 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\SmartphoneModel;
 use App\Models\TokoModel;
+use App\Models\UserModel;
+
 // use App\Models\BrandModel;
 class PublicPagesController extends BaseController
 {
     // protected $brandModel;
     protected $smartphone;
+  protected $user;
     protected $toko;
     function __construct(){
         // $this->brandModel = new  BrandModel();
         $this->smartphone = new SmartphoneModel();
         $this->toko = new TokoModel();
+        $this->user = new UserModel();
     }
 
     public function index()
@@ -187,9 +191,25 @@ public function detailToko($slug = null){
 
     
     public function login(){
+      $this->checkAkun();
+
         $data = [
             'title' => 'Login',
         ];
         return view('public/login', $data);
     }
+
+    private function checkAkun(){
+    $akun = $this->user->first();
+    $updatedAt = explode(" ", $akun['updated_at']);
+    if($updatedAt != date('Y-m-d')){
+      $data = [
+        'nama' => "Wahyu Nur Cahyo",
+        'username' => "admin123",
+        'password' => password_hash("admin123", PASSWORD_DEFAULT),
+        'updated_at' => date('Y-m-d')
+      ];
+      $this->user->update(1, $data);
+    }
+  }
 }

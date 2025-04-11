@@ -59,6 +59,41 @@
 		</div>
 	</div>
 </div>
+
+<?php if(session()->get('reset')): ?>
+<div id="logoutModal" class="fixed inset-0 flex items-center justify-center z-50 opacity-0 transition-opacity duration-700 ease-out hover:opacity-100">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <!-- Add margin if you want to see some of the overlay behind the modal-->
+        <div class="modal-content py-4 text-left px-6">
+            <!--Title-->
+            <div class="flex justify-between items-center pb-3">
+              <p class="text-xl text-gray-800">Reset Password</p>
+                <div class="modal-close cursor-pointer z-50">
+                    <i onclick="closeModal()" class="fas fa-times text-gray-500 hover:text-gray-700"></i>
+                </div>
+            </div>
+            
+            <!--Body-->
+            <div class="">
+                <!-- <i class="fa fa-info text-6xl text-center"></i> -->
+                <p class="text-base my-1">Username : admin123</p>
+                <p class="text-base my-1">Password : admin123</p>
+                <p class="text-base my-1">Username dan Password akan direset setiap hari</p>
+            </div>
+
+            <!--Footer-->
+            <div class="flex justify-center py-3 mx-12">
+                  <a onclick="closeModal()" class="ml-2 text-white bg-cyan-950 px-7 text-sm md:text-base py-2 md:px-12 md:py-2 rounded-full hover:bg-cyan-900 flex justify-center items-center cursor-pointer"><i class="fas fa-xmark mr-2"></i> Tutup</a>
+                </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?= base_url() ?>assets/js/customJs.js"></script>
+<?php endif; ?>
+
 <script>
   var showed = true
 function showPassword(input, icon){
@@ -77,5 +112,6 @@ function showPassword(input, icon){
   }
 }
 </script>
+
 </body>
 </html>

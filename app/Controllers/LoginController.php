@@ -11,8 +11,11 @@ class LoginController extends BaseController
   function __construct(){
     $this->user = new UserModel();
   }
+
     public function index()
     {
+      session()->setTempdata('reset', 3600); // 1 jam
+      
       $login = $this->request->getPost('login');
       $uname = $this->request->getPost('username');
       $pass = $this->request->getPost('password');
@@ -39,7 +42,7 @@ class LoginController extends BaseController
           }
           else {
               session()->setFlashdata('uname', $uname);
-              return redirect()->back()->with('error', 'Password salah!');
+              return redirect()->back()->with('error', 'Username atau Password salah!');
           }
         }
       }
